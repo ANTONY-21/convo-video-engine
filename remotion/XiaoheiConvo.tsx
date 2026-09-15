@@ -503,8 +503,11 @@ const BeatVisual: React.FC<{ beat: ConvoBeat; frame: number }> = ({ beat, frame 
       );
     }
     case 'stat_pair': {
-      // DATA-DRIVEN: two-stat comparison card from beat data
-      const items = (v as any).items || [];
+      // DATA-DRIVEN: two-stat comparison card. Accepts items[] OR
+      // left/right shape {left:{label,value}, right:{label,value}}.
+      const items = (v as any).items || [
+        (v as any).left, (v as any).right,
+      ].filter(Boolean);
       return (
         <g>
           <Card frame={frame} x={72} y={440} w={560} h={190}>
@@ -523,9 +526,12 @@ const BeatVisual: React.FC<{ beat: ConvoBeat; frame: number }> = ({ beat, frame 
       return (
         <g>
           <Card frame={frame} x={82} y={420} w={540} h={200}>
-            <text x={270} y={56} textAnchor="middle" fontSize={32} fontWeight={900} fill={GREEN} fontFamily="Arial">{(v as any).title}</text>
+            {(v as any).title && <text x={270} y={56} textAnchor="middle" fontSize={32} fontWeight={900} fill={GREEN} fontFamily="Arial">{(v as any).title}</text>}
             <text x={270} y={118} textAnchor="middle" fontSize={44} fontWeight={900} fill={INK} fontFamily="Courier New">{(v as any).rule}</text>
-            <text x={270} y={168} textAnchor="middle" fontSize={24} fontWeight={700} fill="#666" fontFamily="Arial">{(v as any).note}</text>
+            {((v as any).lines || []).map((ln: string, i: number) => (
+              <text key={i} x={270} y={165 + i * 30} textAnchor="middle" fontSize={24} fontWeight={700} fill="#666" fontFamily="Arial">{ln}</text>
+            ))}
+            {(v as any).note && <text x={270} y={168} textAnchor="middle" fontSize={24} fontWeight={700} fill="#666" fontFamily="Arial">{(v as any).note}</text>}
           </Card>
         </g>
       );
