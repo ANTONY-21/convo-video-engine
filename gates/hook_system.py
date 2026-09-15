@@ -79,6 +79,8 @@ TEMPLATES: dict[str, list[str]] = {
     "equivalence": [
         "{N}. That's how much {X} is at stake.",
         "{N} of {X} — gone. Every single day.",
+        "More {P} than a supercomputer? {N}.",
+        "This {X} has more {P} than an entire data center.",
     ],
 }
 
@@ -102,13 +104,15 @@ NICHE_BIAS = {
 
 # --- BrandbySid 10-pillar gate (0-2 each, 20 max, pass >= 14) ---------------
 PILLARS = {
-    "grab_attention": r"(stop|wait|wrong|warning|never|don't|biggest|burning|killing)",
-    "curiosity":      r"(\…|\.\.\.|hidden|nobody|secret|why|what)",
+    # grab: command words OR question-interrupt (Sokolov orienting
+    # response — a '?' in the first clause IS a scroll-stopper)
+    "grab_attention": r"(stop|wait|wrong|warning|never|don't|biggest|burning|killing|\?)",
+    "curiosity":      r"(\…|\.\.\.|hidden|nobody|secret|why|what|\?|how)",
     "relevance":      r"(you|your|you're)",
-    "value_early":    r"(fix|here's|this is how|in \d+ seconds?)",
-    "expectation":    r"(end|forever|differently|keep watching|don't skip)",
+    "value_early":    r"(fix|here's|this is how|in \d+ seconds?|before|\d+ (hours|days|minutes))",
+    "expectation":    r"(end|forever|differently|keep watching|don't skip|until)",
     "audience":       r"(you|your)",
-    "angle":          r"(nobody|everyone|almost|hidden|quietly)",
+    "angle":          r"(nobody|everyone|almost|hidden|quietly|most people|24 hours)",
     "craft":          r"^[^,;]{10,70}$",       # short, sharp, readable
     "testable":       r".",                    # always 1 — A/B store does the rest
     "placement":      r".",                    # always 1 — burned as first line
@@ -123,6 +127,40 @@ def score_hook(hook: str) -> tuple[int, dict]:
         hit = 2 if re.search(pat, h) else 0
         detail[pillar] = hit
         total += hit
+    # BrandbySid gate tightening (measured on convo_factory topic 311:
+    # "If you want use Retina Detachment..." passed at 14 with 3 pillars
+    # at 0 — grammar-clunky hooks ride relevance/expectation regexes).
+    # A hook failing 3+ pillars is weak regardless of raw total.
+    if sum(1 for v in detail.values() if v == 0) >= 3:
+        total = min(total, 13)
+    # craft failing = 'short sharp easy to read' failing (BrandbySid
+    # pillar 7) — measured: a 24-word grammar-clunky hook rode surface
+    # regexes to 16. No craft, no pass.
+    if detail.get("craft", 0) == 0:
+        total = min(total, 13)
+
+    # STRUCTURAL PASS (measured inversion, topic-311 round 2: regex
+    # pillars passed a grammar-clunky hook at 16 while PROVEN library
+    # hooks ('STOP doing this every single day...') failed at 12-13 —
+    # regexes reward surface words, not hook structure). A hook whose
+    # skeleton matches a library template (>=3 content-word overlap with
+    # any of the 20 categories' templates) is library-grade BY
+    # CONSTRUCTION — floor it at the pass line.
+    best_hits = 0
+    for tpls in TEMPLATES.values():
+        for tpl in tpls:
+            toks = [w for w in tpl.replace("{X}", "").replace("{N}", "")
+                    .replace("{P}", "").split() if len(w) > 3]
+            hits = sum(1 for w in toks if w.lower() in h)
+            best_hits = max(best_hits, hits)
+    # library templates are SHORT — a 24-word rambling hook cannot be a
+    # real template instantiation even if words overlap (measured: the
+    # clunky 'If you want use...' matched direct_callout on 6 generic
+    # words). Structural floor requires craft (short+sharp) too.
+    craft_ok = detail.get("craft", 0) > 0
+    if best_hits >= 3 and craft_ok:
+        total = max(total, 14)
+        detail["template_structure"] = best_hits
     return total, detail
 
 
