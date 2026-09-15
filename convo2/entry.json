@@ -1,0 +1,141 @@
+{
+ "beats": [
+  {
+   "id": 1,
+   "start": 0,
+   "frames": 190,
+   "scene": "home_desk",
+   "speaker": "NARRATOR",
+   "bubble": [
+    "24 HOURS TO SAVE SIGHT"
+   ],
+   "visual": {
+    "kind": "countdown",
+    "value": "24h",
+    "label": "TO SAVE SIGHT"
+   },
+   "voText": "Retina detachment strikes fast: 24 hours to save your sight or lose it forever.",
+   "caption": "RETINA DETACHMENT"
+  },
+  {
+   "id": 2,
+   "start": 190,
+   "frames": 189,
+   "scene": "home_desk",
+   "speaker": "RAVI",
+   "bubble": [
+    "Just aging?"
+   ],
+   "visual": {
+    "kind": "stat_pair",
+    "items": [
+     {
+      "label": "FLASHES?",
+      "value": "WARNING",
+      "color": "#E53E3E"
+     },
+     {
+      "label": "FLOATERS?",
+      "value": "ACT NOW",
+      "color": "#2B6CB0"
+     }
+    ]
+   },
+   "voText": "Vikram, I see flashes and floaters. My friend says that's just aging, right?",
+   "caption": "FLASHES & FLOATERS"
+  },
+  {
+   "id": 3,
+   "start": 379,
+   "frames": 285,
+   "scene": "home_desk",
+   "speaker": "VIKRAM",
+   "bubble": [
+    "4 RED FLAGS"
+   ],
+   "visual": {
+    "kind": "flag_list",
+    "title": "RED FLAG 1+2",
+    "items": [
+     {
+      "icon": "floaters",
+      "text": "Sudden shower of floaters"
+     },
+     {
+      "icon": "flash",
+      "text": "Lightning flashes in side vision"
+     }
+    ]
+   },
+   "voText": "Not always. Watch for these 4 red flags: sudden shower of floaters, new flashes, a shadow creeping in, or vision loss.",
+   "caption": "4 RED FLAGS"
+  },
+  {
+   "id": 4,
+   "start": 664,
+   "frames": 199,
+   "scene": "home_desk",
+   "speaker": "RAVI",
+   "bubble": [
+    "I've got all week?"
+   ],
+   "visual": {
+    "kind": "flag_list",
+    "title": "RED FLAG 3+4",
+    "items": [
+     {
+      "icon": "curtain",
+      "text": "Dark curtain across view"
+     },
+     {
+      "icon": "blur",
+      "text": "Sudden blurry vision"
+     }
+    ]
+   },
+   "voText": "Whoa, four flags? What if I spot one? I've got all week, right?",
+   "caption": "TIME WINDOW"
+  },
+  {
+   "id": 5,
+   "start": 863,
+   "frames": 306,
+   "scene": "home_desk",
+   "speaker": "VIKRAM",
+   "bubble": [
+    "24-0-0 RULE"
+   ],
+   "visual": {
+    "kind": "rule_card",
+    "title": "ONE-EYE SCAN TEST",
+    "rule": "COVER \u2192 COMPARE",
+    "note": "One eye blurry = 24h emergency"
+   },
+   "voText": "No. You have exactly 24 hours. Remember the 24-0-0 rule: 24 hours max, 0 delay, 0 doubt. Go to ER now.",
+   "caption": "24 HOURS MAX"
+  },
+  {
+   "id": 6,
+   "start": 1169,
+   "frames": 244,
+   "scene": "home_desk",
+   "speaker": "RAVI",
+   "bubble": [
+    "SAVE THIS"
+   ],
+   "visual": {
+    "kind": "rule_card",
+    "title": "REMEMBER",
+    "rule": "24-0-0",
+    "note": "24 hours. 0 delay. Save sight."
+   },
+   "voText": "Save this to save your sight. Follow for more. And remember, flashes aren't always harmless...",
+   "caption": "SAVE YOUR SIGHT"
+  }
+ ],
+ "size": {
+  "w": 704,
+  "h": 1280,
+  "fps": 30
+ }
+}

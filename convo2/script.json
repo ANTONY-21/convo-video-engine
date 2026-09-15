@@ -1,0 +1,142 @@
+{
+ "topicId": 311,
+ "topic": "Retina Detachment: The Warning Signs You Have 24 Hours to Catch",
+ "disclaimer": "Education only \u2014 not medical advice.",
+ "script_gate": {
+  "pass": true,
+  "hook_clarity": {
+   "signals": 2,
+   "needed": 2,
+   "pass": true,
+   "words": 14,
+   "vague": false
+  },
+  "payoff_progression": {
+   "flags": [],
+   "pass": true
+  },
+  "verdict": "PASS \u2014 hook clear, every segment advances"
+ },
+ "beats": [
+  {
+   "id": 1,
+   "speaker": "NARRATOR",
+   "vo": "Retina detachment strikes fast: 24 hours to save your sight or lose it forever.",
+   "bubble": [
+    "24 HOURS TO SAVE SIGHT"
+   ],
+   "caption": "RETINA DETACHMENT",
+   "visual": {
+    "kind": "countdown",
+    "value": "24h",
+    "label": "TO SAVE SIGHT"
+   },
+   "scene": "home_desk"
+  },
+  {
+   "id": 2,
+   "speaker": "RAVI",
+   "vo": "Vikram, I see flashes and floaters. My friend says that's just aging, right?",
+   "bubble": [
+    "Just aging?"
+   ],
+   "caption": "FLASHES & FLOATERS",
+   "visual": {
+    "kind": "stat_pair",
+    "items": [
+     {
+      "label": "FLASHES?",
+      "value": "WARNING",
+      "color": "#E53E3E"
+     },
+     {
+      "label": "FLOATERS?",
+      "value": "ACT NOW",
+      "color": "#2B6CB0"
+     }
+    ]
+   },
+   "scene": "home_desk"
+  },
+  {
+   "id": 3,
+   "speaker": "VIKRAM",
+   "vo": "Not always. Watch for these 4 red flags: sudden shower of floaters, new flashes, a shadow creeping in, or vision loss.",
+   "bubble": [
+    "4 RED FLAGS"
+   ],
+   "caption": "4 RED FLAGS",
+   "visual": {
+    "kind": "flag_list",
+    "title": "RED FLAG 1+2",
+    "items": [
+     {
+      "icon": "floaters",
+      "text": "Sudden shower of floaters"
+     },
+     {
+      "icon": "flash",
+      "text": "Lightning flashes in side vision"
+     }
+    ]
+   },
+   "scene": "home_desk"
+  },
+  {
+   "id": 4,
+   "speaker": "RAVI",
+   "vo": "Whoa, four flags? What if I spot one? I've got all week, right?",
+   "bubble": [
+    "I've got all week?"
+   ],
+   "caption": "TIME WINDOW",
+   "visual": {
+    "kind": "flag_list",
+    "title": "RED FLAG 3+4",
+    "items": [
+     {
+      "icon": "curtain",
+      "text": "Dark curtain across view"
+     },
+     {
+      "icon": "blur",
+      "text": "Sudden blurry vision"
+     }
+    ]
+   },
+   "scene": "home_desk"
+  },
+  {
+   "id": 5,
+   "speaker": "VIKRAM",
+   "vo": "No. You have exactly 24 hours. Remember the 24-0-0 rule: 24 hours max, 0 delay, 0 doubt. Go to ER now.",
+   "bubble": [
+    "24-0-0 RULE"
+   ],
+   "caption": "24 HOURS MAX",
+   "visual": {
+    "kind": "rule_card",
+    "title": "ONE-EYE SCAN TEST",
+    "rule": "COVER \u2192 COMPARE",
+    "note": "One eye blurry = 24h emergency"
+   },
+   "scene": "home_desk"
+  },
+  {
+   "id": 6,
+   "speaker": "RAVI",
+   "vo": "Save this to save your sight. Follow for more. And remember, flashes aren't always harmless...",
+   "bubble": [
+    "SAVE THIS"
+   ],
+   "caption": "SAVE YOUR SIGHT",
+   "visual": {
+    "kind": "rule_card",
+    "title": "REMEMBER",
+    "rule": "24-0-0",
+    "note": "24 hours. 0 delay. Save sight."
+   },
+   "scene": "home_desk"
+  }
+ ]
+}

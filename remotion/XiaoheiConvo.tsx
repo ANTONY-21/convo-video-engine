@@ -414,10 +414,133 @@ export const EyeIcon: React.FC<{
   );
 };
 
+// ---------------- topic SVG icons (data-driven visuals) ----------------
+// floaters: dark dots drifting in eye; flash: lightning bolt; curtain:
+// shadow across view; blur: fading eye; clock: urgency; scan: one-eye test
+const TopicIcon: React.FC<{ icon: string; frame: number }> = ({ icon, frame }) => {
+  const C = { eye: '#2B6CB0', red: '#E53E3E', dark: '#1A202C', green: '#38A169' };
+  switch (icon) {
+    case 'floaters':
+      return (
+        <g>
+          <circle cx={34} cy={30} r={26} fill="#BEE3F8" stroke={C.eye} strokeWidth={4} />
+          {[[28, 24], [40, 32], [33, 40], [45, 22]].map(([x, y], i) => (
+            <circle key={i} cx={x + Math.sin(frame / 9 + i * 2) * 3} cy={y + Math.cos(frame / 11 + i) * 3}
+              r={4 - i * 0.5} fill={C.dark} />
+          ))}
+        </g>
+      );
+    case 'flash':
+      return (
+        <polygon points="38,4 20,38 34,38 28,64 52,28 36,28 46,4"
+          fill={frame % 24 < 14 ? '#F6E05E' : '#FBD38D'} stroke={C.dark} strokeWidth={3} />
+      );
+    case 'curtain':
+      return (
+        <g>
+          <circle cx={34} cy={32} r={26} fill="#BEE3F8" stroke={C.eye} strokeWidth={4} />
+          <path d="M 8 32 A 26 26 0 0 1 60 32 L 60 40 Q 34 28 8 40 Z" fill={C.dark} opacity={0.8}>
+            <animate attributeName="opacity" values="0.6;0.95;0.6" dur="1.6s" repeatCount="indefinite" />
+          </path>
+        </g>
+      );
+    case 'blur':
+      return (
+        <g>
+          <circle cx={34} cy={32} r={26} fill="#FED7D7" stroke={C.red} strokeWidth={4} />
+          <circle cx={34} cy={32} r={12} fill="#FC8181" opacity={0.7} />
+          <circle cx={34} cy={32} r={5} fill="#FFF" opacity={0.9} />
+        </g>
+      );
+    case 'clock':
+      return (
+        <g>
+          <circle cx={34} cy={32} r={28} fill="#FFF" stroke={C.dark} strokeWidth={4} />
+          <line x1={34} y1={32} x2={34} y2={14} stroke={C.red} strokeWidth={5} strokeLinecap="round" />
+          <line x1={34} y1={32} x2={48} y2={38} stroke={C.dark} strokeWidth={4} strokeLinecap="round" />
+        </g>
+      );
+    case 'scan':
+      return (
+        <g>
+          <circle cx={34} cy={32} r={26} fill="#FFF" stroke={C.eye} strokeWidth={4} />
+          <rect x={16} y={12} width={8} height={40} fill={C.green} opacity={0.85}>
+            <animate attributeName="x" values="16;48;16" dur="2s" repeatCount="indefinite" />
+          </rect>
+        </g>
+      );
+    default:
+      return <circle cx={34} cy={32} r={24} fill="#E2E8F0" stroke={C.dark} strokeWidth={4} />;
+  }
+};
+
 const BeatVisual: React.FC<{ beat: ConvoBeat; frame: number }> = ({ beat, frame }) => {
   const v = beat.visual;
   if (!v) return null;
   switch (v.kind) {
+    case 'flag_list': {
+      // DATA-DRIVEN: topic red-flag list w/ SVG icons per item. Icons
+      // animate (pop-in staggered), text from beat data — never hardcoded.
+      const items = (v as any).items || [];
+      const title = (v as any).title || 'RED FLAGS';
+      return (
+        <g>
+          <Card frame={frame} x={62} y={400} w={580} h={100 + items.length * 105}>
+            <text x={290} y={52} textAnchor="middle" fontSize={34} fontWeight={900} fill={RED} fontFamily="Arial">{title}</text>
+            {items.map((it: any, i: number) => {
+              const p = interpolate(frame, [10 + i * 12, 22 + i * 12], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+              const y = 105 + i * 105;
+              return (
+                <g key={i} transform={`translate(40 ${y}) scale(${p})`}>
+                  <TopicIcon icon={it.icon} frame={frame} />
+                  <text x={92} y={34} fontSize={30} fontWeight={800} fill={INK} fontFamily="Arial">{it.text}</text>
+                </g>
+              );
+            })}
+          </Card>
+        </g>
+      );
+    }
+    case 'stat_pair': {
+      // DATA-DRIVEN: two-stat comparison card from beat data
+      const items = (v as any).items || [];
+      return (
+        <g>
+          <Card frame={frame} x={72} y={440} w={560} h={190}>
+            {items.map((it: any, i: number) => (
+              <React.Fragment key={i}>
+                <BigStat label={it.label} value={it.value} color={it.color || INK} x={44 + i * 318} y={42} />
+                {i < items.length - 1 && <line x1={280 + i * 40} y1={30} x2={280 + i * 40} y2={160} stroke="#DDD" strokeWidth={3} />}
+              </React.Fragment>
+            ))}
+          </Card>
+        </g>
+      );
+    }
+    case 'rule_card': {
+      // DATA-DRIVEN: rule/takeaway card from beat data
+      return (
+        <g>
+          <Card frame={frame} x={82} y={420} w={540} h={200}>
+            <text x={270} y={56} textAnchor="middle" fontSize={32} fontWeight={900} fill={GREEN} fontFamily="Arial">{(v as any).title}</text>
+            <text x={270} y={118} textAnchor="middle" fontSize={44} fontWeight={900} fill={INK} fontFamily="Courier New">{(v as any).rule}</text>
+            <text x={270} y={168} textAnchor="middle" fontSize={24} fontWeight={700} fill="#666" fontFamily="Arial">{(v as any).note}</text>
+          </Card>
+        </g>
+      );
+    }
+    case 'countdown': {
+      // DATA-DRIVEN: urgency countdown (24h retina window) — pulsing ring
+      const p = 0.5 + 0.5 * Math.sin(frame / 6);
+      return (
+        <g transform="translate(352 560)">
+          <circle cx={0} cy={0} r={95 + 8 * p} fill="none" stroke={RED} strokeWidth={10} opacity={0.85} />
+          <circle cx={0} cy={0} r={70} fill="#FFF" stroke={INK} strokeWidth={5} />
+          <text x={0} y={12} textAnchor="middle" fontSize={52} fontWeight={900} fill={RED} fontFamily="Courier New">{(v as any).value}</text>
+          <text x={0} y={160} textAnchor="middle" fontSize={32} fontWeight={900} fill={INK} fontFamily="Arial">{(v as any).label}</text>
+        </g>
+      );
+    }
     case 'price_tag':
       return (
         <g>
@@ -535,20 +658,23 @@ export const WordCaptions: React.FC<{ text: string; frames: number; frame: numbe
   const active = Math.min(words.length - 1, Math.floor(frame / per));
   // Defect fix: long VO texts stacked 7+ caption lines over the stat card.
   // Show a 6-word sliding window centred on the active word instead.
-  const WIN = 6;
+  const WIN = 4;
   const start = Math.max(0, Math.min(active - 2, words.length - WIN));
   const slice = words.slice(start, start + WIN);
+  // 3+ rows collide with the character row (measured 26s defect) —
+  // shrink font as window grows, keep max 2 rows visually
+  const fs = slice.length >= 6 ? 44 : 52;
   return (
     <div style={{
-      position: 'absolute', left: '50%', bottom: '20%', transform: 'translateX(-50%)',
-      display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'center',
-      maxWidth: '88%', fontFamily: 'Arial, sans-serif', zIndex: 40,
+      position: 'absolute', left: '50%', bottom: '25%', transform: 'translateX(-50%)',
+      display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center',
+      maxWidth: '86%', fontFamily: 'Arial, sans-serif', zIndex: 40,
     }}>
       {slice.map((w, i) => {
         const gi = start + i;
         return (
         <span key={i} style={{
-          fontSize: 52, fontWeight: 900, color: gi === active ? '#FF3B30' : '#fff',
+          fontSize: fs, fontWeight: 900, color: gi === active ? '#FF3B30' : '#fff',
           background: 'rgba(0,0,0,0.72)', borderRadius: 10, padding: '6px 16px',
           textTransform: 'uppercase' as const,
         }}>{w}</span>
