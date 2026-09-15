@@ -1,4 +1,5 @@
 import React from 'react';
+import { WordAnchoredCaptions } from './WordAnchoredCaptions';
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing, Sequence } from 'remotion';
 
 // ============================================================================
@@ -735,6 +736,7 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
   // kicker that is NOT the spoken line; subtext reframes the scene.
   const hook = beat.text_hook;
   const hookP = interpolate(lf, [6, 18], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const globalFrame = (beat.start ?? 0) + lf;
   return (
     <AbsoluteFill>
       {/* scene layer MUST be inside an <svg> — raw g/rect inside a div do not render */}
@@ -766,8 +768,12 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
           tailX={isLeft ? 130 : 350} color={meta.color} name={beat.speaker} frame={lf} width={480} />
         <BeatVisual beat={beat} frame={lf} />
       </svg>
-      {/* A1: burned-in word captions from the VO text (muted-viewers) */}
-      <WordCaptions text={beat.voText ?? beat.bubble.join(' ')} frames={beat.frames} frame={lf} />
+      {/* word-anchored captions: real VO timestamps when present,
+          estimate-based fallback otherwise */}
+      <WordAnchoredCaptions frame={globalFrame} />
+      {!((globalThis as any).__CONVO__?.captions?.length) && (
+        <WordCaptions text={beat.voText ?? beat.bubble.join(' ')} frames={beat.frames} frame={lf} />
+      )}
     </AbsoluteFill>
   );
 };
