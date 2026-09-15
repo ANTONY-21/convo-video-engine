@@ -445,6 +445,31 @@ const TopicIcon: React.FC<{ icon: string; frame: number }> = ({ icon, frame }) =
           </path>
         </g>
       );
+    case 'bolt':
+      return (
+        <g>
+          <polygon points="36,2 18,36 32,36 26,64 50,30 34,30 44,2"
+            fill={frame % 20 < 12 ? '#F6E05E' : '#FBD38D'} stroke={C.dark} strokeWidth={3} />
+        </g>
+      );
+    case 'screen':
+      return (
+        <g>
+          <rect x={12} y={6} width={44} height={54} rx={6} fill={C.dark} />
+          <rect x={16} y={12} width={36} height={40} rx={2} fill="#90CDF4">
+            <animate attributeName="fill" values="#90CDF4;#BEE3F8;#90CDF4" dur="2s" repeatCount="indefinite" />
+          </rect>
+          <circle cx={34} cy={58} r={3} fill="#fff" />
+        </g>
+      );
+    case 'fire':
+      return (
+        <g>
+          <path d="M 34 4 Q 52 22 46 40 Q 42 54 34 60 Q 26 54 22 40 Q 16 22 34 4 Z"
+            fill={frame % 18 < 10 ? '#F56565' : '#DD6B20'} stroke={C.dark} strokeWidth={3} />
+          <path d="M 34 26 Q 42 36 38 46 Q 36 52 34 54 Q 32 52 30 46 Q 26 36 34 26 Z" fill="#FBD38D" />
+        </g>
+      );
     case 'blur':
       return (
         <g>
