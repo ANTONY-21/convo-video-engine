@@ -722,12 +722,24 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
   // Anchor at frame center so the scene always fills the 1080x1920 frame.
   const zoom = interpolate(lf, [0, beat.frames], [1.0, 1.05], { extrapolateRight: 'clamp' });
   const camX = isLeft ? 26 : -26;
+  // PATTERN INTERRUPT (5-second rule, researched 2026-09): beats > 5s get a
+  // punch-in pulse at 60% — quick 1.04→1.12→1.05 zoom resets attention.
+  const long = beat.frames > 150;
+  const punch = long
+    ? interpolate(lf, [beat.frames * 0.58, beat.frames * 0.66, beat.frames * 0.74],
+        [0, 0.07, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+    : 0;
+  const zoom2 = zoom + punch;
 
+  // TEXT HOOK (SocialMediaExaminer 2026: most underutilized hook) — a top
+  // kicker that is NOT the spoken line; subtext reframes the scene.
+  const hook = beat.text_hook;
+  const hookP = interpolate(lf, [6, 18], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill>
       {/* scene layer MUST be inside an <svg> — raw g/rect inside a div do not render */}
       <svg width={1080} height={1920} viewBox="0 0 704 1280" style={{ position: 'absolute', inset: 0 }}>
-        <g transform={`translate(${352 + camX} 700) scale(${zoom}) translate(-352 -700)`}>
+        <g transform={`translate(${352 + camX} 700) scale(${zoom2}) translate(-352 -700)`}>
           {React.createElement(bg, { frame })}
           {/* listener: opposite side, smaller, slightly dimmed */}
           <g transform={`translate(${isLeft ? 556 : 148} 1030)`} opacity={0.95}>
@@ -739,6 +751,13 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
             <Xiaohei frame={frame} scale={1.0} flip={isLeft} talking
               accent={meta.accent} accentColor={meta.color} />
           </g>
+        {hook && (
+          <g opacity={hookP}>
+            <rect x={112} y={170} width={480} height={58} rx={12} fill="#1A202C" opacity={0.92} />
+            <text x={352} y={208} textAnchor="middle" fontSize={27} fontWeight={900}
+              fill="#F6E05E" fontFamily="Arial">{hook}</text>
+          </g>
+        )}
         </g>
       </svg>
       {/* bubble + visual overlay (not camera-locked) */}
