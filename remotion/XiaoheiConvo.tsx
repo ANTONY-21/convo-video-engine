@@ -529,7 +529,7 @@ const BeatVisual: React.FC<{ beat: ConvoBeat; frame: number }> = ({ beat, frame 
             {(v as any).title && <text x={270} y={56} textAnchor="middle" fontSize={32} fontWeight={900} fill={GREEN} fontFamily="Arial">{(v as any).title}</text>}
             <text x={270} y={118} textAnchor="middle" fontSize={44} fontWeight={900} fill={INK} fontFamily="Courier New">{(v as any).rule}</text>
             {((v as any).lines || []).map((ln: string, i: number) => (
-              <text key={i} x={270} y={165 + i * 30} textAnchor="middle" fontSize={24} fontWeight={700} fill="#666" fontFamily="Arial">{ln}</text>
+              <text key={i} x={270} y={162 + i * 26} textAnchor="middle" fontSize={24} fontWeight={700} fill="#666" fontFamily="Arial">{ln}</text>
             ))}
             {(v as any).note && <text x={270} y={168} textAnchor="middle" fontSize={24} fontWeight={700} fill="#666" fontFamily="Arial">{(v as any).note}</text>}
           </Card>
@@ -537,14 +537,29 @@ const BeatVisual: React.FC<{ beat: ConvoBeat; frame: number }> = ({ beat, frame 
       );
     }
     case 'countdown': {
-      // DATA-DRIVEN: urgency countdown (24h retina window) — pulsing ring
+      // DATA-DRIVEN urgency countdown — designed ring: 60 tick marks,
+      // red progress arc that sweeps around, hazard pulse halo.
       const p = 0.5 + 0.5 * Math.sin(frame / 6);
+      const sweep = 2 * Math.PI * (0.08 + 0.92 * ((frame % 90) / 90));
+      const ticks = Array.from({length: 60}, (_, i) => {
+        const a = (i / 60) * 2 * Math.PI - Math.PI / 2;
+        const r1 = 96, r2 = i % 5 === 0 ? 108 : 104;
+        return <line key={i} x1={r1 * Math.cos(a)} y1={r1 * Math.sin(a)}
+                     x2={r2 * Math.cos(a)} y2={r2 * Math.sin(a)}
+                     stroke={i / 60 <= ((frame % 90) / 90) ? RED : '#C9B8A8'}
+                     strokeWidth={i % 5 === 0 ? 5 : 2.5} />;
+      });
       return (
         <g transform="translate(352 560)">
-          <circle cx={0} cy={0} r={95 + 8 * p} fill="none" stroke={RED} strokeWidth={10} opacity={0.85} />
-          <circle cx={0} cy={0} r={70} fill="#FFF" stroke={INK} strokeWidth={5} />
-          <text x={0} y={12} textAnchor="middle" fontSize={52} fontWeight={900} fill={RED} fontFamily="Courier New">{(v as any).value}</text>
-          <text x={0} y={160} textAnchor="middle" fontSize={32} fontWeight={900} fill={INK} fontFamily="Arial">{(v as any).label}</text>
+          <circle cx={0} cy={0} r={95 + 10 * p} fill="none" stroke={RED} strokeWidth={4} opacity={0.25 + 0.3 * p} />
+          <circle cx={0} cy={0} r={92} fill="#FFF" stroke={INK} strokeWidth={6} />
+          <circle cx={0} cy={0} r={84} fill="none" stroke="#EEE" strokeWidth={12} />
+          <path d={`M 0 -84 A 84 84 0 ${sweep > Math.PI ? 1 : 0} 1 ${84 * Math.sin(sweep)} ${-84 * Math.cos(sweep)}`}
+                fill="none" stroke={RED} strokeWidth={12} strokeLinecap="round" />
+          {ticks}
+          <text x={0} y={12} textAnchor="middle" fontSize={54} fontWeight={900} fill={RED} fontFamily="Courier New">{(v as any).value}</text>
+          <text x={0} y={52} textAnchor="middle" fontSize={22} fontWeight={700} fill="#666" fontFamily="Arial">{(v as any).sublabel || ''}</text>
+          <text x={0} y={165} textAnchor="middle" fontSize={34} fontWeight={900} fill={INK} fontFamily="Arial">{(v as any).label}</text>
         </g>
       );
     }
