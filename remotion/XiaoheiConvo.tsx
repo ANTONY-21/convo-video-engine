@@ -771,10 +771,12 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
   const camX = isLeft ? 26 : -26;
   // PATTERN INTERRUPT (5-second rule, researched 2026-09): beats > 5s get a
   // punch-in pulse at 60% — quick 1.04→1.12→1.05 zoom resets attention.
-  const long = beat.frames > 150;
+  // V2 interruptScheduler: punch EVERY beat >= 3s at its midpoint
+  // (spec: visual state change <= 2.5s; v8 QC caught only 3 hard cuts).
+  const long = beat.frames >= 90;
   const punch = long
-    ? interpolate(lf, [beat.frames * 0.58, beat.frames * 0.66, beat.frames * 0.74],
-        [0, 0.07, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+    ? interpolate(lf, [beat.frames * 0.46, beat.frames * 0.52, beat.frames * 0.58],
+        [0, 0.075, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
     : 0;
   const zoom2 = zoom + punch;
 
