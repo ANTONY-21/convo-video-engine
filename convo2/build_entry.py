@@ -46,10 +46,20 @@ def main():
         bid = f"b{bt['id']}"
         secs = round(durs[bid] + 0.4, 2)
         frames = int(secs * FPS)
+        # DYNAMIC (AK: 'All dynamic based on topics'): bubble/visual come
+        # from the beat itself when the generator provides them (convo
+        # factory script.json); hardcoded dicts are only a legacy fallback.
+        bubble = bt.get('bubble') or BUBBLES.get(bt['id'], [bt['vo'][:60]])
+        if isinstance(bubble, str):
+            bubble = [bubble]
+        visual = bt.get('visual') or VISUALS.get(bt['id'], {'kind': 'stat_cards'})
+        if isinstance(visual, str):
+            visual = {'kind': visual}
+        caption = bt.get('caption', '')
         beats.append({
-            'id': bt['id'], 'start': acc, 'frames': frames, 'scene': bt['scene'],
-            'speaker': bt['speaker'], 'bubble': BUBBLES[bt['id']], 'visual': VISUALS[bt['id']],
-            'voText': bt['vo'],
+            'id': bt['id'], 'start': acc, 'frames': frames, 'scene': bt.get('scene') or 'home_desk',
+            'speaker': bt['speaker'], 'bubble': bubble, 'visual': visual,
+            'voText': bt['vo'], 'caption': caption,
         })
         acc += frames
     size = {'w': 704, 'h': 1280, 'fps': FPS}
