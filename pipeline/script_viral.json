@@ -1,0 +1,153 @@
+{
+ "topic": 311,
+ "structure": "AK viral upgrade script (verbatim beats from his critique)",
+ "beats": [
+  {
+   "id": 1,
+   "speaker": "NARRATOR",
+   "scene": "home_desk",
+   "vo": "Stop scrolling. Your eyes are suffering right now.",
+   "bubble": [
+    "STOP SCROLLING"
+   ],
+   "caption": "YOUR EYES ARE SUFFERING",
+   "text_hook": "EYES DAMAGED RIGHT NOW",
+   "visual": {
+    "kind": "countdown",
+    "value": "24h",
+    "label": "TO SAVE SIGHT"
+   },
+   "sfx": "bass_drop"
+  },
+  {
+   "id": 2,
+   "speaker": "NARRATOR",
+   "scene": "home_desk",
+   "vo": "You're staring at your screen right now. But you're not blinking enough.",
+   "bubble": [
+    "YOU ARE NOT BLINKING"
+   ],
+   "caption": "YOU ARE NOT BLINKING",
+   "text_hook": "BLINK RATE CRASHING",
+   "visual": {
+    "kind": "stat_pair",
+    "left": {
+     "label": "NORMAL BLINKS",
+     "value": "15/min"
+    },
+    "right": {
+     "label": "ON SCREEN",
+     "value": "5/min"
+    }
+   },
+   "sfx": "heartbeat"
+  },
+  {
+   "id": 3,
+   "speaker": "NARRATOR",
+   "scene": "tea_stall",
+   "vo": "Your eyes are drying out. That burning feeling? That's the start of damage.",
+   "bubble": [
+    "DAMAGE STARTS HERE"
+   ],
+   "caption": "DAMAGE STARTS HERE",
+   "text_hook": "BURNING = WARNING LIGHT",
+   "visual": {
+    "kind": "flag_list",
+    "flags": [
+     "DRY EYES",
+     "BURNING"
+    ],
+    "icon": "lightning"
+   },
+   "sfx": "bass_hit"
+  },
+  {
+   "id": 4,
+   "speaker": "NARRATOR",
+   "scene": "city_park",
+   "vo": "Normally you blink fifteen times a minute. Now it drops to five.",
+   "bubble": [
+    "15 \u2192 5 BLINKS"
+   ],
+   "caption": "15 DROPS TO 5",
+   "text_hook": "THREE TIMES LESS PROTECTION",
+   "visual": {
+    "kind": "stat_pair",
+    "left": {
+     "label": "NORMAL",
+     "value": "15"
+    },
+    "right": {
+     "label": "SCROLLING",
+     "value": "5"
+    }
+   },
+   "sfx": "tick"
+  },
+  {
+   "id": 5,
+   "speaker": "NARRATOR",
+   "scene": "city_park",
+   "vo": "Your screen is stressing your eyes. Here's how to fix it.",
+   "bubble": [
+    "THE 20 SECOND FIX"
+   ],
+   "caption": "HERE'S THE FIX",
+   "text_hook": "DOCTORS USE THIS RULE",
+   "visual": {
+    "kind": "rule_card",
+    "rule": "20-20-20",
+    "lines": [
+     "Every 20 minutes",
+     "Look 20 feet away",
+     "For 20 seconds"
+    ]
+   },
+   "sfx": "ding"
+  },
+  {
+   "id": 6,
+   "speaker": "NARRATOR",
+   "scene": "home_desk",
+   "vo": "Every twenty minutes, look twenty feet away, for twenty seconds. Do this, or it gets worse.",
+   "bubble": [
+    "20-20-20"
+   ],
+   "caption": "DO IT OR IT GETS WORSE",
+   "text_hook": "SET A PHONE REMINDER",
+   "visual": {
+    "kind": "rule_card",
+    "rule": "20-20-20",
+    "lines": [
+     "20 minutes",
+     "20 feet",
+     "20 seconds"
+    ]
+   },
+   "sfx": "pop"
+  },
+  {
+   "id": 7,
+   "speaker": "NARRATOR",
+   "scene": "home_desk",
+   "vo": "And you're still scrolling.",
+   "bubble": [
+    "YOU'RE STILL SCROLLING"
+   ],
+   "caption": "AND YOU'RE STILL SCROLLING",
+   "text_hook": "THE LOOP IS OPEN",
+   "visual": {
+    "kind": "countdown",
+    "value": "24h",
+    "label": "STILL TICKING"
+   },
+   "sfx": "bass_drop"
+  }
+ ],
+ "cta": {
+  "line": "Check the link in bio for eye protection kit.",
+  "kind": "monetization"
+ },
+ "speed_target_wpm": 160
+}
