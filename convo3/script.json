@@ -1,0 +1,132 @@
+{
+ "topicId": "eye_health_viral_v4",
+ "disclaimer": "Education only, not medical advice",
+ "beats": [
+  {
+   "id": 1,
+   "vo": "STOP\u2026 doing this\u2026 every single day.",
+   "caption": "\u274c STOP DOING THIS",
+   "zoom": "zoom_in",
+   "sfx": "bass_hit",
+   "scene": "night_scroll",
+   "speaker": "narrator"
+  },
+  {
+   "id": 2,
+   "vo": "It's quietly\u2026 KILLING your eyes.",
+   "caption": "KILLING YOUR EYES",
+   "zoom": "zoom_in",
+   "sfx": "glitch",
+   "scene": "red_eye",
+   "speaker": "narrator"
+  },
+  {
+   "id": 3,
+   "vo": "You blink\u2026 fifteen times a minute.",
+   "caption": "15 BLINKS/MIN",
+   "zoom": "normal",
+   "sfx": "pop",
+   "scene": "stat",
+   "speaker": "narrator"
+  },
+  {
+   "id": 4,
+   "vo": "On a screen?\u2026 Just FIVE.",
+   "caption": "NOW: 5",
+   "zoom": "zoom_in",
+   "sfx": "glitch",
+   "scene": "stat",
+   "speaker": "narrator"
+  },
+  {
+   "id": 5,
+   "vo": "That burning feeling?\u2026 That's DAMAGE.",
+   "caption": "DAMAGE",
+   "zoom": "zoom_in",
+   "sfx": "heartbeat",
+   "scene": "red_eye",
+   "speaker": "narrator"
+  },
+  {
+   "id": 6,
+   "vo": "And the BIGGEST mistake\u2026 is at the end.",
+   "caption": "BIGGEST MISTAKE \u2192 END",
+   "zoom": "normal",
+   "sfx": "whoosh",
+   "scene": "night_scroll",
+   "speaker": "narrator"
+  },
+  {
+   "id": 7,
+   "vo": "Every second you scroll\u2026 your eyes dry out.",
+   "caption": "EYES DRYING OUT",
+   "zoom": "normal",
+   "sfx": "tick",
+   "scene": "red_eye",
+   "speaker": "narrator"
+  },
+  {
+   "id": 8,
+   "vo": "Headaches\u2026 blurry nights\u2026 tired eyes.",
+   "caption": "HEADACHES. BLURRY NIGHTS.",
+   "zoom": "normal",
+   "sfx": "tick",
+   "scene": "night_scroll",
+   "speaker": "narrator"
+  },
+  {
+   "id": 9,
+   "vo": "Here's what doctors actually recommend\u2026",
+   "caption": "THE FIX",
+   "zoom": "normal",
+   "sfx": "pop",
+   "scene": "fix",
+   "speaker": "narrator"
+  },
+  {
+   "id": 10,
+   "vo": "Every twenty minutes\u2026 look twenty feet away.",
+   "caption": "20 MIN = 20 FEET",
+   "zoom": "zoom_in",
+   "sfx": "pop",
+   "scene": "fix",
+   "speaker": "narrator"
+  },
+  {
+   "id": 11,
+   "vo": "For twenty seconds. That's it.",
+   "caption": "20 SEC. DONE.",
+   "zoom": "normal",
+   "sfx": "pop",
+   "scene": "fix",
+   "speaker": "narrator"
+  },
+  {
+   "id": 12,
+   "vo": "The mistake most people make?\u2026 They never do it.",
+   "caption": "\u26a0\ufe0f BIGGEST MISTAKE",
+   "zoom": "zoom_in",
+   "sfx": "heartbeat",
+   "scene": "red_eye",
+   "speaker": "narrator"
+  },
+  {
+   "id": 13,
+   "vo": "Save this\u2026 you'll need it later. Follow for more.",
+   "caption": "SAVE THIS + FOLLOW",
+   "zoom": "normal",
+   "sfx": "whoosh",
+   "scene": "fix",
+   "speaker": "narrator"
+  },
+  {
+   "id": 14,
+   "vo": "And you're\u2026 still scrolling.",
+   "caption": "STILL SCROLLING?",
+   "zoom": "normal",
+   "sfx": "bass_hit",
+   "scene": "night_scroll",
+   "speaker": "narrator"
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+{
+ "bubbles": {
+  "1": [
+   "7 in 10 screen workers",
+   "get eye strain"
+  ],
+  "2": [
+   "My eyes are BURNING!",
+   "4 hours of code..."
+  ],
+  "3": [
+   "You blink",
+   "60% LESS",
+   "at screens"
+  ],
+  "4": [
+   "60% less?!",
+   "Moisture just",
+   "evaporates?"
+  ],
+  "5": [
+   "20-20-20 rule:",
+   "every 20 min \u2192",
+   "20 feet, 20 sec"
+  ],
+  "6": [
+   "Education only,",
+   "not medical advice."
+  ]
+ },
+ "visuals": {
+  "1": {
+   "kind": "stat_cards"
+  },
+  "2": {
+   "kind": "price_tag"
+  },
+  "3": {
+   "kind": "stat_cards"
+  },
+  "4": {
+   "kind": "real_rate"
+  },
+  "5": {
+   "kind": "rule72"
+  },
+  "6": {
+   "kind": "cta"
+  }
+ }
+}
