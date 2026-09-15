@@ -254,8 +254,9 @@ const HomeDesk: React.FC<{ frame: number }> = ({ frame }) => (
       <circle cx={112} cy={212} r={26} fill="#F6C445" />
       <circle cx={236} cy={252} r={16} fill="#fff" opacity={0.9} />
     </g>
-    {/* wall clock */}
-    <g transform="translate(520 220)">
+    {/* wall clock — moved to (620 330): out of the hook-badge band
+        (M4: badge y170-228 overlapped clock y166-274) */}
+    <g transform="translate(620 330)">
       <circle cx={0} cy={0} r={54} fill="#fff" stroke={INK} strokeWidth={6} />
       <line x1={0} y1={0} x2={0} y2={-34} stroke={INK} strokeWidth={5} strokeLinecap="round" transform={`rotate(${(frame / 10) % 360})`} />
       <line x1={0} y1={0} x2={22} y2={12} stroke={INK} strokeWidth={5} strokeLinecap="round" />
@@ -547,16 +548,37 @@ const BeatVisual: React.FC<{ beat: ConvoBeat; frame: number }> = ({ beat, frame 
       );
     }
     case 'rule_card': {
-      // DATA-DRIVEN: rule/takeaway card from beat data
+      // DATA-DRIVEN: rule/takeaway card from beat data.
+      // M1: height grows with line count — 3 lines at y162+2*26=214
+      // overflowed the fixed h=200 card (3rd line clipped).
+      const nLines = ((v as any).lines || []).length;
+      const cardH = Math.max(200, 60 + (nLines ? 156 + (nLines - 1) * 26 : 0));
       return (
         <g>
-          <Card frame={frame} x={82} y={420} w={540} h={200}>
+          <Card frame={frame} x={82} y={420} w={540} h={cardH}>
             {(v as any).title && <text x={270} y={56} textAnchor="middle" fontSize={32} fontWeight={900} fill={GREEN} fontFamily="Arial">{(v as any).title}</text>}
             <text x={270} y={118} textAnchor="middle" fontSize={44} fontWeight={900} fill={INK} fontFamily="Courier New">{(v as any).rule}</text>
             {((v as any).lines || []).map((ln: string, i: number) => (
               <text key={i} x={270} y={162 + i * 26} textAnchor="middle" fontSize={24} fontWeight={700} fill="#666" fontFamily="Arial">{ln}</text>
             ))}
-            {(v as any).note && <text x={270} y={168} textAnchor="middle" fontSize={24} fontWeight={700} fill="#666" fontFamily="Arial">{(v as any).note}</text>}
+            {(v as any).note && <text x={270} y={168 + nLines * 26} textAnchor="middle" fontSize={24} fontWeight={700} fill="#666" fontFamily="Arial">{(v as any).note}</text>}
+          </Card>
+        </g>
+      );
+    }
+    case 'cta': {
+      // M3: mandatory CTA end card — headline + follow line + icons.
+      return (
+        <g>
+          <Card frame={frame} x={62} y={440} w={580} h={300}>
+            <text x={352} y={80} textAnchor="middle" fontSize={40} fontWeight={900} fill={INK} fontFamily="Arial">{(v as any).headline || 'SAVE THIS'}</text>
+            <text x={352} y={136} textAnchor="middle" fontSize={26} fontWeight={700} fill={GREEN} fontFamily="Arial">{(v as any).sub || 'Follow for the science'}</text>
+            <g transform="translate(352 210)">
+              {/* save (bookmark) + share icons */}
+              <path d="M -60 -24 L -60 24 L -42 10 L -24 24 L -24 -24 Z" fill="none" stroke={RED} strokeWidth={5} strokeLinejoin="round" />
+              <circle cx={70} cy={0} r={26} fill="none" stroke={INK} strokeWidth={5} />
+              <path d="M 58 -8 L 82 0 L 58 8" fill="none" stroke={INK} strokeWidth={5} strokeLinejoin="round" />
+            </g>
           </Card>
         </g>
       );
@@ -812,8 +834,10 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
       </svg>
       {/* bubble + visual overlay (not camera-locked) */}
       <svg width={1080} height={1920} viewBox="0 0 704 1280" style={{ position: 'absolute', inset: 0 }}>
+        {beat.bubble?.length > 0 && (
         <Bubble lines={beat.bubble} x={isLeft ? 88 : 704 - 88 - 480} y={330}
           tailX={isLeft ? 130 : 350} color={meta.color} name={beat.speaker} frame={lf} width={480} />
+        )}
         <BeatVisual beat={beat} frame={lf} />
       </svg>
       {/* word-anchored captions: real VO timestamps when present,
