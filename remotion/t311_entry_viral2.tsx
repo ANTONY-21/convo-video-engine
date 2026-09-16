@@ -139,7 +139,7 @@ const CONVO = {
  {
   "id": 8,
   "start": 772,
-  "frames": 75,
+  "frames": 190,
   "scene": "home_desk",
   "speaker": "NARRATOR",
   "vo": "Save this. Comment EYES for the free 20-20-20 phone reminder. Consult link in bio.",
