@@ -1,0 +1,212 @@
+{
+ "topic": 311,
+ "structure": "AK viral upgrade script (verbatim beats from his critique)",
+ "beats": [
+  {
+   "id": 1,
+   "speaker": "NARRATOR",
+   "scene": "home_desk",
+   "vo": "Stop scrolling. The 20-20-20 rule saves your eyes. Your screen is damaging them right now.",
+   "bubble": [],
+   "caption": "YOUR EYES ARE SUFFERING",
+   "text_hook": "EYES DAMAGED RIGHT NOW",
+   "visual": {
+    "kind": "rule_card",
+    "rule": "20-20-20",
+    "lines": [
+     "Every 20 minutes",
+     "Look 20 feet away",
+     "For 20 seconds"
+    ],
+    "icons": [
+     {
+      "icon": "warning",
+      "label": "STOP"
+     },
+     {
+      "icon": "eye",
+      "label": "EYES"
+     }
+    ]
+   },
+   "sfx": "bass_drop",
+   "voText": "Stop scrolling. The 20-20-20 rule saves your eyes. Your screen is damaging them right now."
+  },
+  {
+   "id": 2,
+   "speaker": "NARRATOR",
+   "scene": "home_desk",
+   "vo": "You're staring at your screen right now. But you're not blinking enough.",
+   "bubble": [],
+   "caption": "YOU ARE NOT BLINKING",
+   "text_hook": "BLINK RATE CRASHING",
+   "visual": {
+    "kind": "stat_pair",
+    "left": {
+     "label": "NORMAL BLINKS",
+     "value": "15/min"
+    },
+    "right": {
+     "label": "ON SCREEN",
+     "value": "5/min"
+    },
+    "icons": [
+     {
+      "icon": "screen",
+      "label": "SCROLL"
+     },
+     {
+      "icon": "drop",
+      "label": "DRY"
+     }
+    ]
+   },
+   "sfx": "heartbeat"
+  },
+  {
+   "id": 4,
+   "speaker": "NARRATOR",
+   "scene": "city_park",
+   "vo": "Normally you blink fifteen times a minute. Now it drops to five.",
+   "bubble": [],
+   "caption": "15 DROPS TO 5",
+   "text_hook": "THREE TIMES LESS PROTECTION",
+   "visual": {
+    "kind": "stat_pair",
+    "left": {
+     "label": "NORMAL",
+     "value": "15"
+    },
+    "right": {
+     "label": "SCROLLING",
+     "value": "5"
+    },
+    "icons": [
+     {
+      "icon": "blur",
+      "label": "BLURRY"
+     },
+     {
+      "icon": "fire",
+      "label": "BURN"
+     }
+    ]
+   },
+   "sfx": "tick"
+  },
+  {
+   "id": 5,
+   "speaker": "NARRATOR",
+   "scene": "city_park",
+   "vo": "Your screen is stressing your eyes. Here's how to fix it.",
+   "bubble": [],
+   "caption": "HERE'S THE FIX",
+   "text_hook": "DOCTORS USE THIS RULE",
+   "visual": {
+    "kind": "rule_card",
+    "rule": "20-20-20",
+    "lines": [
+     "Every 20 minutes",
+     "Look 20 feet away",
+     "For 20 seconds"
+    ],
+    "icons": [
+     {
+      "icon": "clock",
+      "label": "20 MIN"
+     },
+     {
+      "icon": "target",
+      "label": "FOCUS"
+     }
+    ]
+   },
+   "sfx": "ding"
+  },
+  {
+   "id": 6,
+   "speaker": "NARRATOR",
+   "scene": "home_desk",
+   "vo": "Every twenty minutes, look twenty feet away, for twenty seconds. Do this, or it gets worse.",
+   "bubble": [],
+   "caption": "DO IT OR IT GETS WORSE",
+   "text_hook": "SET A PHONE REMINDER",
+   "visual": {
+    "kind": "rule_card",
+    "rule": "20-20-20",
+    "lines": [
+     "20 minutes",
+     "20 feet",
+     "20 seconds"
+    ],
+    "icons": [
+     {
+      "icon": "sun",
+      "label": "LOOK"
+     },
+     {
+      "icon": "check",
+      "label": "20 SEC"
+     }
+    ]
+   },
+   "sfx": "pop"
+  },
+  {
+   "id": 7,
+   "speaker": "NARRATOR",
+   "scene": "home_desk",
+   "vo": "And you're still scrolling.",
+   "bubble": [],
+   "caption": "AND YOU'RE STILL SCROLLING",
+   "text_hook": "THE LOOP IS OPEN",
+   "visual": {
+    "kind": "countdown",
+    "value": "24h",
+    "label": "STILL TICKING",
+    "icons": [
+     {
+      "icon": "clock",
+      "label": "24H"
+     },
+     {
+      "icon": "bolt",
+      "label": "TICK"
+     }
+    ]
+   },
+   "sfx": "bass_drop"
+  },
+  {
+   "id": 8,
+   "scene": "home_desk",
+   "speaker": "NARRATOR",
+   "vo": "Save this. Comment EYES for the free 20-20-20 phone reminder. Consult link in bio.",
+   "voText": "Save this. Comment EYES for the free 20-20-20 phone reminder. Consult link in bio.",
+   "bubble": [],
+   "caption": "",
+   "text_hook": "",
+   "visual": {
+    "kind": "cta",
+    "headline": "SAVE THIS",
+    "sub": "Comment EYES \u2014 free phone reminder \u2022 Consult in bio",
+    "icons": [
+     {
+      "icon": "check",
+      "label": "SAVE"
+     },
+     {
+      "icon": "heart",
+      "label": "FOLLOW"
+     }
+    ]
+   },
+   "frames": 190
+  }
+ ],
+ "cta": {
+  "line": "Check the link in bio for eye protection kit.",
+  "kind": "monetization"
+ },
+ "speed_target_wpm": 160
+}
