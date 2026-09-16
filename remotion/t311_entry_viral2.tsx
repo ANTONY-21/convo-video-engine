@@ -25,12 +25,12 @@ const CONVO = {
    ],
    "icons": [
     {
-     "icon": "screen",
-     "label": "SCREEN"
+     "icon": "warning",
+     "label": "STOP"
     },
     {
-     "icon": "bolt",
-     "label": "STRIKES"
+     "icon": "eye",
+     "label": "EYES"
     }
    ]
   },
@@ -60,11 +60,11 @@ const CONVO = {
    "icons": [
     {
      "icon": "screen",
-     "label": "BLINKS"
+     "label": "SCROLL"
     },
     {
-     "icon": "blur",
-     "label": "BLURRY"
+     "icon": "drop",
+     "label": "DRY"
     }
    ]
   },
@@ -94,11 +94,11 @@ const CONVO = {
    "icons": [
     {
      "icon": "blur",
-     "label": "BLUR"
+     "label": "BLURRY"
     },
     {
-     "icon": "floaters",
-     "label": "SPOTS"
+     "icon": "fire",
+     "label": "BURN"
     }
    ]
   },
@@ -125,12 +125,12 @@ const CONVO = {
    ],
    "icons": [
     {
-     "icon": "bolt",
-     "label": "RULE"
+     "icon": "clock",
+     "label": "20 MIN"
     },
     {
-     "icon": "flash",
-     "label": "RESET"
+     "icon": "target",
+     "label": "FOCUS"
     }
    ]
   },
@@ -157,12 +157,12 @@ const CONVO = {
    ],
    "icons": [
     {
-     "icon": "flash",
-     "label": "20 MIN"
+     "icon": "sun",
+     "label": "LOOK"
     },
     {
-     "icon": "eye_off",
-     "label": "AWAY"
+     "icon": "check",
+     "label": "20 SEC"
     }
    ]
   },
@@ -185,12 +185,12 @@ const CONVO = {
    "label": "STILL TICKING",
    "icons": [
     {
-     "icon": "bolt",
-     "label": "TICKING"
+     "icon": "clock",
+     "label": "24H"
     },
     {
-     "icon": "screen",
-     "label": "24H"
+     "icon": "bolt",
+     "label": "TICK"
     }
    ]
   },
@@ -213,12 +213,12 @@ const CONVO = {
    "sub": "Comment EYES — free phone reminder • Consult in bio",
    "icons": [
     {
-     "icon": "flash",
+     "icon": "check",
      "label": "SAVE"
     },
     {
-     "icon": "screen",
-     "label": "EYES"
+     "icon": "heart",
+     "label": "FOLLOW"
     }
    ]
   },

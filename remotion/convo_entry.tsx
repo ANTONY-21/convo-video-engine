@@ -1,4 +1,5 @@
 import { registerRoot, Composition } from 'remotion';
+import { EmojiTest } from './emoji_test';
 import React from 'react';
 import { XiaoheiConvo } from './XiaoheiConvo';
 
@@ -17,7 +18,8 @@ const CONVO = {
    "visual": {
     "kind": "stat_cards"
    },
-   "voText": "Seven in ten screen workers get Computer Vision Syndrome. Here's what it sounds like in real life."
+   "voText": "Seven in ten screen workers get Computer Vision Syndrome. Here's what it sounds like in real life.",
+   "caption": ""
   },
   {
    "id": 2,
@@ -32,7 +34,8 @@ const CONVO = {
    "visual": {
     "kind": "price_tag"
    },
-   "voText": "Uncle, my eyes are burning! Four hours of coding and I can barely read the screen."
+   "voText": "Uncle, my eyes are burning! Four hours of coding and I can barely read the screen.",
+   "caption": ""
   },
   {
    "id": 3,
@@ -47,7 +50,8 @@ const CONVO = {
    "visual": {
     "kind": "stat_cards"
    },
-   "voText": "That is your eyes drying out, beta. You blink sixty percent less when you stare at screens."
+   "voText": "That is your eyes drying out, beta. You blink sixty percent less when you stare at screens.",
+   "caption": ""
   },
   {
    "id": 4,
@@ -63,7 +67,8 @@ const CONVO = {
    "visual": {
     "kind": "real_rate"
    },
-   "voText": "Sixty percent less? So the moisture just evaporates?"
+   "voText": "Sixty percent less? So the moisture just evaporates?",
+   "caption": ""
   },
   {
    "id": 5,
@@ -79,7 +84,8 @@ const CONVO = {
    "visual": {
     "kind": "rule72"
    },
-   "voText": "Exactly. Dryness, strain, headaches, blurred vision. Follow the twenty rule. Every twenty minutes, look twenty feet away for twenty seconds."
+   "voText": "Exactly. Dryness, strain, headaches, blurred vision. Follow the twenty rule. Every twenty minutes, look twenty feet away for twenty seconds.",
+   "caption": ""
   },
   {
    "id": 6,
@@ -94,7 +100,8 @@ const CONVO = {
    "visual": {
     "kind": "cta"
    },
-   "voText": "Education only, not medical advice. Follow for the science behind your screen habits."
+   "voText": "Education only, not medical advice. Follow for the science behind your screen habits.",
+   "caption": ""
   }
  ],
  "size": {
@@ -110,9 +117,12 @@ const Wrapper: React.FC = () => {
 };
 
 export const ConvoRoot = () => (
-  <Composition id="XiaoheiConvo" component={Wrapper}
-    durationInFrames={CONVO.beats.reduce((a, b) => a + b.frames, 0)}
-    fps={30} width={1080} height={1920} />
+  <>
+    <Composition id="EmojiTest" component={EmojiTest} durationInFrames={20} fps={30} width={540} height={540} />
+    <Composition id="XiaoheiConvo" component={Wrapper}
+      durationInFrames={CONVO.beats.reduce((a, b) => a + b.frames, 0)}
+      fps={30} width={1080} height={1920} />
+  </>
 );
 
 registerRoot(ConvoRoot);

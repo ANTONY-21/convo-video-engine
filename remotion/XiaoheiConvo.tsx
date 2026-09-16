@@ -423,95 +423,24 @@ export const EyeIcon: React.FC<{
 // floaters: dark dots drifting in eye; flash: lightning bolt; curtain:
 // shadow across view; blur: fading eye; clock: urgency; scan: one-eye test
 const TopicIcon: React.FC<{ icon: string; frame: number }> = ({ icon, frame }) => {
-  const C = { eye: '#2B6CB0', red: '#E53E3E', dark: '#1A202C', green: '#38A169' };
-  switch (icon) {
-    case 'floaters':
-      return (
-        <g>
-          <circle cx={34} cy={30} r={26} fill="#BEE3F8" stroke={C.eye} strokeWidth={4} />
-          {[[28, 24], [40, 32], [33, 40], [45, 22]].map(([x, y], i) => (
-            <circle key={i} cx={x + Math.sin(frame / 9 + i * 2) * 3} cy={y + Math.cos(frame / 11 + i) * 3}
-              r={4 - i * 0.5} fill={C.dark} />
-          ))}
-        </g>
-      );
-    case 'flash':
-      return (
-        <polygon points="38,4 20,38 34,38 28,64 52,28 36,28 46,4"
-          fill={frame % 24 < 14 ? '#F6E05E' : '#FBD38D'} stroke={C.dark} strokeWidth={3} />
-      );
-    case 'curtain':
-      return (
-        <g>
-          <circle cx={34} cy={32} r={26} fill="#BEE3F8" stroke={C.eye} strokeWidth={4} />
-          <path d="M 8 32 A 26 26 0 0 1 60 32 L 60 40 Q 34 28 8 40 Z" fill={C.dark} opacity={0.8}>
-            <animate attributeName="opacity" values="0.6;0.95;0.6" dur="1.6s" repeatCount="indefinite" />
-          </path>
-        </g>
-      );
-    case 'bolt':
-      return (
-        <g>
-          <polygon points="36,2 18,36 32,36 26,64 50,30 34,30 44,2"
-            fill={frame % 20 < 12 ? '#F6E05E' : '#FBD38D'} stroke={C.dark} strokeWidth={3} />
-        </g>
-      );
-    case 'screen':
-      return (
-        <g>
-          <rect x={12} y={6} width={44} height={54} rx={6} fill={C.dark} />
-          <rect x={16} y={12} width={36} height={40} rx={2} fill="#90CDF4">
-            <animate attributeName="fill" values="#90CDF4;#BEE3F8;#90CDF4" dur="2s" repeatCount="indefinite" />
-          </rect>
-          <circle cx={34} cy={58} r={3} fill="#fff" />
-        </g>
-      );
-    case 'fire':
-      return (
-        <g>
-          <path d="M 34 4 Q 52 22 46 40 Q 42 54 34 60 Q 26 54 22 40 Q 16 22 34 4 Z"
-            fill={frame % 18 < 10 ? '#F56565' : '#DD6B20'} stroke={C.dark} strokeWidth={3} />
-          <path d="M 34 26 Q 42 36 38 46 Q 36 52 34 54 Q 32 52 30 46 Q 26 36 34 26 Z" fill="#FBD38D" />
-        </g>
-      );
-    case 'eye_off':
-      return (
-        <g>
-          <circle cx={34} cy={32} r={24} fill="#FED7D7" stroke={C.red} strokeWidth={4} />
-          <circle cx={34} cy={32} r={10} fill="#fff" stroke={C.red} strokeWidth={3} />
-          <circle cx={34} cy={32} r={4} fill={C.red} />
-          <line x1={12} y1={12} x2={56} y2={54} stroke={C.red} strokeWidth={5} strokeLinecap="round"
-            opacity={0.65 + 0.35 * Math.sin(frame / 8)} />
-        </g>
-      );
-    case 'blur':
-      return (
-        <g>
-          <circle cx={34} cy={32} r={26} fill="#FED7D7" stroke={C.red} strokeWidth={4} />
-          <circle cx={34} cy={32} r={12} fill="#FC8181" opacity={0.7} />
-          <circle cx={34} cy={32} r={5} fill="#FFF" opacity={0.9} />
-        </g>
-      );
-    case 'clock':
-      return (
-        <g>
-          <circle cx={34} cy={32} r={28} fill="#FFF" stroke={C.dark} strokeWidth={4} />
-          <line x1={34} y1={32} x2={34} y2={14} stroke={C.red} strokeWidth={5} strokeLinecap="round" />
-          <line x1={34} y1={32} x2={48} y2={38} stroke={C.dark} strokeWidth={4} strokeLinecap="round" />
-        </g>
-      );
-    case 'scan':
-      return (
-        <g>
-          <circle cx={34} cy={32} r={26} fill="#FFF" stroke={C.eye} strokeWidth={4} />
-          <rect x={16} y={12} width={8} height={40} fill={C.green} opacity={0.85}>
-            <animate attributeName="x" values="16;48;16" dur="2s" repeatCount="indefinite" />
-          </rect>
-        </g>
-      );
-    default:
-      return <circle cx={34} cy={32} r={24} fill="#E2E8F0" stroke={C.dark} strokeWidth={4} />;
-  }
+  // VIRAL ICON LAW (AK 2026-09-15: "not this types of icons svg... u see
+  // in internet"): rich full-color emoji glyphs (Noto Color Emoji) with
+  // springy pop-in + idle wiggle — NOT flat SVG outlines.
+  const EMOJI: Record<string, string> = {
+    screen: '📱', laptop: '💻', bolt: '⚡', fire: '🔥', flash: '✨',
+    eye: '👁️', eye_off: '😵', blur: '🥴', floaters: '👁️', curtain: '😨',
+    clock: '⏰', drop: '💧', pill: '💊', sleep: '😴', sun: '☀️',
+    warning: '⚠️', check: '✅', cross: '❌', target: '🎯', brain: '🧠',
+    book: '📖', chart: '📊', money: '💰', heart: '❤️', doctor: '🩺',
+  };
+  const glyph = EMOJI[icon] || '👁️';
+  const springy = 1 + 0.06 * Math.sin(frame / 6);
+  const tilt = Math.sin(frame / 14) * 4;
+  return (
+    <g transform={`scale(${springy}) rotate(${tilt})`}>
+      <text x={0} y={62} fontSize={68} fontFamily='"Noto Color Emoji", "Noto Sans", sans-serif'>{glyph}</text>
+    </g>
+  );
 };
 
 const BeatVisual: React.FC<{ beat: ConvoBeat; frame: number }> = ({ beat, frame }) => {
