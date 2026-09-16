@@ -1,0 +1,539 @@
+import { registerRoot, Composition } from 'remotion';
+import React from 'react';
+import { XiaoheiConvo } from './XiaoheiConvo';
+
+const CONVO = {
+ "beats": [
+ {
+  "id": 1,
+  "start": 0,
+  "frames": 120,
+  "scene": "home_desk",
+  "speaker": "RAVI",
+  "vo": "Sleeping with contact lenses? STOP doing this.",
+  "voText": "Sleeping with contact lenses? STOP doing this.",
+  "bubble": [],
+  "caption": "SLEEPING IN LENSES? STOP",
+  "text_hook": null,
+  "visual": {
+   "kind": "broll_lens_night",
+   "icons": [
+    {
+     "icon": "lens",
+     "label": "LENSES"
+    },
+    {
+     "icon": "sleep",
+     "label": "NIGHT"
+    }
+   ]
+  },
+  "sfx": "bass_drop"
+ },
+ {
+  "id": 2,
+  "start": 120,
+  "frames": 83,
+  "scene": "home_desk",
+  "speaker": "RAVI",
+  "vo": "This can damage your eye overnight.",
+  "voText": "This can damage your eye overnight.",
+  "bubble": [],
+  "caption": "DAMAGE STARTS OVERNIGHT",
+  "text_hook": null,
+  "visual": {
+   "kind": "stat_pair",
+   "headline": "OVERNIGHT",
+   "items": [
+    {
+     "label": "CORNEA OXYGEN",
+     "value": "DROPS",
+     "color": "#E53E3E"
+    }
+   ]
+  },
+  "sfx": "heartbeat"
+ },
+ {
+  "id": 3,
+  "start": 203,
+  "frames": 169,
+  "scene": "home_desk",
+  "speaker": "RAVI",
+  "vo": "When you sleep in lenses, oxygen supply to your cornea drops. The cornea swells. Bacteria grow.",
+  "voText": "When you sleep in lenses, oxygen supply to your cornea drops. The cornea swells. Bacteria grow.",
+  "bubble": [],
+  "caption": "OXYGEN BLOCKED",
+  "text_hook": null,
+  "visual": {
+   "kind": "stat_pair",
+   "headline": "NO OXYGEN",
+   "items": [
+    {
+     "label": "THROUGH AIR",
+     "value": "FULL",
+     "color": "#38A169"
+    },
+    {
+     "label": "UNDER LENS",
+     "value": "BLOCKED",
+     "color": "#E53E3E"
+    }
+   ]
+  },
+  "sfx": "tick"
+ },
+ {
+  "id": 4,
+  "start": 372,
+  "frames": 141,
+  "scene": "home_desk",
+  "speaker": "RAVI",
+  "vo": "This can lead to infections, ulcers. Even vision loss.",
+  "voText": "This can lead to infections, ulcers. Even vision loss.",
+  "bubble": [],
+  "caption": "EVEN VISION LOSS",
+  "text_hook": null,
+  "visual": {
+   "kind": "stat_pair",
+   "headline": "THE DAMAGE",
+   "items": [
+    {
+     "label": "ULCER",
+     "value": "24 HRS",
+     "color": "#E53E3E"
+    },
+    {
+     "label": "SCAR",
+     "value": "PERMANENT",
+     "color": "#E53E3E"
+    }
+   ]
+  },
+  "sfx": "bass_hit"
+ },
+ {
+  "id": 5,
+  "start": 513,
+  "frames": 127,
+  "scene": "home_desk",
+  "speaker": "RAVI",
+  "vo": "Always remove lenses before sleep. No exceptions.",
+  "voText": "Always remove lenses before sleep. No exceptions.",
+  "bubble": [],
+  "caption": "REMOVE. EVERY NIGHT.",
+  "text_hook": null,
+  "visual": {
+   "kind": "broll_case_morning"
+  },
+  "sfx": "ding"
+ },
+ {
+  "id": 6,
+  "start": 640,
+  "frames": 130,
+  "scene": "home_desk",
+  "speaker": "RAVI",
+  "vo": "Save this. Most people don't know this.",
+  "voText": "Save this. Most people don't know this.",
+  "bubble": [],
+  "caption": "SAVE THIS",
+  "text_hook": null,
+  "visual": {
+   "kind": "cta",
+   "headline": "SAVE THIS",
+   "sub": "Most people don't know this",
+   "icons": [
+    {
+     "icon": "eye",
+     "label": "EYES"
+    },
+    {
+     "icon": "warning",
+     "label": "RISK"
+    }
+   ]
+  },
+  "sfx": "pop"
+ }
+],
+ "captions": [
+ {
+  "group": 0,
+  "frameStart": 0,
+  "frameEnd": 104,
+  "beat": 1,
+  "words": [
+   {
+    "w": "sleeping",
+    "f0": 0,
+    "f1": 12
+   },
+   {
+    "w": "with",
+    "f0": 12,
+    "f1": 30
+   },
+   {
+    "w": "contact",
+    "f0": 30,
+    "f1": 48
+   },
+   {
+    "w": "LENSES",
+    "f0": 48,
+    "f1": 60
+   },
+   {
+    "w": "stop",
+    "f0": 82,
+    "f1": 90
+   },
+   {
+    "w": "doing",
+    "f0": 90,
+    "f1": 102
+   }
+  ]
+ },
+ {
+  "group": 1,
+  "frameStart": 102,
+  "frameEnd": 111,
+  "beat": 1,
+  "words": [
+   {
+    "w": "this.",
+    "f0": 102,
+    "f1": 109
+   }
+  ]
+ },
+ {
+  "group": 2,
+  "frameStart": 120,
+  "frameEnd": 195,
+  "beat": 2,
+  "words": [
+   {
+    "w": "This",
+    "f0": 120,
+    "f1": 127
+   },
+   {
+    "w": "can",
+    "f0": 127,
+    "f1": 133
+   },
+   {
+    "w": "damage",
+    "f0": 133,
+    "f1": 151
+   },
+   {
+    "w": "your",
+    "f0": 151,
+    "f1": 162
+   },
+   {
+    "w": "eye",
+    "f0": 162,
+    "f1": 177
+   },
+   {
+    "w": "overnight.",
+    "f0": 177,
+    "f1": 193
+   }
+  ]
+ },
+ {
+  "group": 3,
+  "frameStart": 203,
+  "frameEnd": 257,
+  "beat": 3,
+  "words": [
+   {
+    "w": "When",
+    "f0": 203,
+    "f1": 207
+   },
+   {
+    "w": "you",
+    "f0": 207,
+    "f1": 211
+   },
+   {
+    "w": "sleep",
+    "f0": 211,
+    "f1": 218
+   },
+   {
+    "w": "in",
+    "f0": 218,
+    "f1": 223
+   },
+   {
+    "w": "LENSES",
+    "f0": 223,
+    "f1": 233
+   },
+   {
+    "w": "oxygen",
+    "f0": 245,
+    "f1": 255
+   }
+  ]
+ },
+ {
+  "group": 4,
+  "frameStart": 255,
+  "frameEnd": 302,
+  "beat": 3,
+  "words": [
+   {
+    "w": "supply",
+    "f0": 255,
+    "f1": 267
+   },
+   {
+    "w": "to",
+    "f0": 267,
+    "f1": 273
+   },
+   {
+    "w": "your",
+    "f0": 273,
+    "f1": 279
+   },
+   {
+    "w": "cornea",
+    "f0": 279,
+    "f1": 288
+   },
+   {
+    "w": "drops,",
+    "f0": 288,
+    "f1": 300
+   }
+  ]
+ },
+ {
+  "group": 5,
+  "frameStart": 312,
+  "frameEnd": 341,
+  "beat": 3,
+  "words": [
+   {
+    "w": "the",
+    "f0": 312,
+    "f1": 315
+   },
+   {
+    "w": "cornea",
+    "f0": 315,
+    "f1": 326
+   },
+   {
+    "w": "swells,",
+    "f0": 326,
+    "f1": 339
+   }
+  ]
+ },
+ {
+  "group": 6,
+  "frameStart": 345,
+  "frameEnd": 368,
+  "beat": 3,
+  "words": [
+   {
+    "w": "bacteria",
+    "f0": 345,
+    "f1": 356
+   },
+   {
+    "w": "grow.",
+    "f0": 356,
+    "f1": 366
+   }
+  ]
+ },
+ {
+  "group": 7,
+  "frameStart": 372,
+  "frameEnd": 421,
+  "beat": 4,
+  "words": [
+   {
+    "w": "This",
+    "f0": 372,
+    "f1": 378
+   },
+   {
+    "w": "can",
+    "f0": 378,
+    "f1": 383
+   },
+   {
+    "w": "lead",
+    "f0": 383,
+    "f1": 390
+   },
+   {
+    "w": "to",
+    "f0": 390,
+    "f1": 399
+   },
+   {
+    "w": "infections,",
+    "f0": 399,
+    "f1": 419
+   }
+  ]
+ },
+ {
+  "group": 8,
+  "frameStart": 439,
+  "frameEnd": 506,
+  "beat": 4,
+  "words": [
+   {
+    "w": "ulcers,",
+    "f0": 439,
+    "f1": 456
+   },
+   {
+    "w": "even",
+    "f0": 469,
+    "f1": 475
+   },
+   {
+    "w": "vision",
+    "f0": 475,
+    "f1": 489
+   },
+   {
+    "w": "loss.",
+    "f0": 489,
+    "f1": 504
+   }
+  ]
+ },
+ {
+  "group": 9,
+  "frameStart": 513,
+  "frameEnd": 602,
+  "beat": 5,
+  "words": [
+   {
+    "w": "Always",
+    "f0": 513,
+    "f1": 522
+   },
+   {
+    "w": "remove",
+    "f0": 522,
+    "f1": 541
+   },
+   {
+    "w": "LENSES",
+    "f0": 541,
+    "f1": 565
+   },
+   {
+    "w": "before",
+    "f0": 565,
+    "f1": 583
+   },
+   {
+    "w": "sleep,",
+    "f0": 583,
+    "f1": 600
+   }
+  ]
+ },
+ {
+  "group": 10,
+  "frameStart": 612,
+  "frameEnd": 629,
+  "beat": 5,
+  "words": [
+   {
+    "w": "no",
+    "f0": 612,
+    "f1": 614
+   },
+   {
+    "w": "exceptions.",
+    "f0": 614,
+    "f1": 627
+   }
+  ]
+ },
+ {
+  "group": 11,
+  "frameStart": 640,
+  "frameEnd": 658,
+  "beat": 6,
+  "words": [
+   {
+    "w": "Save",
+    "f0": 640,
+    "f1": 649
+   },
+   {
+    "w": "this,",
+    "f0": 649,
+    "f1": 656
+   }
+  ]
+ },
+ {
+  "group": 12,
+  "frameStart": 673,
+  "frameEnd": 711,
+  "beat": 6,
+  "words": [
+   {
+    "w": "most",
+    "f0": 673,
+    "f1": 679
+   },
+   {
+    "w": "people",
+    "f0": 679,
+    "f1": 688
+   },
+   {
+    "w": "don't",
+    "f0": 688,
+    "f1": 697
+   },
+   {
+    "w": "know",
+    "f0": 697,
+    "f1": 701
+   },
+   {
+    "w": "this.",
+    "f0": 701,
+    "f1": 709
+   }
+  ]
+ }
+]
+};
+
+const Wrapper: React.FC = () => {
+  (globalThis as any).__CONVO__ = CONVO;
+  return <XiaoheiConvo />;
+};
+
+export const T312Root = () => (
+  <Composition id="XiaoheiConvo" component={Wrapper}
+    durationInFrames={CONVO.beats.reduce((a, b) => a + b.frames, 0)}
+    fps={30} width={1080} height={1920} />
+);
+
+registerRoot(T312Root);

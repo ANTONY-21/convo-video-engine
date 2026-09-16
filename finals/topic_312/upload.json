@@ -1,0 +1,20 @@
+{
+  "topic_id": 4,
+  "channel": "Health & Body",
+  "video": "t312_FINAL_v4.mp4",
+  "youtube_shorts": {
+    "title": "Sleeping With Contact Lenses? STOP 👁️ #shorts",
+    "description": "Sleeping with contact lenses can damage your eye overnight — oxygen drops, bacteria grow, ulcers form. Always remove lenses before sleep. No exceptions.\n\nEducation only — not medical advice.\n\n#eyehealth #contactlenses #doctor #healthtips #shorts",
+    "keywords": ["sleeping with contact lenses", "contact lens mistakes", "corneal ulcer", "eye infection", "contact lens safety", "eye doctor tips"],
+    "tags": ["eyehealth", "contactlenses", "doctor", "healthtips", "shorts", "cornealulcer", "visionloss"]
+  },
+  "instagram_reels": {
+    "caption": "Do you sleep with lenses? 😳 This can damage your eye OVERNIGHT.\n\nAlways remove lenses before sleep. No exceptions.\n\n#eyehealth #contactlenses #doctor #healthtips #reelsindia",
+    "cover_text": "SLEEPING IN LENSES? STOP",
+    "audio_note": "trending audio optional at low volume under VO"
+  },
+  "cta": {"comment_keyword": "LENSES", "lead_magnet": "free night-time reminder checklist", "revenue_action": "consult_in_bio"},
+  "affiliate_links": {"lens_case": "PENDING", "rewetting_drops": "PENDING"},
+  "series": "Eye Mistakes Series #1 — Sleeping with lenses",
+  "cross_post": ["youtube_shorts", "instagram_reels"]
+}

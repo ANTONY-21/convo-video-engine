@@ -1,0 +1,163 @@
+{
+ "meta": {
+  "title": "Sleeping in Contact Lenses",
+  "slug": "contact-lens-sleeping-corneal-ulcer",
+  "topic_id": 4,
+  "niche": "eye-health",
+  "template": "t312-v4-AK-script"
+ },
+ "beats": [
+  {
+   "id": 1,
+   "kind": "hook",
+   "frames": 60,
+   "vo": "Sleeping with contact lenses? STOP doing this.",
+   "caption": "SLEEPING IN LENSES? STOP",
+   "visual": {
+    "kind": "broll_lens_night",
+    "icons": [
+     {
+      "icon": "lens",
+      "label": "LENSES"
+     },
+     {
+      "icon": "sleep",
+      "label": "NIGHT"
+     }
+    ]
+   },
+   "sfx": "bass_drop",
+   "zoom": "punch",
+   "scene": "home_desk",
+   "speaker": "RAVI",
+   "voText": "Sleeping with contact lenses? STOP doing this.",
+   "bubble": []
+  },
+  {
+   "id": 2,
+   "kind": "curiosity",
+   "frames": 120,
+   "vo": "This can damage your eye overnight.",
+   "caption": "DAMAGE STARTS OVERNIGHT",
+   "visual": {
+    "kind": "stat_pair",
+    "headline": "OVERNIGHT",
+    "items": [
+     {
+      "label": "CORNEA OXYGEN",
+      "value": "DROPS",
+      "color": "#E53E3E"
+     }
+    ]
+   },
+   "sfx": "heartbeat",
+   "zoom": "pulse",
+   "scene": "home_desk",
+   "speaker": "RAVI",
+   "voText": "This can damage your eye overnight.",
+   "bubble": []
+  },
+  {
+   "id": 3,
+   "kind": "value",
+   "frames": 270,
+   "vo": "When you sleep in lenses, oxygen supply to your cornea drops. The cornea swells. Bacteria grow.",
+   "caption": "OXYGEN BLOCKED",
+   "visual": {
+    "kind": "stat_pair",
+    "headline": "NO OXYGEN",
+    "items": [
+     {
+      "label": "THROUGH AIR",
+      "value": "FULL",
+      "color": "#38A169"
+     },
+     {
+      "label": "UNDER LENS",
+      "value": "BLOCKED",
+      "color": "#E53E3E"
+     }
+    ]
+   },
+   "sfx": "tick",
+   "zoom": "pulse",
+   "scene": "home_desk",
+   "speaker": "RAVI",
+   "voText": "When you sleep in lenses, oxygen supply to your cornea drops. The cornea swells. Bacteria grow.",
+   "bubble": []
+  },
+  {
+   "id": 4,
+   "kind": "consequence",
+   "frames": 210,
+   "vo": "This can lead to infections, ulcers. Even vision loss.",
+   "caption": "EVEN VISION LOSS",
+   "visual": {
+    "kind": "stat_pair",
+    "headline": "THE DAMAGE",
+    "items": [
+     {
+      "label": "ULCER",
+      "value": "24 HRS",
+      "color": "#E53E3E"
+     },
+     {
+      "label": "SCAR",
+      "value": "PERMANENT",
+      "color": "#E53E3E"
+     }
+    ]
+   },
+   "sfx": "bass_hit",
+   "zoom": "pulse",
+   "scene": "home_desk",
+   "speaker": "RAVI",
+   "voText": "This can lead to infections, ulcers. Even vision loss.",
+   "bubble": []
+  },
+  {
+   "id": 5,
+   "kind": "solution",
+   "frames": 180,
+   "vo": "Always remove lenses before sleep. No exceptions.",
+   "caption": "REMOVE. EVERY NIGHT.",
+   "visual": {
+    "kind": "broll_case_morning"
+   },
+   "sfx": "ding",
+   "zoom": "none",
+   "scene": "home_desk",
+   "speaker": "RAVI",
+   "voText": "Always remove lenses before sleep. No exceptions.",
+   "bubble": []
+  },
+  {
+   "id": 6,
+   "kind": "cta",
+   "frames": 130,
+   "vo": "Save this. Most people don't know this.",
+   "caption": "SAVE THIS",
+   "visual": {
+    "kind": "cta",
+    "headline": "SAVE THIS",
+    "sub": "Most people don't know this",
+    "icons": [
+     {
+      "icon": "eye",
+      "label": "EYES"
+     },
+     {
+      "icon": "warning",
+      "label": "RISK"
+     }
+    ]
+   },
+   "sfx": "pop",
+   "zoom": "none",
+   "scene": "home_desk",
+   "speaker": "RAVI",
+   "voText": "Save this. Most people don't know this.",
+   "bubble": []
+  }
+ ]
+}
