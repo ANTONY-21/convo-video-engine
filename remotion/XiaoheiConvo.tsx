@@ -127,8 +127,11 @@ export const Bubble: React.FC<{
 export const Card: React.FC<{ frame: number; delay?: number; children: React.ReactNode; x: number; y: number; w: number; h: number; rot?: number }> =
 ({ frame, delay = 14, children, x, y, w, h, rot = -1.2 }) => {
   const p = interpolate(frame, [delay, delay + 10], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.back(1.4)) });
+  // V2 micro-motion law: idle breathing after entrance (never a still
+  // card — spec: static frames < 20%)
+  const breathe = 1 + 0.006 * Math.sin((frame - delay) / 7);
   return (
-    <g transform={`translate(${x} ${y}) rotate(${rot}) scale(${p})`} opacity={p}>
+    <g transform={`translate(${x} ${y}) rotate(${rot}) scale(${p * breathe})`} opacity={p}>
       <rect x={0} y={0} width={w} height={h} rx={16} fill="#fff" stroke={INK} strokeWidth={5} />
       {children}
     </g>
@@ -570,9 +573,9 @@ const BeatVisual: React.FC<{ beat: ConvoBeat; frame: number }> = ({ beat, frame 
       // M3: mandatory CTA end card — headline + follow line + icons.
       return (
         <g>
-          <Card frame={frame} x={62} y={440} w={580} h={300}>
+          <Card frame={frame} x={42} y={440} w={620} h={300}>
             <text x={352} y={80} textAnchor="middle" fontSize={40} fontWeight={900} fill={INK} fontFamily="Arial">{(v as any).headline || 'SAVE THIS'}</text>
-            <text x={352} y={136} textAnchor="middle" fontSize={26} fontWeight={700} fill={GREEN} fontFamily="Arial">{(v as any).sub || 'Follow for the science'}</text>
+            <text x={352} y={136} textAnchor="middle" fontSize={22} fontWeight={700} fill={GREEN} fontFamily="Arial">{(v as any).sub || 'Follow for the science'}</text>
             <g transform="translate(352 210)">
               {/* save (bookmark) + share icons */}
               <path d="M -60 -24 L -60 24 L -42 10 L -24 24 L -24 -24 Z" fill="none" stroke={RED} strokeWidth={5} strokeLinejoin="round" />

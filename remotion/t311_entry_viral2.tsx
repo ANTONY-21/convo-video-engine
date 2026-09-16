@@ -7,48 +7,34 @@ const CONVO = {
  {
   "id": 1,
   "start": 0,
-  "frames": 101,
+  "frames": 171,
   "scene": "home_desk",
   "speaker": "NARRATOR",
-  "vo": "Stop scrolling. Your eyes are suffering right now.",
-  "voText": "Stop scrolling. Your eyes are suffering right now.",
-  "bubble": [
-   "STOP SCROLLING"
-  ],
+  "vo": "Stop scrolling. The 20-20-20 rule saves your eyes. Your screen is damaging them right now.",
+  "voText": "Stop scrolling. The 20-20-20 rule saves your eyes. Your screen is damaging them right now.",
+  "bubble": [],
   "caption": "YOUR EYES ARE SUFFERING",
   "text_hook": "EYES DAMAGED RIGHT NOW",
   "visual": {
-   "kind": "flag_list",
-   "icon": "bolt",
-   "title": "RED FLAGS",
-   "items": [
-    {
-     "icon": "screen",
-     "text": "SCREEN TIME 4+ HRS?"
-    },
-    {
-     "icon": "fire",
-     "text": "EYES BURNING?"
-    },
-    {
-     "icon": "blur",
-     "text": "BLURRED VISION?"
-    }
+   "kind": "rule_card",
+   "rule": "20-20-20",
+   "lines": [
+    "Every 20 minutes",
+    "Look 20 feet away",
+    "For 20 seconds"
    ]
   },
   "sfx": "bass_drop"
  },
  {
   "id": 2,
-  "start": 101,
-  "frames": 108,
+  "start": 171,
+  "frames": 106,
   "scene": "home_desk",
   "speaker": "NARRATOR",
   "vo": "You're staring at your screen right now. But you're not blinking enough.",
   "voText": "You're staring at your screen right now. But you're not blinking enough.",
-  "bubble": [
-   "YOU ARE NOT BLINKING"
-  ],
+  "bubble": [],
   "caption": "YOU ARE NOT BLINKING",
   "text_hook": "BLINK RATE CRASHING",
   "visual": {
@@ -65,46 +51,14 @@ const CONVO = {
   "sfx": "heartbeat"
  },
  {
-  "id": 3,
-  "start": 209,
-  "frames": 147,
-  "scene": "home_desk",
-  "speaker": "NARRATOR",
-  "vo": "Your eyes are drying out. That burning feeling? That's the start of damage.",
-  "voText": "Your eyes are drying out. That burning feeling? That's the start of damage.",
-  "bubble": [
-   "DAMAGE STARTS HERE"
-  ],
-  "caption": "DAMAGE STARTS HERE",
-  "text_hook": "BURNING = WARNING LIGHT",
-  "visual": {
-   "kind": "flag_list",
-   "icon": "lightning",
-   "title": "DAMAGE STARTS HERE",
-   "items": [
-    {
-     "icon": "blur",
-     "text": "DRY EYES"
-    },
-    {
-     "icon": "fire",
-     "text": "BURNING"
-    }
-   ]
-  },
-  "sfx": "bass_hit"
- },
- {
   "id": 4,
-  "start": 356,
-  "frames": 136,
+  "start": 277,
+  "frames": 133,
   "scene": "city_park",
   "speaker": "NARRATOR",
   "vo": "Normally you blink fifteen times a minute. Now it drops to five.",
   "voText": "Normally you blink fifteen times a minute. Now it drops to five.",
-  "bubble": [
-   "15 → 5 BLINKS"
-  ],
+  "bubble": [],
   "caption": "15 DROPS TO 5",
   "text_hook": "THREE TIMES LESS PROTECTION",
   "visual": {
@@ -122,15 +76,13 @@ const CONVO = {
  },
  {
   "id": 5,
-  "start": 492,
-  "frames": 130,
+  "start": 410,
+  "frames": 128,
   "scene": "city_park",
   "speaker": "NARRATOR",
   "vo": "Your screen is stressing your eyes. Here's how to fix it.",
   "voText": "Your screen is stressing your eyes. Here's how to fix it.",
-  "bubble": [
-   "THE 20 SECOND FIX"
-  ],
+  "bubble": [],
   "caption": "HERE'S THE FIX",
   "text_hook": "DOCTORS USE THIS RULE",
   "visual": {
@@ -146,15 +98,13 @@ const CONVO = {
  },
  {
   "id": 6,
-  "start": 622,
-  "frames": 178,
+  "start": 538,
+  "frames": 175,
   "scene": "home_desk",
   "speaker": "NARRATOR",
   "vo": "Every twenty minutes, look twenty feet away, for twenty seconds. Do this, or it gets worse.",
   "voText": "Every twenty minutes, look twenty feet away, for twenty seconds. Do this, or it gets worse.",
-  "bubble": [
-   "DO IT DAILY"
-  ],
+  "bubble": [],
   "caption": "DO IT OR IT GETS WORSE",
   "text_hook": "SET A PHONE REMINDER",
   "visual": {
@@ -170,8 +120,8 @@ const CONVO = {
  },
  {
   "id": 7,
-  "start": 800,
-  "frames": 62,
+  "start": 713,
+  "frames": 59,
   "scene": "home_desk",
   "speaker": "NARRATOR",
   "vo": "And you're still scrolling.",
@@ -188,19 +138,19 @@ const CONVO = {
  },
  {
   "id": 8,
-  "start": 862,
-  "frames": 120,
+  "start": 772,
+  "frames": 75,
   "scene": "home_desk",
   "speaker": "NARRATOR",
-  "vo": "",
-  "voText": "",
+  "vo": "Save this. Comment EYES for the free 20-20-20 phone reminder. Consult link in bio.",
+  "voText": "Save this. Comment EYES for the free 20-20-20 phone reminder. Consult link in bio.",
   "bubble": [],
   "caption": "",
   "text_hook": "",
   "visual": {
    "kind": "cta",
    "headline": "SAVE THIS",
-   "sub": "Follow for the science"
+   "sub": "Comment EYES — free phone reminder • Consult in bio"
   },
   "sfx": null
  }
@@ -209,518 +159,586 @@ const CONVO = {
  {
   "group": 0,
   "frameStart": 0,
-  "frameEnd": 27,
+  "frameEnd": 89,
   "beat": 1,
   "words": [
    {
     "w": "Stop",
     "f0": 0,
-    "f1": 9
+    "f1": 8
    },
    {
     "w": "scrolling.",
-    "f0": 9,
-    "f1": 22
+    "f0": 8,
+    "f1": 16
+   },
+   {
+    "w": "The",
+    "f0": 34,
+    "f1": 34
+   },
+   {
+    "w": "2020",
+    "f0": 34,
+    "f1": 43
+   },
+   {
+    "w": "rule",
+    "f0": 43,
+    "f1": 67
+   },
+   {
+    "w": "saves",
+    "f0": 67,
+    "f1": 87
    }
   ]
  },
  {
   "group": 1,
-  "frameStart": 40,
-  "frameEnd": 96,
+  "frameStart": 87,
+  "frameEnd": 144,
   "beat": 1,
   "words": [
    {
+    "w": "your",
+    "f0": 87,
+    "f1": 96
+   },
+   {
+    "w": "eyes.",
+    "f0": 96,
+    "f1": 102
+   },
+   {
     "w": "Your",
-    "f0": 40,
-    "f1": 42
+    "f0": 118,
+    "f1": 120
    },
    {
-    "w": "eyes",
-    "f0": 42,
-    "f1": 49
+    "w": "screen",
+    "f0": 120,
+    "f1": 129
    },
    {
-    "w": "are",
-    "f0": 49,
-    "f1": 57
+    "w": "is",
+    "f0": 129,
+    "f1": 135
    },
    {
-    "w": "suffering",
-    "f0": 57,
-    "f1": 66
-   },
-   {
-    "w": "right",
-    "f0": 66,
-    "f1": 82
-   },
-   {
-    "w": "now.",
-    "f0": 82,
-    "f1": 90
+    "w": "damaging",
+    "f0": 135,
+    "f1": 142
    }
   ]
  },
  {
   "group": 2,
-  "frameStart": 102,
-  "frameEnd": 146,
-  "beat": 2,
+  "frameStart": 142,
+  "frameEnd": 192,
+  "beat": 1,
   "words": [
    {
-    "w": "You're",
-    "f0": 102,
-    "f1": 105
-   },
-   {
-    "w": "staring",
-    "f0": 105,
-    "f1": 111
-   },
-   {
-    "w": "at",
-    "f0": 111,
-    "f1": 120
-   },
-   {
-    "w": "your",
-    "f0": 120,
-    "f1": 123
-   },
-   {
-    "w": "screen",
-    "f0": 123,
-    "f1": 132
+    "w": "them",
+    "f0": 142,
+    "f1": 153
    },
    {
     "w": "right",
-    "f0": 132,
-    "f1": 141
+    "f0": 153,
+    "f1": 158
+   },
+   {
+    "w": "now.",
+    "f0": 158,
+    "f1": 166
+   },
+   {
+    "w": "You're",
+    "f0": 171,
+    "f1": 174
+   },
+   {
+    "w": "staring",
+    "f0": 174,
+    "f1": 181
+   },
+   {
+    "w": "at",
+    "f0": 181,
+    "f1": 190
    }
   ]
  },
  {
   "group": 3,
-  "frameStart": 141,
-  "frameEnd": 204,
+  "frameStart": 190,
+  "frameEnd": 223,
   "beat": 2,
   "words": [
    {
+    "w": "your",
+    "f0": 190,
+    "f1": 193
+   },
+   {
+    "w": "screen",
+    "f0": 193,
+    "f1": 201
+   },
+   {
+    "w": "right",
+    "f0": 201,
+    "f1": 210
+   },
+   {
     "w": "now,",
-    "f0": 141,
-    "f1": 151
-   },
-   {
-    "w": "but",
-    "f0": 151,
-    "f1": 168
-   },
-   {
-    "w": "you're",
-    "f0": 168,
-    "f1": 174
-   },
-   {
-    "w": "not",
-    "f0": 174,
-    "f1": 179
-   },
-   {
-    "w": "blinking",
-    "f0": 179,
-    "f1": 186
-   },
-   {
-    "w": "enough.",
-    "f0": 186,
-    "f1": 198
+    "f0": 210,
+    "f1": 221
    }
   ]
  },
  {
   "group": 4,
-  "frameStart": 207,
-  "frameEnd": 265,
-  "beat": 3,
+  "frameStart": 220,
+  "frameEnd": 246,
+  "beat": 7,
   "words": [
    {
-    "w": "Your",
-    "f0": 207,
-    "f1": 212
-   },
-   {
-    "w": "eyes",
-    "f0": 212,
-    "f1": 218
-   },
-   {
-    "w": "are",
-    "f0": 218,
+    "w": "is",
+    "f0": 220,
     "f1": 224
    },
    {
-    "w": "drying",
+    "w": "but",
+    "f0": 221,
+    "f1": 237
+   },
+   {
+    "w": "the",
     "f0": 224,
-    "f1": 231
+    "f1": 229
    },
    {
-    "w": "out",
-    "f0": 231,
-    "f1": 241
+    "w": "start",
+    "f0": 229,
+    "f1": 235
    },
    {
-    "w": "that",
-    "f0": 241,
-    "f1": 260
+    "w": "of",
+    "f0": 235,
+    "f1": 242
+   },
+   {
+    "w": "you're",
+    "f0": 237,
+    "f1": 244
    }
   ]
  },
  {
   "group": 5,
-  "frameStart": 260,
-  "frameEnd": 285,
-  "beat": 3,
+  "frameStart": 242,
+  "frameEnd": 270,
+  "beat": 7,
   "words": [
    {
-    "w": "burning",
-    "f0": 260,
-    "f1": 269
+    "w": "damage.",
+    "f0": 242,
+    "f1": 251
    },
    {
-    "w": "feeling.",
-    "f0": 269,
-    "f1": 280
+    "w": "not",
+    "f0": 244,
+    "f1": 249
+   },
+   {
+    "w": "blinking",
+    "f0": 249,
+    "f1": 256
+   },
+   {
+    "w": "enough.",
+    "f0": 256,
+    "f1": 268
    }
   ]
  },
  {
   "group": 6,
-  "frameStart": 297,
-  "frameEnd": 313,
-  "beat": 3,
+  "frameStart": 268,
+  "frameEnd": 330,
+  "beat": 7,
   "words": [
    {
-    "w": "That",
+    "w": "Normally",
+    "f0": 268,
+    "f1": 278
+   },
+   {
+    "w": "you",
+    "f0": 278,
+    "f1": 292
+   },
+   {
+    "w": "blink",
+    "f0": 292,
+    "f1": 297
+   },
+   {
+    "w": "15",
     "f0": 297,
-    "f1": 307
+    "f1": 322
+   },
+   {
+    "w": "times",
+    "f0": 322,
+    "f1": 328
    }
   ]
  },
  {
   "group": 7,
-  "frameStart": 307,
-  "frameEnd": 344,
+  "frameStart": 328,
+  "frameEnd": 382,
   "beat": 7,
   "words": [
    {
-    "w": "is",
-    "f0": 307,
-    "f1": 311
+    "w": "a",
+    "f0": 328,
+    "f1": 335
    },
    {
-    "w": "the",
-    "f0": 311,
-    "f1": 316
+    "w": "minute.",
+    "f0": 335,
+    "f1": 341
    },
    {
-    "w": "start",
-    "f0": 316,
-    "f1": 322
+    "w": "Now",
+    "f0": 352,
+    "f1": 355
    },
    {
-    "w": "of",
-    "f0": 322,
-    "f1": 330
+    "w": "it",
+    "f0": 355,
+    "f1": 367
    },
    {
-    "w": "damage.",
-    "f0": 330,
-    "f1": 339
+    "w": "drops",
+    "f0": 367,
+    "f1": 380
    }
   ]
  },
  {
   "group": 8,
-  "frameStart": 355,
-  "frameEnd": 428,
+  "frameStart": 380,
+  "frameEnd": 447,
   "beat": 7,
   "words": [
    {
-    "w": "Normally",
-    "f0": 355,
-    "f1": 366
+    "w": "to",
+    "f0": 380,
+    "f1": 388
    },
    {
-    "w": "you",
-    "f0": 366,
-    "f1": 379
+    "w": "5.",
+    "f0": 388,
+    "f1": 395
    },
    {
-    "w": "blink",
-    "f0": 379,
-    "f1": 384
+    "w": "Your",
+    "f0": 406,
+    "f1": 410
    },
    {
-    "w": "15",
-    "f0": 384,
-    "f1": 409
+    "w": "screen",
+    "f0": 410,
+    "f1": 419
    },
    {
-    "w": "times",
-    "f0": 409,
-    "f1": 415
+    "w": "is",
+    "f0": 419,
+    "f1": 430
    },
    {
-    "w": "a",
-    "f0": 415,
-    "f1": 422
+    "w": "stressing",
+    "f0": 430,
+    "f1": 445
    }
   ]
  },
  {
   "group": 9,
-  "frameStart": 422,
-  "frameEnd": 488,
+  "frameStart": 445,
+  "frameEnd": 503,
   "beat": 7,
   "words": [
    {
-    "w": "minute.",
-    "f0": 422,
-    "f1": 428
+    "w": "your",
+    "f0": 445,
+    "f1": 464
    },
    {
-    "w": "Now",
-    "f0": 439,
-    "f1": 442
+    "w": "eyes.",
+    "f0": 464,
+    "f1": 472
    },
    {
-    "w": "it",
-    "f0": 442,
-    "f1": 454
+    "w": "Here",
+    "f0": 491,
+    "f1": 493
    },
    {
-    "w": "drops",
-    "f0": 454,
-    "f1": 467
+    "w": "is",
+    "f0": 493,
+    "f1": 495
    },
    {
-    "w": "to",
-    "f0": 467,
-    "f1": 475
-   },
-   {
-    "w": "5.",
-    "f0": 475,
-    "f1": 482
+    "w": "how",
+    "f0": 495,
+    "f1": 501
    }
   ]
  },
  {
   "group": 10,
-  "frameStart": 493,
+  "frameStart": 501,
   "frameEnd": 564,
   "beat": 7,
   "words": [
    {
-    "w": "Your",
-    "f0": 493,
-    "f1": 497
+    "w": "to",
+    "f0": 501,
+    "f1": 509
    },
    {
-    "w": "screen",
-    "f0": 497,
-    "f1": 506
+    "w": "fix",
+    "f0": 509,
+    "f1": 521
    },
    {
-    "w": "is",
-    "f0": 506,
-    "f1": 517
+    "w": "it.",
+    "f0": 521,
+    "f1": 529
    },
    {
-    "w": "stressing",
-    "f0": 517,
-    "f1": 532
+    "w": "Every",
+    "f0": 543,
+    "f1": 543
    },
    {
-    "w": "your",
-    "f0": 532,
+    "w": "20",
+    "f0": 543,
     "f1": 552
    },
    {
-    "w": "eyes.",
+    "w": "minutes",
     "f0": 552,
-    "f1": 559
+    "f1": 562
    }
   ]
  },
  {
   "group": 11,
-  "frameStart": 578,
-  "frameEnd": 621,
+  "frameStart": 562,
+  "frameEnd": 630,
   "beat": 7,
   "words": [
    {
-    "w": "Here",
-    "f0": 578,
-    "f1": 580
-   },
-   {
-    "w": "is",
-    "f0": 580,
+    "w": "look",
+    "f0": 562,
     "f1": 582
    },
    {
-    "w": "how",
+    "w": "20",
     "f0": 582,
-    "f1": 588
+    "f1": 592
    },
    {
-    "w": "to",
-    "f0": 588,
-    "f1": 597
+    "w": "feet",
+    "f0": 592,
+    "f1": 599
    },
    {
-    "w": "fix",
-    "f0": 597,
-    "f1": 609
+    "w": "away",
+    "f0": 599,
+    "f1": 607
    },
    {
-    "w": "it.",
-    "f0": 609,
-    "f1": 616
+    "w": "for",
+    "f0": 607,
+    "f1": 620
+   },
+   {
+    "w": "20",
+    "f0": 620,
+    "f1": 628
    }
   ]
  },
  {
   "group": 12,
-  "frameStart": 630,
-  "frameEnd": 692,
+  "frameStart": 628,
+  "frameEnd": 694,
   "beat": 7,
   "words": [
    {
-    "w": "Every",
-    "f0": 630,
-    "f1": 630
-   },
-   {
-    "w": "20",
-    "f0": 630,
+    "w": "seconds.",
+    "f0": 628,
     "f1": 639
    },
    {
-    "w": "minutes",
-    "f0": 639,
-    "f1": 649
+    "w": "Do",
+    "f0": 657,
+    "f1": 658
    },
    {
-    "w": "look",
-    "f0": 649,
-    "f1": 669
+    "w": "this",
+    "f0": 658,
+    "f1": 665
    },
    {
-    "w": "20",
-    "f0": 669,
-    "f1": 679
+    "w": "or",
+    "f0": 665,
+    "f1": 683
    },
    {
-    "w": "feet",
-    "f0": 679,
-    "f1": 686
+    "w": "it",
+    "f0": 683,
+    "f1": 688
+   },
+   {
+    "w": "gets",
+    "f0": 688,
+    "f1": 692
    }
   ]
  },
  {
   "group": 13,
-  "frameStart": 686,
-  "frameEnd": 732,
+  "frameStart": 692,
+  "frameEnd": 766,
   "beat": 7,
   "words": [
    {
-    "w": "away",
-    "f0": 686,
-    "f1": 694
+    "w": "worse",
+    "f0": 692,
+    "f1": 702
    },
    {
-    "w": "for",
-    "f0": 694,
-    "f1": 708
+    "w": "and",
+    "f0": 714,
+    "f1": 732
    },
    {
-    "w": "20",
-    "f0": 708,
-    "f1": 715
+    "w": "you're",
+    "f0": 720,
+    "f1": 742
    },
    {
-    "w": "seconds.",
-    "f0": 715,
-    "f1": 726
+    "w": "still",
+    "f0": 742,
+    "f1": 743
+   },
+   {
+    "w": "scrolling.",
+    "f0": 743,
+    "f1": 764
    }
   ]
  },
  {
   "group": 14,
-  "frameStart": 744,
-  "frameEnd": 795,
-  "beat": 7,
+  "frameStart": 776,
+  "frameEnd": 823,
+  "beat": 8,
   "words": [
    {
-    "w": "Do",
-    "f0": 744,
-    "f1": 745
+    "w": "Save",
+    "f0": 776,
+    "f1": 785
    },
    {
     "w": "this",
-    "f0": 745,
-    "f1": 752
+    "f0": 785,
+    "f1": 792
    },
    {
-    "w": "or",
-    "f0": 752,
-    "f1": 771
+    "w": "comment",
+    "f0": 792,
+    "f1": 811
    },
    {
-    "w": "it",
-    "f0": 771,
-    "f1": 775
-   },
-   {
-    "w": "gets",
-    "f0": 775,
-    "f1": 779
-   },
-   {
-    "w": "worse",
-    "f0": 779,
-    "f1": 789
+    "w": "ties",
+    "f0": 811,
+    "f1": 821
    }
   ]
  },
  {
   "group": 15,
-  "frameStart": 801,
-  "frameEnd": 869,
-  "beat": 7,
+  "frameStart": 821,
+  "frameEnd": 847,
+  "beat": 8,
   "words": [
    {
-    "w": "and",
-    "f0": 801,
-    "f1": 819
+    "w": "for",
+    "f0": 821,
+    "f1": 831
    },
    {
-    "w": "you're",
-    "f0": 819,
-    "f1": 841
+    "w": "the",
+    "f0": 831,
+    "f1": 834
    },
    {
-    "w": "still",
-    "f0": 841,
-    "f1": 842
+    "w": "free",
+    "f0": 834,
+    "f1": 845
    },
    {
-    "w": "scrolling.",
-    "f0": 842,
-    "f1": 863
+    "w": "2020",
+    "f0": 853,
+    "f1": 845
+   },
+   {
+    "w": "-2021",
+    "f0": 870,
+    "f1": 845
+   },
+   {
+    "w": "reminder.",
+    "f0": 895,
+    "f1": 845
+   }
+  ]
+ },
+ {
+  "group": 16,
+  "frameStart": 927,
+  "frameEnd": 847,
+  "beat": 8,
+  "words": [
+   {
+    "w": "Consult",
+    "f0": 927,
+    "f1": 845
+   },
+   {
+    "w": "link",
+    "f0": 932,
+    "f1": 845
+   },
+   {
+    "w": "in",
+    "f0": 942,
+    "f1": 845
+   },
+   {
+    "w": "bio.",
+    "f0": 949,
+    "f1": 845
    }
   ]
  }
