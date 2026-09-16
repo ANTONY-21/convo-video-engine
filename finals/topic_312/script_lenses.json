@@ -1,0 +1,107 @@
+{
+  "meta": {
+    "title": "Sleeping in Contact Lenses: The Overnight Mistake That Can Cost Your Vision",
+    "slug": "contact-lens-sleeping-corneal-ulcer",
+    "topic_id": 4,
+    "niche": "eye-health",
+    "disclaimer": "Education only — not medical advice",
+    "aspect": [1080, 1920],
+    "fps": 30,
+    "template": "t311_FINAL_v9",
+    "broll_kinds": {"hook": "broll_lens_night", "fix": "broll_case_morning"}
+  },
+  "beats": [
+    {
+      "id": 1, "start": 0, "frames": 171, "scene": "bedroom_night",
+      "speaker": "NARRATOR", "bubble": [],
+      "vo": "Stop. Did you sleep in your contact lenses last night? One night can scar your cornea forever.",
+      "voText": "Stop. Did you sleep in your contact lenses last night? One night can scar your cornea forever.",
+      "caption": "NEVER SLEEP IN LENSES",
+      "text_hook": "VISION LOSS OVERNIGHT",
+      "visual": {"kind": "broll_lens_night",
+        "desc": "dark bedroom, phone glow off, person asleep with lens case still open on nightstand",
+        "icons": [{"icon": "cross", "label": "NO"}, {"icon": "eye", "label": "RISK"}]},
+      "sfx": "bass_drop"
+    },
+    {
+      "id": 2, "start": 171, "frames": 106, "scene": "bedroom_night",
+      "speaker": "NARRATOR", "bubble": [],
+      "vo": "Your cornea gets its oxygen straight from the air. A lens blocks it.",
+      "voText": "Your cornea gets its oxygen straight from the air. A lens blocks it.",
+      "caption": "CORNEA STARVES OF OXYGEN",
+      "visual": {"kind": "stat_pair",
+        "items": [{"label": "OXYGEN THROUGH AIR", "value": "FULL", "color": "#38A169"},
+                  {"label": "UNDER A LENS", "value": "BLOCKED", "color": "#E53E3E"}],
+        "icons": [{"icon": "eye", "label": "CORNEA"}]},
+      "sfx": "bass_hit"
+    },
+    {
+      "id": 3, "start": 277, "frames": 120, "scene": "bedroom_night",
+      "speaker": "NARRATOR", "bubble": [],
+      "vo": "Low oxygen. Warm. Wet. That's exactly where Pseudomonas bacteria explode.",
+      "voText": "Low oxygen. Warm. Wet. That's exactly where Pseudomonas bacteria explode.",
+      "caption": "BACTERIA EXPLODE",
+      "visual": {"kind": "stat_pair",
+        "items": [{"label": "BACTERIA GROWTH", "value": "OVERNIGHT", "color": "#E53E3E"},
+                  {"label": "INFECTION RISK", "value": "6.5x", "color": "#E53E3E"}],
+        "icons": [{"icon": "warning", "label": "ALERT"}]},
+      "sfx": "heartbeat"
+    },
+    {
+      "id": 4, "start": 397, "frames": 133, "scene": "bedroom_night",
+      "speaker": "NARRATOR", "bubble": [],
+      "vo": "By morning: a corneal ulcer. White spot. Burning pain. Vision going blurry.",
+      "voText": "By morning: a corneal ulcer. White spot. Burning pain. Vision going blurry.",
+      "caption": "ULCER BY MORNING",
+      "visual": {"kind": "stat_pair",
+        "items": [{"label": "ULCER TIMELINE", "value": "24 hrs", "color": "#E53E3E"},
+                  {"label": "CAN IT SCAR?", "value": "YES", "color": "#E53E3E"}],
+        "icons": [{"icon": "eye_off", "label": "DAMAGE"}]},
+      "sfx": "bass_hit"
+    },
+    {
+      "id": 5, "start": 530, "frames": 128, "scene": "bedroom_night",
+      "speaker": "NARRATOR", "bubble": [],
+      "vo": "Waking up with red, painful, watery eyes? Remove the lens and see a doctor the same day.",
+      "voText": "Waking up with red, painful, watery eyes? Remove the lens and see a doctor the same day.",
+      "caption": "SAME-DAY DOCTOR",
+      "visual": {"kind": "rule_card",
+        "rule": "RED FLAGS",
+        "lines": ["Red painful eye", "Light sensitivity", "Blurry vision"],
+        "icons": [{"icon": "warning", "label": "PAIN"}, {"icon": "eye_off", "label": "ACT"}]},
+      "sfx": "ding"
+    },
+    {
+      "id": 6, "start": 658, "frames": 175, "scene": "bedroom_night",
+      "speaker": "NARRATOR", "bubble": [],
+      "vo": "The fix is free. Lenses out before bed. Every night. No exceptions — even for naps.",
+      "voText": "The fix is free. Lenses out before bed. Every night. No exceptions — even for naps.",
+      "caption": "LENSES OUT. EVERY NIGHT.",
+      "visual": {"kind": "broll_case_morning",
+        "desc": "morning light, hands placing lens into case with fresh solution, case clicks shut",
+        "icons": [{"icon": "check", "label": "SAFE"}, {"icon": "clock", "label": "NIGHTLY"}]},
+      "sfx": "uplift"
+    },
+    {
+      "id": 7, "start": 833, "frames": 59, "scene": "bedroom_night",
+      "speaker": "NARRATOR", "bubble": [],
+      "vo": "And your lenses are still in.",
+      "voText": "And your lenses are still in.",
+      "caption": "STILL IN RIGHT NOW?",
+      "visual": {"kind": "countdown", "rule": "TAKE THEM OUT", "seconds": 10},
+      "sfx": "tick"
+    },
+    {
+      "id": 8, "start": 892, "frames": 190, "scene": "bedroom_night",
+      "speaker": "NARRATOR", "bubble": [],
+      "vo": "Save this. Comment LENSES for the free night-time reminder checklist. Consult link in bio.",
+      "voText": "Save this. Comment LENSES for the free night-time reminder checklist. Consult link in bio.",
+      "caption": "SAVE THIS",
+      "visual": {"kind": "cta",
+        "title": "SAVE THIS",
+        "sub": "Comment LENSES — free night checklist • Consult in bio",
+        "icons": [{"icon": "check", "label": "SAVE"}, {"icon": "heart", "label": "FOLLOW"}]},
+      "sfx": "pop"
+    }
+  ]
+}
