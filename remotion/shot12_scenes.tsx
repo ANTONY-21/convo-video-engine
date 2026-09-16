@@ -91,8 +91,8 @@ export const Shot2ManWindow: React.FC = () => {
         </g>
         {/* distance marker (20 ft) */}
         <g opacity={interpolate(f, [30, 44], [0, 0.9], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })}>
-          <line x1={80} y1={1560} x2={470} y2={1560} stroke={INK} strokeWidth={4} strokeDasharray="14 10" />
-          <text x={90} y={1530} fontSize={30} fontWeight={900} fill={INK} fontFamily="Arial">20 FEET</text>
+          <line x1={180} y1={1560} x2={560} y2={1560} stroke={INK} strokeWidth={4} strokeDasharray="14 10" />
+          <text x={190} y={1530} fontSize={30} fontWeight={900} fill={INK} fontFamily="Arial">20 FEET</text>
         </g>
         {/* caption chip */}
         <g opacity={interpolate(f, [10, 22], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })}>

@@ -16,7 +16,7 @@ const CONVO = {
   "caption": "YOUR EYES ARE SUFFERING",
   "text_hook": "EYES DAMAGED RIGHT NOW",
   "visual": {
-   "kind": "rule_card",
+   "kind": "broll_shot1",
    "rule": "20-20-20",
    "lines": [
     "Every 20 minutes",
@@ -148,7 +148,7 @@ const CONVO = {
   "caption": "DO IT OR IT GETS WORSE",
   "text_hook": "SET A PHONE REMINDER",
   "visual": {
-   "kind": "rule_card",
+   "kind": "broll_shot2",
    "rule": "20-20-20",
    "lines": [
     "20 minutes",

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Shot1Phone, Shot2ManWindow } from './shot12_scenes';
 import { WordAnchoredCaptions } from './WordAnchoredCaptions';
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing, Sequence } from 'remotion';
 
@@ -489,6 +490,10 @@ const BeatVisual: React.FC<{ beat: ConvoBeat; frame: number }> = ({ beat, frame 
         </g>
       );
     }
+    case 'broll_shot1':
+      return <Shot1Phone />;
+    case 'broll_shot2':
+      return <Shot2ManWindow />;
     case 'rule_card': {
       // DATA-DRIVEN: rule/takeaway card from beat data.
       // M1: height grows with line count — 3 lines at y162+2*26=214
@@ -752,6 +757,20 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
   const frame = useCurrentFrame(); // scene-local frame inside the Sequence
   const lf = frame;
   const bg = BACKGROUNDS[beat.scene] || TeaStall;
+  // B-ROLL LAW (AK 2026-09-15): broll_* kinds are FULL-FRAME cinematic
+  // scenes — they REPLACE the character scene entirely (skip scene svg,
+  // characters, bubbles). Captions + disclaimer still overlay on top.
+  if ((beat.visual?.kind || '').startsWith('broll_')) {
+    return (
+      <AbsoluteFill>
+        <BeatVisual beat={beat} frame={lf} />
+        <WordAnchoredCaptions frame={(beat.start ?? 0) + lf} />
+        {!((globalThis as any).__CONVO__?.captions?.length) && (
+          <WordCaptions text={beat.voText ?? ''} frames={beat.frames} frame={lf} />
+        )}
+      </AbsoluteFill>
+    );
+  }
   const meta = SPEAKER_META[beat.speaker];
   const listener = beat.speaker === 'RAVI' ? 'VIKRAM' : 'RAVI';
   const lmeta = SPEAKER_META[listener];
