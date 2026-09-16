@@ -1,0 +1,882 @@
+import { registerRoot, Composition } from 'remotion';
+import React from 'react';
+import { XiaoheiConvo } from './XiaoheiConvo';
+
+const CONVO = {
+ "beats": [
+ {
+  "id": 1,
+  "start": 0,
+  "frames": 172,
+  "scene": "bedroom_night",
+  "speaker": "NARRATOR",
+  "vo": "As an eye doctor, I see this mistake daily — sleeping in lenses. One night can scar your cornea.",
+  "voText": "As an eye doctor, I see this mistake daily — sleeping in lenses. One night can scar your cornea.",
+  "bubble": [],
+  "caption": "AS AN EYE DOCTOR",
+  "text_hook": "VISION LOSS OVERNIGHT",
+  "visual": {
+   "kind": "broll_lens_night",
+   "desc": "dark bedroom, phone glow off, person asleep with lens case still open on nightstand",
+   "icons": [
+    {
+     "icon": "cross",
+     "label": "NO"
+    },
+    {
+     "icon": "eye",
+     "label": "RISK"
+    }
+   ]
+  },
+  "sfx": "bass_drop"
+ },
+ {
+  "id": 2,
+  "start": 172,
+  "frames": 147,
+  "scene": "bedroom_night",
+  "speaker": "NARRATOR",
+  "vo": "Your cornea gets its oxygen straight from the air. A lens blocks it.",
+  "voText": "Your cornea gets its oxygen straight from the air. A lens blocks it.",
+  "bubble": [],
+  "caption": "CORNEA STARVES OF OXYGEN",
+  "text_hook": null,
+  "visual": {
+   "kind": "stat_pair",
+   "items": [
+    {
+     "label": "OXYGEN THROUGH AIR",
+     "value": "FULL",
+     "color": "#38A169"
+    },
+    {
+     "label": "UNDER A LENS",
+     "value": "BLOCKED",
+     "color": "#E53E3E"
+    }
+   ],
+   "icons": [
+    {
+     "icon": "eye",
+     "label": "CORNEA"
+    }
+   ]
+  },
+  "sfx": "bass_hit"
+ },
+ {
+  "id": 3,
+  "start": 319,
+  "frames": 185,
+  "scene": "bedroom_night",
+  "speaker": "NARRATOR",
+  "vo": "Low oxygen, warm and wet — Pseudomonas explodes. By morning: a corneal ulcer. Scarring. Permanent.",
+  "voText": "Low oxygen, warm and wet — Pseudomonas explodes. By morning: a corneal ulcer. Scarring. Permanent.",
+  "bubble": [],
+  "caption": "ULCER BY MORNING",
+  "text_hook": null,
+  "visual": {
+   "kind": "stat_pair",
+   "items": [
+    {
+     "label": "ULCER TIMELINE",
+     "value": "24 hrs",
+     "color": "#E53E3E"
+    },
+    {
+     "label": "SCAR",
+     "value": "PERMANENT",
+     "color": "#E53E3E"
+    }
+   ],
+   "icons": [
+    {
+     "icon": "warning",
+     "label": "ALERT"
+    }
+   ]
+  },
+  "sfx": "heartbeat"
+ },
+ {
+  "id": 4,
+  "start": 504,
+  "frames": 142,
+  "scene": "bedroom_night",
+  "speaker": "NARRATOR",
+  "vo": "Waking up with red, painful, watery eyes? Remove the lens and see a doctor the same day.",
+  "voText": "Waking up with red, painful, watery eyes? Remove the lens and see a doctor the same day.",
+  "bubble": [],
+  "caption": "SAME-DAY DOCTOR",
+  "text_hook": null,
+  "visual": {
+   "kind": "rule_card",
+   "rule": "RED FLAGS",
+   "lines": [
+    "Red painful eye",
+    "Light sensitivity",
+    "Blurry vision"
+   ],
+   "icons": [
+    {
+     "icon": "warning",
+     "label": "PAIN"
+    },
+    {
+     "icon": "eye_off",
+     "label": "ACT"
+    }
+   ]
+  },
+  "sfx": "ding"
+ },
+ {
+  "id": 5,
+  "start": 646,
+  "frames": 157,
+  "scene": "bedroom_night",
+  "speaker": "NARRATOR",
+  "vo": "The fix is free. Lenses out before bed. Every night. No exceptions — even for naps.",
+  "voText": "The fix is free. Lenses out before bed. Every night. No exceptions — even for naps.",
+  "bubble": [],
+  "caption": "LENSES OUT. EVERY NIGHT.",
+  "text_hook": null,
+  "visual": {
+   "kind": "broll_case_morning",
+   "desc": "morning light, hands placing lens into case with fresh solution, case clicks shut",
+   "icons": [
+    {
+     "icon": "check",
+     "label": "SAFE"
+    },
+    {
+     "icon": "clock",
+     "label": "NIGHTLY"
+    }
+   ]
+  },
+  "sfx": "uplift"
+ },
+ {
+  "id": 6,
+  "start": 803,
+  "frames": 91,
+  "scene": "bedroom_night",
+  "speaker": "NARRATOR",
+  "vo": "And your lenses are still in.",
+  "voText": "And your lenses are still in.",
+  "bubble": [],
+  "caption": "STILL IN RIGHT NOW?",
+  "text_hook": null,
+  "visual": {
+   "kind": "countdown",
+   "rule": "TAKE THEM OUT",
+   "seconds": 10
+  },
+  "sfx": "tick"
+ },
+ {
+  "id": 7,
+  "start": 894,
+  "frames": 155,
+  "scene": "bedroom_night",
+  "speaker": "NARRATOR",
+  "vo": "Save this. Comment LENSES for the free night-time reminder checklist. Consult link in bio.",
+  "voText": "Save this. Comment LENSES for the free night-time reminder checklist. Consult link in bio.",
+  "bubble": [],
+  "caption": "SAVE THIS",
+  "text_hook": null,
+  "visual": {
+   "kind": "cta",
+   "title": "SAVE THIS",
+   "sub": "Comment LENSES — free night checklist • Consult in bio",
+   "icons": [
+    {
+     "icon": "check",
+     "label": "SAVE"
+    },
+    {
+     "icon": "heart",
+     "label": "FOLLOW"
+    }
+   ]
+  },
+  "sfx": "pop"
+ }
+],
+ "captions": [
+ {
+  "group": 0,
+  "frameStart": 0,
+  "frameEnd": 27,
+  "beat": 1,
+  "words": [
+   {
+    "w": "As",
+    "f0": 0,
+    "f1": 6
+   },
+   {
+    "w": "an",
+    "f0": 6,
+    "f1": 10
+   },
+   {
+    "w": "eye",
+    "f0": 10,
+    "f1": 15
+   },
+   {
+    "w": "doctor,",
+    "f0": 15,
+    "f1": 25
+   }
+  ]
+ },
+ {
+  "group": 1,
+  "frameStart": 36,
+  "frameEnd": 74,
+  "beat": 1,
+  "words": [
+   {
+    "w": "I",
+    "f0": 36,
+    "f1": 37
+   },
+   {
+    "w": "see",
+    "f0": 37,
+    "f1": 43
+   },
+   {
+    "w": "this",
+    "f0": 43,
+    "f1": 49
+   },
+   {
+    "w": "mistake",
+    "f0": 49,
+    "f1": 61
+   },
+   {
+    "w": "daily,",
+    "f0": 61,
+    "f1": 72
+   }
+  ]
+ },
+ {
+  "group": 2,
+  "frameStart": 85,
+  "frameEnd": 143,
+  "beat": 1,
+  "words": [
+   {
+    "w": "sleeping",
+    "f0": 85,
+    "f1": 91
+   },
+   {
+    "w": "in",
+    "f0": 91,
+    "f1": 99
+   },
+   {
+    "w": "LENSES",
+    "f0": 99,
+    "f1": 108
+   },
+   {
+    "w": "one",
+    "f0": 123,
+    "f1": 129
+   },
+   {
+    "w": "night",
+    "f0": 129,
+    "f1": 134
+   },
+   {
+    "w": "can",
+    "f0": 134,
+    "f1": 141
+   }
+  ]
+ },
+ {
+  "group": 3,
+  "frameStart": 141,
+  "frameEnd": 158,
+  "beat": 1,
+  "words": [
+   {
+    "w": "scar",
+    "f0": 141,
+    "f1": 150
+   },
+   {
+    "w": "your",
+    "f0": 150,
+    "f1": 156
+   }
+  ]
+ },
+ {
+  "group": 4,
+  "frameStart": 172,
+  "frameEnd": 248,
+  "beat": 2,
+  "words": [
+   {
+    "w": "your",
+    "f0": 172,
+    "f1": 177
+   },
+   {
+    "w": "cornea",
+    "f0": 177,
+    "f1": 187
+   },
+   {
+    "w": "gets",
+    "f0": 187,
+    "f1": 194
+   },
+   {
+    "w": "its",
+    "f0": 194,
+    "f1": 206
+   },
+   {
+    "w": "oxygen",
+    "f0": 206,
+    "f1": 226
+   },
+   {
+    "w": "straight",
+    "f0": 226,
+    "f1": 246
+   }
+  ]
+ },
+ {
+  "group": 5,
+  "frameStart": 246,
+  "frameEnd": 280,
+  "beat": 2,
+  "words": [
+   {
+    "w": "from",
+    "f0": 246,
+    "f1": 257
+   },
+   {
+    "w": "the",
+    "f0": 257,
+    "f1": 265
+   },
+   {
+    "w": "air,",
+    "f0": 265,
+    "f1": 278
+   }
+  ]
+ },
+ {
+  "group": 6,
+  "frameStart": 289,
+  "frameEnd": 316,
+  "beat": 2,
+  "words": [
+   {
+    "w": "a",
+    "f0": 289,
+    "f1": 289
+   },
+   {
+    "w": "lens",
+    "f0": 289,
+    "f1": 294
+   },
+   {
+    "w": "blocks",
+    "f0": 294,
+    "f1": 306
+   },
+   {
+    "w": "it.",
+    "f0": 306,
+    "f1": 314
+   }
+  ]
+ },
+ {
+  "group": 7,
+  "frameStart": 319,
+  "frameEnd": 337,
+  "beat": 3,
+  "words": [
+   {
+    "w": "low",
+    "f0": 319,
+    "f1": 324
+   },
+   {
+    "w": "oxygen,",
+    "f0": 324,
+    "f1": 335
+   }
+  ]
+ },
+ {
+  "group": 8,
+  "frameStart": 348,
+  "frameEnd": 421,
+  "beat": 3,
+  "words": [
+   {
+    "w": "warm",
+    "f0": 348,
+    "f1": 351
+   },
+   {
+    "w": "and",
+    "f0": 351,
+    "f1": 360
+   },
+   {
+    "w": "wet",
+    "f0": 360,
+    "f1": 368
+   },
+   {
+    "w": "Pseudomonas",
+    "f0": 368,
+    "f1": 391
+   },
+   {
+    "w": "explodes",
+    "f0": 391,
+    "f1": 402
+   },
+   {
+    "w": "by",
+    "f0": 402,
+    "f1": 419
+   }
+  ]
+ },
+ {
+  "group": 9,
+  "frameStart": 419,
+  "frameEnd": 498,
+  "beat": 3,
+  "words": [
+   {
+    "w": "morning,",
+    "f0": 419,
+    "f1": 427
+   },
+   {
+    "w": "a corneal",
+    "f0": 436,
+    "f1": 449
+   },
+   {
+    "w": "ulcer",
+    "f0": 449,
+    "f1": 463
+   },
+   {
+    "w": "scarring",
+    "f0": 463,
+    "f1": 480
+   },
+   {
+    "w": "permanent.",
+    "f0": 480,
+    "f1": 496
+   }
+  ]
+ },
+ {
+  "group": 10,
+  "frameStart": 504,
+  "frameEnd": 533,
+  "beat": 4,
+  "words": [
+   {
+    "w": "Waking",
+    "f0": 504,
+    "f1": 510
+   },
+   {
+    "w": "up",
+    "f0": 510,
+    "f1": 516
+   },
+   {
+    "w": "with",
+    "f0": 516,
+    "f1": 526
+   },
+   {
+    "w": "red,",
+    "f0": 526,
+    "f1": 531
+   }
+  ]
+ },
+ {
+  "group": 11,
+  "frameStart": 538,
+  "frameEnd": 575,
+  "beat": 4,
+  "words": [
+   {
+    "w": "painful",
+    "f0": 538,
+    "f1": 546
+   },
+   {
+    "w": "watery",
+    "f0": 546,
+    "f1": 564
+   },
+   {
+    "w": "eyes,",
+    "f0": 564,
+    "f1": 573
+   }
+  ]
+ },
+ {
+  "group": 12,
+  "frameStart": 583,
+  "frameEnd": 625,
+  "beat": 4,
+  "words": [
+   {
+    "w": "remove",
+    "f0": 583,
+    "f1": 586
+   },
+   {
+    "w": "the",
+    "f0": 586,
+    "f1": 592
+   },
+   {
+    "w": "lens",
+    "f0": 592,
+    "f1": 596
+   },
+   {
+    "w": "and",
+    "f0": 596,
+    "f1": 610
+   },
+   {
+    "w": "see",
+    "f0": 610,
+    "f1": 615
+   },
+   {
+    "w": "a",
+    "f0": 615,
+    "f1": 616
+   },
+   {
+    "w": "doctor",
+    "f0": 616,
+    "f1": 623
+   }
+  ]
+ },
+ {
+  "group": 13,
+  "frameStart": 623,
+  "frameEnd": 644,
+  "beat": 4,
+  "words": [
+   {
+    "w": "the",
+    "f0": 623,
+    "f1": 633
+   },
+   {
+    "w": "same",
+    "f0": 633,
+    "f1": 637
+   },
+   {
+    "w": "day.",
+    "f0": 637,
+    "f1": 642
+   }
+  ]
+ },
+ {
+  "group": 14,
+  "frameStart": 646,
+  "frameEnd": 673,
+  "beat": 5,
+  "words": [
+   {
+    "w": "The",
+    "f0": 646,
+    "f1": 650
+   },
+   {
+    "w": "fix",
+    "f0": 650,
+    "f1": 657
+   },
+   {
+    "w": "is",
+    "f0": 657,
+    "f1": 664
+   },
+   {
+    "w": "free,",
+    "f0": 664,
+    "f1": 671
+   }
+  ]
+ },
+ {
+  "group": 15,
+  "frameStart": 680,
+  "frameEnd": 715,
+  "beat": 5,
+  "words": [
+   {
+    "w": "LENSES",
+    "f0": 680,
+    "f1": 686
+   },
+   {
+    "w": "out",
+    "f0": 686,
+    "f1": 696
+   },
+   {
+    "w": "before",
+    "f0": 696,
+    "f1": 704
+   },
+   {
+    "w": "bed,",
+    "f0": 704,
+    "f1": 713
+   }
+  ]
+ },
+ {
+  "group": 16,
+  "frameStart": 724,
+  "frameEnd": 739,
+  "beat": 5,
+  "words": [
+   {
+    "w": "every",
+    "f0": 724,
+    "f1": 730
+   },
+   {
+    "w": "night,",
+    "f0": 730,
+    "f1": 737
+   }
+  ]
+ },
+ {
+  "group": 17,
+  "frameStart": 746,
+  "frameEnd": 768,
+  "beat": 5,
+  "words": [
+   {
+    "w": "no",
+    "f0": 746,
+    "f1": 752
+   },
+   {
+    "w": "exceptions,",
+    "f0": 752,
+    "f1": 766
+   }
+  ]
+ },
+ {
+  "group": 18,
+  "frameStart": 776,
+  "frameEnd": 798,
+  "beat": 5,
+  "words": [
+   {
+    "w": "even",
+    "f0": 776,
+    "f1": 781
+   },
+   {
+    "w": "for",
+    "f0": 781,
+    "f1": 787
+   },
+   {
+    "w": "naps.",
+    "f0": 787,
+    "f1": 796
+   }
+  ]
+ },
+ {
+  "group": 19,
+  "frameStart": 803,
+  "frameEnd": 887,
+  "beat": 6,
+  "words": [
+   {
+    "w": "and",
+    "f0": 803,
+    "f1": 813
+   },
+   {
+    "w": "your",
+    "f0": 813,
+    "f1": 827
+   },
+   {
+    "w": "LENSES",
+    "f0": 827,
+    "f1": 836
+   },
+   {
+    "w": "are",
+    "f0": 836,
+    "f1": 856
+   },
+   {
+    "w": "still",
+    "f0": 856,
+    "f1": 872
+   },
+   {
+    "w": "in.",
+    "f0": 872,
+    "f1": 885
+   }
+  ]
+ },
+ {
+  "group": 20,
+  "frameStart": 894,
+  "frameEnd": 969,
+  "beat": 7,
+  "words": [
+   {
+    "w": "Save",
+    "f0": 894,
+    "f1": 901
+   },
+   {
+    "w": "these",
+    "f0": 901,
+    "f1": 910
+   },
+   {
+    "w": "comment",
+    "f0": 910,
+    "f1": 923
+   },
+   {
+    "w": "LENSES",
+    "f0": 923,
+    "f1": 942
+   },
+   {
+    "w": "for",
+    "f0": 942,
+    "f1": 946
+   },
+   {
+    "w": "the",
+    "f0": 946,
+    "f1": 953
+   },
+   {
+    "w": "free",
+    "f0": 953,
+    "f1": 967
+   }
+  ]
+ },
+ {
+  "group": 21,
+  "frameStart": 967,
+  "frameEnd": 1017,
+  "beat": 7,
+  "words": [
+   {
+    "w": "nighttime",
+    "f0": 967,
+    "f1": 978
+   },
+   {
+    "w": "reminder",
+    "f0": 978,
+    "f1": 998
+   },
+   {
+    "w": "checklist,",
+    "f0": 998,
+    "f1": 1015
+   }
+  ]
+ },
+ {
+  "group": 22,
+  "frameStart": 1021,
+  "frameEnd": 1052,
+  "beat": 7,
+  "words": [
+   {
+    "w": "consult",
+    "f0": 1021,
+    "f1": 1031
+   },
+   {
+    "w": "link",
+    "f0": 1031,
+    "f1": 1039
+   },
+   {
+    "w": "in",
+    "f0": 1039,
+    "f1": 1045
+   },
+   {
+    "w": "bio.",
+    "f0": 1045,
+    "f1": 1050
+   }
+  ]
+ }
+]
+};
+
+const Wrapper: React.FC = () => {
+  (globalThis as any).__CONVO__ = CONVO;
+  return <XiaoheiConvo />;
+};
+
+export const T312Root = () => (
+  <Composition id="XiaoheiConvo" component={Wrapper}
+    durationInFrames={CONVO.beats.reduce((a, b) => a + b.frames, 0)}
+    fps={30} width={1080} height={1920} />
+);
+
+registerRoot(T312Root);
