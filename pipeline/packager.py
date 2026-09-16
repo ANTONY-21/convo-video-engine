@@ -522,7 +522,7 @@ def main():
     for p in exported:
         print(f"[OK] Exported {p.name}")
 
-    print(f"\n[DONE] Packaging complete for {args.video_id}")
+    print(f"\n[DONE] Packaging complete for {meta.video_id}")
     print(f"Output directory: {out_dir}")
     return 0
 

@@ -1,0 +1,86 @@
+{
+  "channel_id": "health-daily",
+  "display_name": "Health Daily",
+  "niche": "health",
+  "style_slug": "split_screen_host",
+  "voice": {
+    "provider": "xtts",
+    "model": "xtts_v2",
+    "reference_wav": "health_narrator_ref.wav",
+    "settings": {
+      "speed": 0.95,
+      "pitch": 1,
+      "temperature": 0.3,
+      "guidance_scale": 1.0
+    },
+    "clone_params": {
+      "text": "Your health matters. Let me share a simple habit that changed everything for me.",
+      "language": "en",
+      "reference_window_start": 0,
+      "reference_window_end": 20
+    }
+  },
+  "character": {
+    "avatar_image": "health_avatar.png",
+    "name": "Dr. Wellness",
+    "personality": "calm",
+    "presets": {
+      "reactions": {
+        "warning_health": {
+          "expression": "concern",
+          "duration_frames": 25,
+          "intensity": 0.8,
+          "trigger_keywords": ["dangerous", "harmful", "avoid", "toxic", "stop eating"]
+        },
+        "wellness_tip": {
+          "expression": "agreement",
+          "duration_frames": 12,
+          "intensity": 0.7,
+          "trigger_keywords": ["healthy", "benefit", "improve", "boost", "optimal"]
+        }
+      },
+      "visemes": {},
+      "idle": {
+        "blink_interval": 6.0,
+        "micro_movements": true,
+        "breathing": true
+      }
+    }
+  },
+  "schedule": {
+    "cadence": "daily",
+    "timezone": "Asia/Kolkata",
+    "publish_times": ["08:00"]
+  },
+  "platforms": {
+    "youtube": { "enabled": true, "aspect_ratio": "16:9", "hashtag_strategy": "niche", "thumbnail_strategy": "cover_frame", "privacy_default": "public" },
+    "youtube_shorts": { "enabled": true, "aspect_ratio": "9:16", "hashtag_strategy": "trending", "thumbnail_strategy": "cover_frame", "privacy_default": "public" },
+    "instagram": { "enabled": true, "aspect_ratio": "9:16", "hashtag_strategy": "mixed", "thumbnail_strategy": "cover_frame", "privacy_default": "public" },
+    "tiktok": { "enabled": true, "aspect_ratio": "9:16", "hashtag_strategy": "trending", "thumbnail_strategy": "cover_frame", "privacy_default": "public" },
+    "twitter": { "enabled": true, "aspect_ratio": "16:9", "hashtag_strategy": "branded", "thumbnail_strategy": "cover_frame", "privacy_default": "public" },
+    "linkedin": { "enabled": true, "aspect_ratio": "16:9", "hashtag_strategy": "niche", "thumbnail_strategy": "cover_frame", "privacy_default": "public" },
+    "facebook": { "enabled": false, "aspect_ratio": "16:9", "hashtag_strategy": "niche", "thumbnail_strategy": "cover_frame", "privacy_default": "public" },
+    "reddit": { "enabled": false, "aspect_ratio": "16:9", "hashtag_strategy": "niche", "thumbnail_strategy": "cover_frame", "privacy_default": "public" },
+    "threads": { "enabled": true, "aspect_ratio": "9:16", "hashtag_strategy": "mixed", "thumbnail_strategy": "cover_frame", "privacy_default": "public" }
+  },
+  "gates": {
+    "hook_min_score": 14,
+    "retention_3s_min": 0.7,
+    "avd_pct_min": 0.5,
+    "completion_pct_min": 0.4,
+    "technical_qc": { "min_bitrate_kbps": 2500, "max_audio_lufs": -14, "min_audio_lufs": -20, "required_fps": 30, "allowed_resolutions": ["1280x720", "1920x1080", "720x1280", "1080x1920"] }
+  },
+  "brand_kit": {
+    "primary_color": "#00BFA6",
+    "secondary_color": "#F5F5F5",
+    "accent_color": "#FF6B6B",
+    "font_primary": "Inter",
+    "font_secondary": "Source Sans Pro",
+    "logo_path": "assets/brand/health_logo.png",
+    "watermark_path": "assets/brand/health_watermark.png",
+    "lower_third_template": "assets/brand/health_lower_third.json"
+  },
+  "analytics": { "track_retention": true, "track_avd": true, "track_completion": true, "track_shares_saves": true, "hook_ab_testing": true, "win_rate_threshold": 0.5, "retire_weak_hooks_after": 5 },
+  "version": "1.0.0",
+  "last_updated": "2026-09-16T03:00:00Z"
+}

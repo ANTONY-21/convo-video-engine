@@ -1,5 +1,7 @@
 import { registerRoot, Composition } from 'remotion';
 import { EmojiTest } from './emoji_test';
+import { Shot3Countdown } from './shot3_countdown';
+import { Shot1Phone, Shot2ManWindow } from './shot12_scenes';
 import React from 'react';
 import { XiaoheiConvo } from './XiaoheiConvo';
 
@@ -118,6 +120,9 @@ const Wrapper: React.FC = () => {
 
 export const ConvoRoot = () => (
   <>
+    <Composition id="Shot1" component={Shot1Phone} durationInFrames={120} fps={30} width={1080} height={1920} />
+    <Composition id="Shot2" component={Shot2ManWindow} durationInFrames={120} fps={30} width={1080} height={1920} />
+    <Composition id="Shot3" component={Shot3Countdown} durationInFrames={150} fps={30} width={1080} height={1920} />
     <Composition id="EmojiTest" component={EmojiTest} durationInFrames={20} fps={30} width={540} height={540} />
     <Composition id="XiaoheiConvo" component={Wrapper}
       durationInFrames={CONVO.beats.reduce((a, b) => a + b.frames, 0)}

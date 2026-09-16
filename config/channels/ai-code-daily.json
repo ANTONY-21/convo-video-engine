@@ -1,0 +1,154 @@
+{
+  "channel_id": "ai-code-daily",
+  "display_name": "AI Code Daily",
+  "niche": "ai_code",
+  "style_slug": "screen_recording_zoompan",
+  "voice": {
+    "provider": "voxcpm",
+    "model": "voxcpm_2026_09",
+    "reference_wav": "coder_voice_ref.wav",
+    "settings": {
+      "speed": 1.0,
+      "pitch": 0,
+      "temperature": 0.4,
+      "guidance_scale": 1.0
+    },
+    "clone_params": {
+      "text": "Let me show you how to build this feature step by step. First, we import the necessary modules.",
+      "language": "en",
+      "reference_window_start": 0,
+      "reference_window_end": 18
+    }
+  },
+  "character": {
+    "avatar_image": "coder_avatar.png",
+    "name": "Dev",
+    "personality": "enthusiastic",
+    "presets": {
+      "reactions": {
+        "aha_moment": {
+          "expression": "excitement",
+          "duration_frames": 15,
+          "intensity": 0.9,
+          "trigger_keywords": ["now watch", "here's the trick", "the key is", "boom", "done"]
+        },
+        "debugging": {
+          "expression": "thinking",
+          "duration_frames": 20,
+          "intensity": 0.6,
+          "trigger_keywords": ["error", "bug", "fix", "debug", "issue", "problem"]
+        }
+      },
+      "visemes": {},
+      "idle": {
+        "blink_interval": 3.0,
+        "micro_movements": true,
+        "breathing": true
+      }
+    }
+  },
+  "schedule": {
+    "cadence": "weekdays",
+    "timezone": "Asia/Kolkata",
+    "publish_times": ["10:00", "20:00"]
+  },
+  "platforms": {
+    "youtube": {
+      "enabled": true,
+      "aspect_ratio": "16:9",
+      "hashtag_strategy": "niche",
+      "thumbnail_strategy": "cover_frame",
+      "privacy_default": "public"
+    },
+    "youtube_shorts": {
+      "enabled": true,
+      "aspect_ratio": "9:16",
+      "hashtag_strategy": "trending",
+      "thumbnail_strategy": "cover_frame",
+      "privacy_default": "public"
+    },
+    "instagram": {
+      "enabled": true,
+      "aspect_ratio": "9:16",
+      "hashtag_strategy": "mixed",
+      "thumbnail_strategy": "cover_frame",
+      "privacy_default": "public"
+    },
+    "tiktok": {
+      "enabled": true,
+      "aspect_ratio": "9:16",
+      "hashtag_strategy": "trending",
+      "thumbnail_strategy": "cover_frame",
+      "privacy_default": "public"
+    },
+    "twitter": {
+      "enabled": true,
+      "aspect_ratio": "16:9",
+      "hashtag_strategy": "branded",
+      "thumbnail_strategy": "cover_frame",
+      "privacy_default": "public"
+    },
+    "linkedin": {
+      "enabled": true,
+      "aspect_ratio": "16:9",
+      "hashtag_strategy": "niche",
+      "thumbnail_strategy": "cover_frame",
+      "privacy_default": "public"
+    },
+    "facebook": {
+      "enabled": false,
+      "aspect_ratio": "16:9",
+      "hashtag_strategy": "niche",
+      "thumbnail_strategy": "cover_frame",
+      "privacy_default": "public"
+    },
+    "reddit": {
+      "enabled": true,
+      "aspect_ratio": "16:9",
+      "hashtag_strategy": "niche",
+      "thumbnail_strategy": "cover_frame",
+      "privacy_default": "public"
+    },
+    "threads": {
+      "enabled": true,
+      "aspect_ratio": "9:16",
+      "hashtag_strategy": "mixed",
+      "thumbnail_strategy": "cover_frame",
+      "privacy_default": "public"
+    }
+  },
+  "gates": {
+    "hook_min_score": 14,
+    "retention_3s_min": 0.65,
+    "avd_pct_min": 0.45,
+    "completion_pct_min": 0.35,
+    "technical_qc": {
+      "min_bitrate_kbps": 3000,
+      "max_audio_lufs": -14,
+      "min_audio_lufs": -20,
+      "required_fps": 30,
+      "allowed_resolutions": ["1280x720", "1920x1080", "720x1280", "1080x1920"]
+    }
+  },
+  "brand_kit": {
+    "primary_color": "#007ACC",
+    "secondary_color": "#1E1E1E",
+    "accent_color": "#FFD700",
+    "font_primary": "JetBrains Mono",
+    "font_secondary": "Inter",
+    "logo_path": "assets/brand/code_logo.png",
+    "watermark_path": "assets/brand/code_watermark.png",
+    "lower_third_template": "assets/brand/code_lower_third.json"
+  },
+  "analytics": {
+    "track_retention": true,
+    "track_avd": true,
+    "track_completion": true,
+    "track_shares_saves": true,
+    "hook_ab_testing": true,
+    "win_rate_threshold": 0.5,
+    "retire_weak_hooks_after": 5
+  },
+  "version": "1.0.0",
+  "last_updated": "2026-09-16T03:00:00Z"
+}
