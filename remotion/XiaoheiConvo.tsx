@@ -474,6 +474,16 @@ const TopicIcon: React.FC<{ icon: string; frame: number }> = ({ icon, frame }) =
           <path d="M 34 26 Q 42 36 38 46 Q 36 52 34 54 Q 32 52 30 46 Q 26 36 34 26 Z" fill="#FBD38D" />
         </g>
       );
+    case 'eye_off':
+      return (
+        <g>
+          <circle cx={34} cy={32} r={24} fill="#FED7D7" stroke={C.red} strokeWidth={4} />
+          <circle cx={34} cy={32} r={10} fill="#fff" stroke={C.red} strokeWidth={3} />
+          <circle cx={34} cy={32} r={4} fill={C.red} />
+          <line x1={12} y1={12} x2={56} y2={54} stroke={C.red} strokeWidth={5} strokeLinecap="round"
+            opacity={0.65 + 0.35 * Math.sin(frame / 8)} />
+        </g>
+      );
     case 'blur':
       return (
         <g>
@@ -565,23 +575,51 @@ const BeatVisual: React.FC<{ beat: ConvoBeat; frame: number }> = ({ beat, frame 
               <text key={i} x={270} y={162 + i * 26} textAnchor="middle" fontSize={24} fontWeight={700} fill="#666" fontFamily="Arial">{ln}</text>
             ))}
             {(v as any).note && <text x={270} y={168 + nLines * 26} textAnchor="middle" fontSize={24} fontWeight={700} fill="#666" fontFamily="Arial">{(v as any).note}</text>}
+            {/* VIRAL ICON ROW — topic-driven from beat.visual.icons */}
+            {((v as any).icons || []).length > 0 && (
+              <g transform={`translate(${270 - ((v as any).icons.length - 1) * 75} ${cardH - 56})`}>
+                {((v as any).icons || []).map((it: any, i: number) => {
+                  const ip = interpolate(frame, [18 + i * 10, 30 + i * 10], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.back(2) });
+                  return (
+                    <g key={i} transform={`translate(${i * 110} 0) scale(${ip * 0.85})`}>
+                      <TopicIcon icon={it.icon} frame={frame} />
+                      <text x={34} y={86} textAnchor="middle" fontSize={17} fontWeight={800} fill={INK} fontFamily="Arial">{it.label}</text>
+                    </g>
+                  );
+                })}
+              </g>
+            )}
           </Card>
         </g>
       );
     }
     case 'cta': {
       // M3: mandatory CTA end card — headline + follow line + icons.
+      // Viral icon row is topic-driven (beat.visual.icons) and ANIMATED.
       return (
         <g>
-          <Card frame={frame} x={42} y={440} w={620} h={300}>
+          <Card frame={frame} x={42} y={440} w={620} h={330}>
             <text x={352} y={80} textAnchor="middle" fontSize={40} fontWeight={900} fill={INK} fontFamily="Arial">{(v as any).headline || 'SAVE THIS'}</text>
             <text x={352} y={136} textAnchor="middle" fontSize={22} fontWeight={700} fill={GREEN} fontFamily="Arial">{(v as any).sub || 'Follow for the science'}</text>
-            <g transform="translate(352 210)">
+            <g transform="translate(352 200)">
               {/* save (bookmark) + share icons */}
               <path d="M -60 -24 L -60 24 L -42 10 L -24 24 L -24 -24 Z" fill="none" stroke={RED} strokeWidth={5} strokeLinejoin="round" />
               <circle cx={70} cy={0} r={26} fill="none" stroke={INK} strokeWidth={5} />
               <path d="M 58 -8 L 82 0 L 58 8" fill="none" stroke={INK} strokeWidth={5} strokeLinejoin="round" />
             </g>
+            {((v as any).icons || []).length > 0 && (
+              <g transform={`translate(${352 - ((v as any).icons.length - 1) * 75} ${268})`}>
+                {((v as any).icons || []).map((it: any, i: number) => {
+                  const ip = interpolate(frame, [16 + i * 9, 28 + i * 9], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.back(2) });
+                  return (
+                    <g key={i} transform={`translate(${i * 110} 0) scale(${ip * 0.8})`}>
+                      <TopicIcon icon={it.icon} frame={frame} />
+                      <text x={34} y={82} textAnchor="middle" fontSize={17} fontWeight={800} fill={INK} fontFamily="Arial">{it.label}</text>
+                    </g>
+                  );
+                })}
+              </g>
+            )}
           </Card>
         </g>
       );

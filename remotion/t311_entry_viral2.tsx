@@ -22,6 +22,16 @@ const CONVO = {
     "Every 20 minutes",
     "Look 20 feet away",
     "For 20 seconds"
+   ],
+   "icons": [
+    {
+     "icon": "screen",
+     "label": "SCREEN"
+    },
+    {
+     "icon": "bolt",
+     "label": "STRIKES"
+    }
    ]
   },
   "sfx": "bass_drop"
@@ -46,7 +56,17 @@ const CONVO = {
    "right": {
     "label": "ON SCREEN",
     "value": "5/min"
-   }
+   },
+   "icons": [
+    {
+     "icon": "screen",
+     "label": "BLINKS"
+    },
+    {
+     "icon": "blur",
+     "label": "BLURRY"
+    }
+   ]
   },
   "sfx": "heartbeat"
  },
@@ -70,7 +90,17 @@ const CONVO = {
    "right": {
     "label": "SCROLLING",
     "value": "5"
-   }
+   },
+   "icons": [
+    {
+     "icon": "blur",
+     "label": "BLUR"
+    },
+    {
+     "icon": "floaters",
+     "label": "SPOTS"
+    }
+   ]
   },
   "sfx": "tick"
  },
@@ -92,6 +122,16 @@ const CONVO = {
     "Every 20 minutes",
     "Look 20 feet away",
     "For 20 seconds"
+   ],
+   "icons": [
+    {
+     "icon": "bolt",
+     "label": "RULE"
+    },
+    {
+     "icon": "flash",
+     "label": "RESET"
+    }
    ]
   },
   "sfx": "ding"
@@ -114,6 +154,16 @@ const CONVO = {
     "20 minutes",
     "20 feet",
     "20 seconds"
+   ],
+   "icons": [
+    {
+     "icon": "flash",
+     "label": "20 MIN"
+    },
+    {
+     "icon": "eye_off",
+     "label": "AWAY"
+    }
    ]
   },
   "sfx": "pop"
@@ -132,7 +182,17 @@ const CONVO = {
   "visual": {
    "kind": "countdown",
    "value": "24h",
-   "label": "STILL TICKING"
+   "label": "STILL TICKING",
+   "icons": [
+    {
+     "icon": "bolt",
+     "label": "TICKING"
+    },
+    {
+     "icon": "screen",
+     "label": "24H"
+    }
+   ]
   },
   "sfx": "bass_drop"
  },
@@ -150,7 +210,17 @@ const CONVO = {
   "visual": {
    "kind": "cta",
    "headline": "SAVE THIS",
-   "sub": "Comment EYES — free phone reminder • Consult in bio"
+   "sub": "Comment EYES — free phone reminder • Consult in bio",
+   "icons": [
+    {
+     "icon": "flash",
+     "label": "SAVE"
+    },
+    {
+     "icon": "screen",
+     "label": "EYES"
+    }
+   ]
   },
   "sfx": null
  }
@@ -660,7 +730,7 @@ const CONVO = {
     "f1": 785
    },
    {
-    "w": "this",
+    "w": "this,",
     "f0": 785,
     "f1": 792
    },
@@ -670,7 +740,7 @@ const CONVO = {
     "f1": 811
    },
    {
-    "w": "ties",
+    "w": "EYES",
     "f0": 811,
     "f1": 821
    }
@@ -679,7 +749,7 @@ const CONVO = {
  {
   "group": 15,
   "frameStart": 821,
-  "frameEnd": 847,
+  "frameEnd": 910,
   "beat": 8,
   "words": [
    {
@@ -695,50 +765,50 @@ const CONVO = {
    {
     "w": "free",
     "f0": 834,
-    "f1": 845
+    "f1": 853
    },
    {
-    "w": "2020",
+    "w": "20-20-20",
     "f0": 853,
-    "f1": 845
+    "f1": 870
    },
    {
-    "w": "-2021",
+    "w": "phone",
     "f0": 870,
-    "f1": 845
+    "f1": 895
    },
    {
     "w": "reminder.",
     "f0": 895,
-    "f1": 845
+    "f1": 908
    }
   ]
  },
  {
   "group": 16,
   "frameStart": 927,
-  "frameEnd": 847,
+  "frameEnd": 956,
   "beat": 8,
   "words": [
    {
     "w": "Consult",
     "f0": 927,
-    "f1": 845
+    "f1": 932
    },
    {
     "w": "link",
     "f0": 932,
-    "f1": 845
+    "f1": 942
    },
    {
     "w": "in",
     "f0": 942,
-    "f1": 845
+    "f1": 949
    },
    {
     "w": "bio.",
     "f0": 949,
-    "f1": 845
+    "f1": 954
    }
   ]
  }
