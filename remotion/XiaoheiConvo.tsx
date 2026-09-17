@@ -35,7 +35,15 @@ const GREEN = '#2F855A';
 export const SPEAKER_META: Record<string, { color: string; side: 'left' | 'right'; accent: 'scarf' | 'cap' }> = {
   RAVI: { color: RED, side: 'left', accent: 'scarf' },
   VIKRAM: { color: TEAL, side: 'right', accent: 'cap' },
+  DOCTOR: { color: '#4D9FE8', side: 'right', accent: 'cap' },
   NARRATOR: { color: '#B7791F', side: 'right', accent: 'cap' },
+};
+// CONSULT MODE (AK file_174: 'people talking with doctor'): per-speaker
+// component — DOCTOR always renders the Doctor component regardless
+// of video-level characters mode; others follow the mode.
+const charFor = (speaker: string, mode: string) => {
+  if (speaker === 'DOCTOR') return Doctor;
+  return mode === 'human' ? Human : mode === 'doctor' ? Human : Xiaohei;
 };
 
 // ---------------- Xiaohei character ----------------
@@ -995,7 +1003,7 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
   // DYNAMIC law: feed the background signboard label from beat data
   if (typeof window !== 'undefined') {
     (window as any).__scene_label = beat.scene_label || 'DAILY HABIT CHECK';
-    (window as any).__caption_bottom = (data as any).characters === 'doctor' ? '31.5%' : '25%';
+    (window as any).__caption_bottom = ((data as any).characters === 'doctor' || beat.speaker === 'DOCTOR') ? '31.5%' : '25%';
   }
   // B-ROLL LAW v2 (AK file_170 2026-09-17: 'I need egg template IN THAT
   // these broll should come'): b-roll plays INSIDE the egg template —
@@ -1015,8 +1023,9 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
     );
   }
   const meta = SPEAKER_META[beat.speaker];
-  const listener = beat.speaker === 'RAVI' ? 'VIKRAM' : 'RAVI';
-  const Char = (data as any).characters === 'human' ? Human : (data as any).characters === 'doctor' ? Doctor : Xiaohei;
+  const listener = beat.speaker === 'RAVI' ? ((data as any).consult ? 'DOCTOR' : 'VIKRAM') : 'RAVI';
+  const LChar = charFor(listener, (data as any).characters || 'egg');
+  const Char = charFor(beat.speaker, (data as any).characters || 'egg');
   const lmeta = SPEAKER_META[listener];
   const isLeft = meta.side === 'left';
 
@@ -1047,13 +1056,13 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
         <g transform={`translate(${352 + camX} 700) scale(${zoom2}) translate(-352 -700)`}>
           {React.createElement(bg, { frame })}
           {/* listener: opposite side, smaller, slightly dimmed */}
-<g transform={`translate(${isLeft ? 566 : 128} ${(data as any).characters === 'doctor' ? 990 : 1030})`} opacity={0.95}>
-            <Char frame={frame + beat.id * 13} scale={(data as any).characters === 'doctor' ? 1.0 : 0.82} flip={!isLeft} talking={false}
+<g transform={`translate(${isLeft ? (beat.speaker === 'DOCTOR' ? 566 : 566) : (beat.speaker === 'DOCTOR' ? 128 : 128)} ${(data as any).characters === beat.speaker === 'DOCTOR' || listener === 'DOCTOR' ? 990 : 1030})`} opacity={0.95}>
+            <LChar frame={frame + beat.id * 13} scale={listener === 'DOCTOR' || beat.speaker === 'DOCTOR' ? 1.0 : 0.82} flip={!isLeft} talking={false}
               accent={lmeta.accent} accentColor={lmeta.color} opacity={0.92} />
           </g>
           {/* speaker: active side, talking */}
-<g transform={`translate(${isLeft ? 160 : 544} ${(data as any).characters === 'doctor' ? 1000 : 1040})`}>
-            <Char frame={frame} scale={(data as any).characters === 'doctor' ? 1.22 : 1.0} flip={isLeft} talking
+<g transform={`translate(${isLeft ? 160 : 544} ${(data as any).characters === beat.speaker === 'DOCTOR' || listener === 'DOCTOR' ? 1000 : 1040})`}>
+            <Char frame={frame} scale={beat.speaker === 'DOCTOR' ? 1.22 : 1.0} flip={isLeft} talking
               accent={meta.accent} accentColor={meta.color} />
           </g>
         {hook && (

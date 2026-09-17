@@ -1,0 +1,271 @@
+{
+ "topic_id": 5,
+ "topic": "rubbing eyes",
+ "series": "Eye Mistakes",
+ "n": 2,
+ "style": "xiaohei_conversation",
+ "beats": [
+  {
+   "id": 1,
+   "kind": "hook",
+   "scene": "home_desk",
+   "speaker": "NARRATOR",
+   "vo": "A patient asked me the same question this week: \"Doctor, is rubbing my eyes really that bad?\" Here is what I told him.",
+   "bubble": [
+    "A patient asked me:",
+    "Is rubbing my eyes really that bad?"
+   ],
+   "caption": "RUBBING YOUR EYES? STOP",
+   "sfx": "bass_drop",
+   "visual": {
+    "kind": "broll_rub_hook",
+    "title": "STOP DOING THIS",
+    "icons": [
+     {
+      "icon": "eye",
+      "label": "YOUR EYES"
+     },
+     {
+      "icon": "hand",
+      "label": "NEVER RUB"
+     }
+    ]
+   },
+   "emo": {
+    "method": "ref",
+    "ref": "excited",
+    "alpha": 1.4,
+    "duration_factor": 1.18
+   },
+   "broll": {
+    "scene": "danger_pulse",
+    "after": "hook"
+   },
+   "voText": "A patient asked me the same question this week: \"Doctor, is rubbing my eyes really that bad?\" Here is what I told him."
+  },
+  {
+   "id": 2,
+   "kind": "dialogue",
+   "scene": "home_desk",
+   "speaker": "RAVI",
+   "vo": "Doctor, my eyes are so itchy. Rubbing them is the only thing that helps!",
+   "bubble": [
+    "Uncle, my eyes are SO itchy!",
+    "Rubbing is the only thing that helps!"
+   ],
+   "caption": "SO ITCHY",
+   "sfx": "pop",
+   "emo": {
+    "method": "ref",
+    "ref": "sad",
+    "alpha": 1.1,
+    "duration_factor": 1.0
+   },
+   "broll": {
+    "scene": "bacteria_swarm",
+    "after": "stat",
+    "stat": {
+     "label": "ON YOUR HANDS",
+     "value": "3,000+",
+     "sub": "BACTERIA",
+     "color": "#D4E157"
+    }
+   },
+   "voText": "Doctor, my eyes are so itchy. Rubbing them is the only thing that helps!",
+   "visual": {
+    "kind": "broll_clip",
+    "clip": "broll_t313_b2.mp4",
+    "motion": {
+     "style": "punch_in",
+     "zoom_from": 100,
+     "zoom_to": 107,
+     "shake": 1
+    }
+   },
+   "after_visual": {
+    "kind": "stat_pair",
+    "label": "ON YOUR HANDS",
+    "value": "3,000+",
+    "sub": "BACTERIA",
+    "color": "#D4E157"
+   }
+  },
+  {
+   "id": 3,
+   "kind": "dialogue",
+   "scene": "tea_stall",
+   "speaker": "DOCTOR",
+   "vo": "One hard rub can TEAR your cornea. That is the clear window of your eye.",
+   "bubble": [
+    "One hard rub can TEAR",
+    "your cornea \u2014 the clear",
+    "window of your eye."
+   ],
+   "caption": "CORNEA TEAR RISK",
+   "sfx": "heartbeat",
+   "emo": {
+    "method": "ref",
+    "ref": "urgent",
+    "alpha": 1.2,
+    "duration_factor": 1.0
+   },
+   "broll": {
+    "scene": "danger_pulse",
+    "after": "rule"
+   },
+   "voText": "One hard rub can TEAR your cornea. That is the clear window of your eye.",
+   "visual": {
+    "kind": "broll_clip",
+    "clip": "broll_t313_b3.mp4",
+    "motion": {
+     "style": "punch_in",
+     "zoom_from": 100,
+     "zoom_to": 107,
+     "shake": 1
+    }
+   },
+   "after_visual": {
+    "kind": "rule_card",
+    "title": "CORNEA TEAR",
+    "rule": "NEVER RUB HARD",
+    "note": "The cornea is your eye\u2019s clear window"
+   }
+  },
+  {
+   "id": 4,
+   "kind": "dialogue",
+   "scene": "tea_stall",
+   "speaker": "RAVI",
+   "vo": "Tear it?! What happens then?",
+   "bubble": [
+    "Tear it?!",
+    "What happens then?"
+   ],
+   "caption": "KERATOCONUS RISK",
+   "sfx": "tick",
+   "emo": {
+    "method": "ref",
+    "ref": "afraid",
+    "alpha": 1.2,
+    "duration_factor": 0.95
+   },
+   "broll": {
+    "scene": "cone_bulge",
+    "after": "stat",
+    "stat": {
+     "label": "KERATOCONUS",
+     "value": "PERMANENT",
+     "sub": "CORNEA BULGES",
+     "color": "#C88CFF"
+    }
+   },
+   "voText": "Tear it?! What happens then?",
+   "visual": {
+    "kind": "broll_clip",
+    "clip": "broll_t313_b4.mp4",
+    "motion": {
+     "style": "punch_in",
+     "zoom_from": 100,
+     "zoom_to": 107,
+     "shake": 1
+    }
+   },
+   "after_visual": {
+    "kind": "stat_pair",
+    "label": "KERATOCONUS",
+    "value": "PERMANENT",
+    "sub": "CORNEA BULGES OUT",
+    "color": "#C88CFF"
+   }
+  },
+  {
+   "id": 5,
+   "kind": "dialogue",
+   "scene": "city_park",
+   "speaker": "DOCTOR",
+   "vo": "Itchiness means allergies. Use a cold compress instead. If it continues, see a doctor.",
+   "bubble": [
+    "Itchy = allergies.",
+    "Use a COLD COMPRESS.",
+    "See a doctor if it stays."
+   ],
+   "caption": "DO THIS INSTEAD",
+   "sfx": "ding",
+   "emo": {
+    "method": "ref",
+    "ref": "calm",
+    "alpha": 1.0,
+    "duration_factor": 1.0
+   },
+   "broll": {
+    "scene": "calm_flow",
+    "after": "rule"
+   },
+   "voText": "Itchiness means allergies. Use a cold compress instead. If it continues, see a doctor.",
+   "visual": {
+    "kind": "broll_clip",
+    "clip": "broll_t313_b5.mp4",
+    "motion": {
+     "style": "punch_in",
+     "zoom_from": 100,
+     "zoom_to": 107,
+     "shake": 1
+    }
+   },
+   "after_visual": {
+    "kind": "flag_list",
+    "items": [
+     {
+      "icon": "\u2744\ufe0f",
+      "text": "COLD COMPRESS for itch"
+     },
+     {
+      "icon": "\ud83d\udca7",
+      "text": "LUBRICATING DROPS"
+     },
+     {
+      "icon": "\ud83e\ude7a",
+      "text": "DOCTOR if it continues"
+     }
+    ]
+   }
+  },
+  {
+   "id": 6,
+   "kind": "cta",
+   "scene": "evening_road",
+   "speaker": "DOCTOR",
+   "vo": "That is general advice only, not a substitute for a consultation. Follow for more eye truths.",
+   "bubble": [],
+   "caption": "FOLLOW FOR MORE EYE TRUTHS",
+   "sfx": "bass_hit",
+   "visual": {
+    "kind": "broll_clip",
+    "clip": "broll_t313_b6.mp4",
+    "motion": {
+     "style": "punch_in",
+     "zoom_from": 100,
+     "zoom_to": 107,
+     "shake": 1
+    }
+   },
+   "emo": {
+    "method": "ref",
+    "ref": "excited",
+    "alpha": 1.0,
+    "duration_factor": 1.0
+   },
+   "broll": {
+    "scene": "cta_glow",
+    "after": "cta"
+   },
+   "voText": "That is general advice only, not a substitute for a consultation. Follow for more eye truths.",
+   "after_visual": {
+    "kind": "cta",
+    "sub": "Follow for more eye truths"
+   }
+  }
+ ],
+ "characters": "doctor",
+ "consult": true
+}
