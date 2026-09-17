@@ -6,6 +6,13 @@
 // the word whose [f0,f1] contains it. Returns null during breath gaps.
 import React from 'react';
 
+// VIRAL KEYWORD LAW (AK critique #2, 2026-09-16): keywords stay red
+// even when not the active word — STOP/damage/vision loss etc.
+const KEYWORD_RED = new Set([
+  'STOP', 'STOP!', 'DAMAGE', 'DAMAGED', 'DAMAGE?', 'VISION', 'LOSS.',
+  'LOSS', 'ULCERS.', 'ULCER', 'INFECTIONS,', 'INFECTIONS', 'SCAR',
+  'PERMANENT.', 'PERMANENT', 'NEVER', 'DANGER', 'WARNING', 'BLIND',
+]);
 export const WordAnchoredCaptions: React.FC<{ frame: number }> = ({ frame }) => {
   const groups =
     (globalThis as any).__CONVO__?.captions ??
@@ -22,7 +29,7 @@ export const WordAnchoredCaptions: React.FC<{ frame: number }> = ({ frame }) => 
       style={{
         position: 'absolute',
         left: '50%',
-        bottom: '25%',
+        bottom: (typeof window !== 'undefined' && (window as any).__caption_bottom) || '25%',
         transform: 'translateX(-50%)',
         display: 'flex',
         flexWrap: 'wrap',
@@ -39,7 +46,7 @@ export const WordAnchoredCaptions: React.FC<{ frame: number }> = ({ frame }) => 
           style={{
             fontSize: 52,
             fontWeight: 900,
-            color: i === active ? '#FF3B30' : '#fff',
+            color: i === active ? '#FF3B30' : (KEYWORD_RED.has(w.w.toUpperCase()) ? '#FF3B30' : '#fff'),
             background: 'rgba(0,0,0,0.72)',
             borderRadius: 10,
             padding: '6px 16px',

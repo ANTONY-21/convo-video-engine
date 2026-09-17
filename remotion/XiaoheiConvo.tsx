@@ -163,6 +163,94 @@ export const Human: React.FC<{
   );
 };
 
+// DOCTOR CHARACTER (AK image 2026-09-17: chibi doctor girl — big
+// brown eyes, brown side-swept hair + ponytail, white lab coat, blue
+// scrubs, stethoscope). Same rig as Xiaohei/Human.
+export const Doctor: React.FC<{
+  frame: number; scale?: number; flip?: boolean; talking?: boolean;
+  accentColor?: string; opacity?: number;
+}> = ({ frame, scale = 1, flip = false, talking = false, opacity = 1 }) => {
+  const bob = Math.sin(frame / 11) * 2.5;
+  const blink = (frame % 97) < 4 ? 0.12 : 1;
+  const armSwing = talking ? Math.sin(frame / 5) * 8 : Math.sin(frame / 22) * 2.5;
+  const mouthH = talking ? 3.5 + Math.abs(Math.sin(frame / 3)) * 7 : 2;
+  const skin = '#F2C6A0';
+  const hairC = '#5B3A24';
+  const coat = '#FAFAF8';
+  const scrub = '#4D9FE8';
+  const scrubD = '#3C86CC';
+  return (
+    <g transform={`translate(0 ${bob}) scale(${flip ? -scale : scale} ${scale})`} opacity={opacity}>
+      {/* legs: blue scrub pants + shoes */}
+      <line x1={-14} y1={72} x2={-17} y2={98} stroke={scrubD} strokeWidth={13} strokeLinecap="round" />
+      <line x1={14} y1={72} x2={17} y2={98} stroke={scrubD} strokeWidth={13} strokeLinecap="round" />
+      <ellipse cx={-19} cy={104} rx={11} ry={6} fill="#79B4EE" />
+      <ellipse cx={19} cy={104} rx={11} ry={6} fill="#79B4EE" />
+      {/* arms: coat sleeves + hands */}
+      <g transform={`rotate(${-armSwing} -36 20)`}>
+        <line x1={-36} y1={20} x2={-50} y2={66} stroke={coat} strokeWidth={13} strokeLinecap="round" />
+        <circle cx={-51} cy={70} r={6.5} fill={skin} />
+      </g>
+      <g transform={`rotate(${armSwing} 36 20)`}>
+        <line x1={36} y1={20} x2={50} y2={66} stroke={coat} strokeWidth={13} strokeLinecap="round" />
+        <circle cx={51} cy={70} r={6.5} fill={skin} />
+      </g>
+      {/* scrubs V-neck chest under coat */}
+      <path d="M -14 -6 L 0 8 L 14 -6 L 14 34 L -14 34 Z" fill={scrub} />
+      <path d="M -8 -4 L 0 4 L 8 -4" stroke={scrubD} strokeWidth={2.5} fill="none" />
+      {/* lab coat: open front panels + pockets */}
+      <path d="M -16 -10 L -42 0 Q -46 40 -38 74 L -16 74 Z" fill={coat} />
+      <path d="M 16 -10 L 42 0 Q 46 40 38 74 L 16 74 Z" fill={coat} />
+      <rect x={-34} y={48} width={16} height={12} rx={2} fill="#EFEFEA" />
+      <rect x={18} y={48} width={16} height={12} rx={2} fill="#EFEFEA" />
+      {/* stethoscope: around neck, chest piece right */}
+      <path d="M -12 -8 Q -18 24 -6 44" stroke="#2A2A2E" strokeWidth={4.5} fill="none" strokeLinecap="round" />
+      <path d="M 12 -8 Q 16 18 10 36" stroke="#2A2A2E" strokeWidth={4.5} fill="none" strokeLinecap="round" />
+      <circle cx={9} cy={41} r={8} fill="#C8CDD2" stroke="#8A9096" strokeWidth={2.5} />
+      <circle cx={9} cy={41} r={3.5} fill="#AEB4BA" />
+      {/* neck */}
+      <rect x={-8} y={-16} width={16} height={10} rx={5} fill={skin} />
+      {/* head: big chibi round */}
+      <ellipse cx={0} cy={-46} rx={37} ry={35} fill={skin} />
+      {/* ears */}
+      <circle cx={-36} cy={-44} r={6} fill={skin} />
+      <circle cx={36} cy={-44} r={6} fill={skin} />
+      {/* blush */}
+      <ellipse cx={-24} cy={-36} rx={7} ry={4.5} fill="#F5A8A0" opacity={0.55} />
+      <ellipse cx={24} cy={-36} rx={7} ry={4.5} fill="#F5A8A0" opacity={0.55} />
+      {/* hair: top swoop + side bangs + ponytail (left-back) */}
+      <path d="M -37 -50 Q -38 -84 0 -85 Q 38 -84 37 -50 Q 30 -72 12 -76 Q -8 -80 -24 -68 Q -34 -60 -37 -50 Z" fill={hairC} />
+      <path d="M -37 -52 Q -30 -66 -16 -70 Q -30 -62 -34 -46 Z" fill={hairC} />
+      <path d="M 30 -60 Q 44 -48 40 -16 Q 48 -34 42 -56 Q 38 -66 30 -60 Z" fill={hairC} />
+      <circle cx={39} cy={-24} r={9} fill={hairC} />
+      {/* brows */}
+      <path d="M -24 -58 Q -16 -62 -8 -58" stroke={hairC} strokeWidth={3} fill="none" strokeLinecap="round" />
+      <path d="M 8 -58 Q 16 -62 24 -58" stroke={hairC} strokeWidth={3} fill="none" strokeLinecap="round" />
+      {/* BIG eyes: white sclera + huge brown iris + double highlights */}
+      <g transform={`translate(0 -46) scale(1 ${blink})`}>
+        <ellipse cx={-15} cy={0} rx={10.5} ry={12} fill="#fff" />
+        <ellipse cx={15} cy={0} rx={10.5} ry={12} fill="#fff" />
+        <circle cx={-14} cy={1} r={7.5} fill="#4A2C18" />
+        <circle cx={16} cy={1} r={7.5} fill="#4A2C18" />
+        <circle cx={-16.5} cy={-2} r={2.8} fill="#fff" />
+        <circle cx={13.5} cy={-2} r={2.8} fill="#fff" />
+        <circle cx={-11} cy={4.5} r={1.4} fill="#fff" opacity={0.8} />
+        <circle cx={19} cy={4.5} r={1.4} fill="#fff" opacity={0.8} />
+      </g>
+      {/* lashes */}
+      <path d="M -25 -8 Q -27 -12 -25 -15" stroke={hairC} strokeWidth={2.2} fill="none" strokeLinecap="round" />
+      <path d="M 25 -8 Q 27 -12 25 -15" stroke={hairC} strokeWidth={2.2} fill="none" strokeLinecap="round" />
+      {/* nose + smile */}
+      <path d="M 0 -40 Q 3 -36 0 -33" stroke="#D89B72" strokeWidth={2.5} fill="none" strokeLinecap="round" />
+      {talking ? (
+        <ellipse cx={0} cy={-26} rx={7.5} ry={mouthH / 2} fill="#B4574A" />
+      ) : (
+        <path d="M -8 -27 Q 0 -21 8 -27" stroke="#A8503F" strokeWidth={3} fill="none" strokeLinecap="round" />
+      )}
+    </g>
+  );
+};
+
 // ---------------- Speech bubble ----------------
 export const Bubble: React.FC<{
   lines: string[]; x: number; y: number; tailX: number; color: string;
@@ -907,6 +995,7 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
   // DYNAMIC law: feed the background signboard label from beat data
   if (typeof window !== 'undefined') {
     (window as any).__scene_label = beat.scene_label || 'DAILY HABIT CHECK';
+    (window as any).__caption_bottom = (data as any).characters === 'doctor' ? '31.5%' : '25%';
   }
   // B-ROLL LAW v2 (AK file_170 2026-09-17: 'I need egg template IN THAT
   // these broll should come'): b-roll plays INSIDE the egg template —
@@ -927,7 +1016,7 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
   }
   const meta = SPEAKER_META[beat.speaker];
   const listener = beat.speaker === 'RAVI' ? 'VIKRAM' : 'RAVI';
-  const Char = (data as any).characters === 'human' ? Human : Xiaohei;
+  const Char = (data as any).characters === 'human' ? Human : (data as any).characters === 'doctor' ? Doctor : Xiaohei;
   const lmeta = SPEAKER_META[listener];
   const isLeft = meta.side === 'left';
 
@@ -958,13 +1047,13 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
         <g transform={`translate(${352 + camX} 700) scale(${zoom2}) translate(-352 -700)`}>
           {React.createElement(bg, { frame })}
           {/* listener: opposite side, smaller, slightly dimmed */}
-          <g transform={`translate(${isLeft ? 556 : 148} 1030)`} opacity={0.95}>
-            <Char frame={frame + beat.id * 13} scale={0.82} flip={!isLeft} talking={false}
+<g transform={`translate(${isLeft ? 566 : 128} ${(data as any).characters === 'doctor' ? 990 : 1030})`} opacity={0.95}>
+            <Char frame={frame + beat.id * 13} scale={(data as any).characters === 'doctor' ? 1.0 : 0.82} flip={!isLeft} talking={false}
               accent={lmeta.accent} accentColor={lmeta.color} opacity={0.92} />
           </g>
           {/* speaker: active side, talking */}
-          <g transform={`translate(${isLeft ? 200 : 504} 1040)`}>
-            <Char frame={frame} scale={1.0} flip={isLeft} talking
+<g transform={`translate(${isLeft ? 160 : 544} ${(data as any).characters === 'doctor' ? 1000 : 1040})`}>
+            <Char frame={frame} scale={(data as any).characters === 'doctor' ? 1.22 : 1.0} flip={isLeft} talking
               accent={meta.accent} accentColor={meta.color} />
           </g>
         {hook && (
