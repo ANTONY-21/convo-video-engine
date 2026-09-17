@@ -8,7 +8,7 @@
   {
    "id": 1,
    "kind": "hook",
-   "scene": "home_desk",
+   "scene": "eye_clinic",
    "speaker": "NARRATOR",
    "vo": "A patient asked me the same question this week: \"Doctor, is rubbing my eyes really that bad?\" Here is what I told him.",
    "bubble": [
@@ -41,16 +41,17 @@
     "scene": "danger_pulse",
     "after": "hook"
    },
-   "voText": "A patient asked me the same question this week: \"Doctor, is rubbing my eyes really that bad?\" Here is what I told him."
+   "voText": "A patient asked me the same question this week: \"Doctor, is rubbing my eyes really that bad?\" Here is what I told him.",
+   "scene_label": "EYE CLINIC CONSULT"
   },
   {
    "id": 2,
    "kind": "dialogue",
-   "scene": "home_desk",
+   "scene": "eye_clinic",
    "speaker": "RAVI",
    "vo": "Doctor, my eyes are so itchy. Rubbing them is the only thing that helps!",
    "bubble": [
-    "Uncle, my eyes are SO itchy!",
+    "Doctor, my eyes are SO itchy!",
     "Rubbing is the only thing that helps!"
    ],
    "caption": "SO ITCHY",
@@ -88,12 +89,13 @@
     "value": "3,000+",
     "sub": "BACTERIA",
     "color": "#D4E157"
-   }
+   },
+   "scene_label": "EYE CLINIC CONSULT"
   },
   {
    "id": 3,
    "kind": "dialogue",
-   "scene": "tea_stall",
+   "scene": "eye_clinic",
    "speaker": "DOCTOR",
    "vo": "One hard rub can TEAR your cornea. That is the clear window of your eye.",
    "bubble": [
@@ -129,12 +131,13 @@
     "title": "CORNEA TEAR",
     "rule": "NEVER RUB HARD",
     "note": "The cornea is your eye\u2019s clear window"
-   }
+   },
+   "scene_label": "EYE CLINIC CONSULT"
   },
   {
    "id": 4,
    "kind": "dialogue",
-   "scene": "tea_stall",
+   "scene": "eye_clinic",
    "speaker": "RAVI",
    "vo": "Tear it?! What happens then?",
    "bubble": [
@@ -176,12 +179,13 @@
     "value": "PERMANENT",
     "sub": "CORNEA BULGES OUT",
     "color": "#C88CFF"
-   }
+   },
+   "scene_label": "EYE CLINIC CONSULT"
   },
   {
    "id": 5,
    "kind": "dialogue",
-   "scene": "city_park",
+   "scene": "eye_clinic",
    "speaker": "DOCTOR",
    "vo": "Itchiness means allergies. Use a cold compress instead. If it continues, see a doctor.",
    "bubble": [
@@ -228,12 +232,13 @@
       "text": "DOCTOR if it continues"
      }
     ]
-   }
+   },
+   "scene_label": "EYE CLINIC CONSULT"
   },
   {
    "id": 6,
    "kind": "cta",
-   "scene": "evening_road",
+   "scene": "eye_clinic",
    "speaker": "DOCTOR",
    "vo": "That is general advice only, not a substitute for a consultation. Follow for more eye truths.",
    "bubble": [],
@@ -263,7 +268,8 @@
    "after_visual": {
     "kind": "cta",
     "sub": "Follow for more eye truths"
-   }
+   },
+   "scene_label": "EYE CLINIC CONSULT"
   }
  ],
  "characters": "doctor",

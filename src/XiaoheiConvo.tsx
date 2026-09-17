@@ -377,6 +377,82 @@ const TeaStall: React.FC<{ frame: number }> = ({ frame }) => (
   </g>
 );
 
+// EYE CLINIC (AK file_175: 'Change the environment as clinic setup')
+// — cool clinical interior: wall, floor, Snellen chart, exam chair
+// with articulated lamp, counter with drop bottles, waiting seats,
+// ticking wall clock. Signboard stays dynamic (scene_label).
+const EyeClinic: React.FC<{ frame: number }> = ({ frame }) => (
+  <g>
+    {/* wall: two-tone clinical */}
+    <rect x={0} y={0} width={704} height={900} fill="#EAF2F8" />
+    <rect x={0} y={0} width={704} height={300} fill="#D6E7F2" />
+    <line x1={0} y1={300} x2={704} y2={300} stroke="#B7CFE0" strokeWidth={3} />
+    {/* floor */}
+    <rect y={900} width={704} height={380} fill="#D9DDE3" />
+    <line x1={0} y1={900} x2={704} y2={900} stroke={INK} strokeWidth={4} />
+    {[130, 350, 570].map(x => (
+      <line key={x} x1={x} y1={900} x2={x - 60} y2={1280} stroke="#C2C8D0" strokeWidth={3} />
+    ))}
+    {/* Snellen eye chart (left wall) */}
+    <g transform="translate(96 360)">
+      <rect x={-52} y={-90} width={104} height={180} rx={8} fill="#fff" stroke={INK} strokeWidth={4} />
+      <text x={0} y={-52} textAnchor="middle" fontSize={40} fontWeight={900} fill={INK} fontFamily="Arial">E</text>
+      <text x={0} y={-6} textAnchor="middle" fontSize={28} fontWeight={900} fill={INK} fontFamily="Arial">F P</text>
+      <text x={0} y={30} textAnchor="middle" fontSize={20} fontWeight={900} fill={INK} fontFamily="Arial">T O Z</text>
+      <text x={0} y={62} textAnchor="middle" fontSize={14} fontWeight={900} fill={INK} fontFamily="Arial">L P E D</text>
+    </g>
+    {/* wall clock (right, ticking) */}
+    <g transform="translate(600 200)">
+      <circle cx={0} cy={0} r={34} fill="#fff" stroke={INK} strokeWidth={4} />
+      <line x1={0} y1={0} x2={0} y2={-20} stroke={INK} strokeWidth={3.5} strokeLinecap="round"
+        transform={`rotate(${(frame * 6) % 360})`} />
+      <line x1={0} y1={0} x2={14} y2={0} stroke={INK} strokeWidth={3} strokeLinecap="round"
+        transform={`rotate(${(frame * 0.5) % 360})`} />
+    </g>
+    {/* exam chair (center-right, behind characters) */}
+    <g transform="translate(520 940)">
+      <rect x={-90} y={0} width={180} height={30} rx={14} fill="#7FA8C9" stroke={INK} strokeWidth={4} />
+      <rect x={-70} y={-78} width={44} height={84} rx={12} fill="#7FA8C9" stroke={INK} strokeWidth={4} />
+      <rect x={-20} y={30} width={40} height={70} fill={INK} />
+      <rect x={-60} y={96} width={120} height={16} rx={8} fill={INK} />
+    </g>
+    {/* articulated exam lamp over the chair */}
+    <g transform="translate(560 470)">
+      <line x1={0} y1={-80} x2={0} y2={0} stroke={INK} strokeWidth={6} />
+      <path d="M -34 0 L 34 0 L 22 34 L -22 34 Z" fill="#F0C64A" stroke={INK} strokeWidth={4} />
+      <circle cx={0} cy={44 + Math.sin(frame / 20) * 2} r={7} fill="#FFF3C4" opacity={0.85} />
+    </g>
+    {/* counter with drop bottles (left, in front of chart) */}
+    <g transform="translate(0 0)">
+      <rect x={0} y={880} width={210} height={140} rx={10} fill="#9FB8CC" stroke={INK} strokeWidth={5} />
+      {[46, 96, 146].map((x, i) => (
+        <g key={x} transform={`translate(${x} ${850 + Math.sin(frame / 18 + i) * 1.5})`}>
+          <rect x={-12} y={-34} width={24} height={40} rx={6} fill="#6FA8DC" stroke={INK} strokeWidth={3} />
+          <rect x={-5} y={-46} width={10} height={14} rx={3} fill={INK} />
+        </g>
+      ))}
+    </g>
+    {/* waiting seats (far left, small) */}
+    {[0, 1].map(i => (
+      <g key={i} transform={`translate(${60 + i * 74} 1120)`}>
+        <rect x={-30} y={-24} width={60} height={16} rx={7} fill="#B9CBD8" stroke={INK} strokeWidth={3.5} />
+        <rect x={-30} y={-58} width={12} height={38} rx={5} fill="#B9CBD8" stroke={INK} strokeWidth={3.5} />
+      </g>
+    ))}
+    {/* signboard — dynamic per scene_label (M3 law) */}
+    {(() => {
+      const label = (typeof window !== 'undefined' && (window as any).__scene_label) || 'EYE CLINIC';
+      const w = Math.ceil(label.length * 30 * 0.62) + 56;
+      return (
+        <g>
+          <rect x={352 - w / 2} y={120} width={w} height={64} rx={10} fill="#2E6DA4" stroke={INK} strokeWidth={5} />
+          <text x={352} y={162} textAnchor="middle" fontSize={30} fontWeight={900} fill="#fff" fontFamily="Arial">{label}</text>
+        </g>
+      );
+    })()}
+  </g>
+);
+
 const CityPark: React.FC<{ frame: number }> = ({ frame }) => (
   <g>
     <SkyGrad top="#E8F4FD" bottom="#D3EAF8" />
@@ -504,7 +580,7 @@ const EveningRoad: React.FC<{ frame: number }> = ({ frame }) => (
 );
 
 export const BACKGROUNDS: Record<string, React.FC<{ frame: number }>> = {
-  tea_stall: TeaStall, city_park: CityPark, home_desk: HomeDesk,
+  tea_stall: TeaStall, city_park: CityPark, home_desk: HomeDesk, eye_clinic: EyeClinic,
   trading_floor: TradingFloor, evening_road: EveningRoad,
 };
 

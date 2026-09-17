@@ -74,7 +74,7 @@ for bi, b in enumerate(beats):
         'after_visual': b.get('after_visual'),
         'bubble': b['bubble'], 'caption': b['caption'],
         'text_hook': b['caption'], 'visual': b['visual'],
-        'sfx': b.get('sfx'), 'scene_label': 'DAILY HABIT CHECK',
+        'sfx': b.get('sfx'), 'scene_label': b.get('scene_label', 'DAILY HABIT CHECK'),
     })
     t += frames
 entry['total_frames'] = t
@@ -101,7 +101,7 @@ import {{ XiaoheiConvo }} from './XiaoheiConvo';
 const CONVO = {{
  \"beats\": {beats_json},
  \"captions\": {caps_json},
- \"characters\": \"{CHARS}\"
+ \"characters\": \"{CHARS}\",\n \"consult\": {_sc.get("consult", False) and "true" or "false"}
 }};
 
 const Wrapper: React.FC = () => {{
