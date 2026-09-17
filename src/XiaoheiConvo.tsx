@@ -2,7 +2,7 @@ import React from 'react';
 import { Shot1Phone, Shot2ManWindow } from './shot12_scenes';
 import { BrollLensNight, BrollCaseMorning } from './shot_lenses';
 import { WordAnchoredCaptions } from './WordAnchoredCaptions';
-import { AbsoluteFill, useCurrentFrame, interpolate, Easing, Sequence } from 'remotion';
+import { AbsoluteFill, useCurrentFrame, interpolate, Easing, Sequence, OffthreadVideo, staticFile } from 'remotion';
 
 // ============================================================================
 // Xiaohei conversation format — new story engine (2026-09-08, kanban t_3269a562)
@@ -87,6 +87,82 @@ export const Xiaohei: React.FC<{
   );
 };
 
+// HUMAN CHARACTER MODE (AK file_171: 'nice but cartoon' -> realistic
+// illustrated people, same rig/animation). skin/hair/shirt per speaker;
+// identical bob/blink/arm/mouth timing so bubbles + camera still work.
+export const Human: React.FC<{
+  frame: number; scale?: number; flip?: boolean; talking?: boolean;
+  accent: 'scarf' | 'cap'; accentColor: string; opacity?: number;
+}> = ({ frame, scale = 1, flip = false, talking = false, accent, accentColor, opacity = 1 }) => {
+  const bob = Math.sin(frame / 11) * 2.5;
+  const blink = (frame % 97) < 4 ? 0.12 : 1;
+  const armSwing = talking ? Math.sin(frame / 5) * 8 : Math.sin(frame / 22) * 2.5;
+  const mouthH = talking ? 3.5 + Math.abs(Math.sin(frame / 3)) * 7 : 2;
+  const skin = accent === 'scarf' ? '#C68B59' : '#B87A4B';      // warm brown tones
+  const shirt = accent === 'scarf' ? '#3E5C76' : '#5B7B4C';     // kurta / shirt
+  const hair = '#1B1B1F';
+  return (
+    <g transform={`translate(0 ${bob}) scale(${flip ? -scale : scale} ${scale})`} opacity={opacity}>
+      {/* legs */}
+      <line x1={-14} y1={58} x2={-18} y2={94} stroke={INK} strokeWidth={7} strokeLinecap="round" />
+      <line x1={14} y1={58} x2={18} y2={94} stroke={INK} strokeWidth={7} strokeLinecap="round" />
+      {/* arms (shirt sleeves + hands) */}
+      <g transform={`rotate(${-armSwing} -34 8)`}>
+        <line x1={-34} y1={8} x2={-56} y2={-12 + (talking ? -6 : 0)} stroke={shirt} strokeWidth={11} strokeLinecap="round" />
+        <circle cx={-57} cy={-13 + (talking ? -6 : 0)} r={6} fill={skin} />
+      </g>
+      <g transform={`rotate(${armSwing} 34 8)`}>
+        <line x1={34} y1={8} x2={56} y2={-12 + (talking ? -6 : 0)} stroke={shirt} strokeWidth={11} strokeLinecap="round" />
+        <circle cx={57} cy={-13 + (talking ? -6 : 0)} r={6} fill={skin} />
+      </g>
+      {/* torso: kurta/shirt with collar */}
+      <path d="M -40 -28 Q -46 20 -38 56 L 38 56 Q 46 20 40 -28 Z" fill={shirt} />
+      <path d="M -12 -30 L 0 -18 L 12 -30" stroke="#fff" strokeWidth={3} fill="none" opacity={0.85} />
+      {/* neck */}
+      <rect x={-8} y={-38} width={16} height={12} rx={5} fill={skin} />
+      {/* head: rounded face */}
+      <ellipse cx={0} cy={-62} rx={30} ry={33} fill={skin} />
+      {/* ears */}
+      <circle cx={-29} cy={-60} r={5} fill={skin} />
+      <circle cx={29} cy={-60} r={5} fill={skin} />
+      {/* hair: cap/scarf speaker differs */}
+      {accent === 'scarf' ? (
+        <g>
+          {/* uncle: side-part hair + mustache */}
+          <path d="M -30 -68 Q -26 -96 0 -96 Q 26 -96 30 -68 Q 18 -80 0 -80 Q -18 -80 -30 -68 Z" fill={hair} />
+          <path d="M -12 -46 Q 0 -42 12 -46" stroke={hair} strokeWidth={3.5} fill="none" strokeLinecap="round" />
+        </g>
+      ) : (
+        <g>
+          {/* nephew: fuller hair */}
+          <path d="M -30 -66 Q -30 -98 0 -97 Q 30 -98 30 -66 Q 24 -84 0 -86 Q -24 -84 -30 -66 Z" fill={hair} />
+        </g>
+      )}
+      {/* brows */}
+      <path d="M -22 -72 Q -15 -76 -8 -72" stroke={hair} strokeWidth={3} fill="none" strokeLinecap="round" />
+      <path d="M 8 -72 Q 15 -76 22 -72" stroke={hair} strokeWidth={3} fill="none" strokeLinecap="round" />
+      {/* eyes */}
+      <g transform={`translate(0 -62) scale(1 ${blink})`}>
+        <ellipse cx={-13} cy={0} rx={6.5} ry={7} fill="#fff" />
+        <ellipse cx={13} cy={0} rx={6.5} ry={7} fill="#fff" />
+        <circle cx={-12} cy={0.5} r={3.2} fill={INK} />
+        <circle cx={14} cy={0.5} r={3.2} fill={INK} />
+      </g>
+      {/* nose */}
+      <path d="M 0 -60 Q 4 -54 0 -51" stroke={skin} strokeWidth={0} fill={skin} />
+      <path d="M 0 -60 Q 4 -54 0 -51" stroke="#00000033" strokeWidth={2.5} fill="none" strokeLinecap="round" />
+      {/* mouth */}
+      {talking ? (
+        <ellipse cx={0} cy={-44} rx={7} ry={mouthH / 2} fill="#7A3B2E" />
+      ) : (
+        <path d="M -6 -44 Q 0 -41 6 -44" stroke={INK} strokeWidth={2.5} fill="none" strokeLinecap="round" />
+      )}
+      {/* accent: scarf = stethoscope hint / cap = cap */}
+      {accent === 'cap' && <path d="M -26 -80 Q 0 -92 26 -80 L 30 -74 L -30 -74 Z" fill={accentColor} />}
+    </g>
+  );
+};
+
 // ---------------- Speech bubble ----------------
 export const Bubble: React.FC<{
   lines: string[]; x: number; y: number; tailX: number; color: string;
@@ -143,7 +219,8 @@ export const Card: React.FC<{ frame: number; delay?: number; children: React.Rea
 const BigStat: React.FC<{ label: string; value: string; color: string; x: number; y: number }> = ({ label, value, color, x, y }) => (
   <g transform={`translate(${x} ${y})`}>
     <text x={0} y={0} fontSize={19} fontWeight={700} fill="#666" fontFamily="Arial">{label}</text>
-    <text x={0} y={38} fontSize={40} fontWeight={900} fill={color} fontFamily="Arial">{value}</text>
+    {/* EDGE-CLIP LAW: shrink long values so they stay inside the card half (270px) */}
+    <text x={0} y={38} fontSize={value.length > 8 ? 30 : value.length > 6 ? 34 : 40} fontWeight={900} fill={color} fontFamily="Arial">{value}</text>
   </g>
 );
 
@@ -277,12 +354,6 @@ const HomeDesk: React.FC<{ frame: number }> = ({ frame }) => (
     <rect x={100} y={1020} width={504} height={26} rx={8} fill="#B07B4F" stroke={INK} strokeWidth={5} />
     <rect x={130} y={1046} width={20} height={110} fill={INK} />
     <rect x={554} y={1046} width={20} height={110} fill={INK} />
-    {/* piggy bank w/ coin slot (moved off listener position x=556 -> 348) */}
-    <g transform="translate(348 988)">
-      <ellipse cx={0} cy={0} rx={42} ry={30} fill="#F6A1B5" stroke={INK} strokeWidth={4} />
-      <rect x={-16} y={-28} width={32} height={7} rx={3} fill={INK} />
-      <circle cx={26} cy={-6} r={5} fill={INK} />
-    </g>
   </g>
 );
 
@@ -435,6 +506,7 @@ const TopicIcon: React.FC<{ icon: string; frame: number }> = ({ icon, frame }) =
     clock: '⏰', drop: '💧', pill: '💊', sleep: '😴', sun: '☀️',
     warning: '⚠️', check: '✅', cross: '❌', target: '🎯', brain: '🧠',
     book: '📖', chart: '📊', money: '💰', heart: '❤️', doctor: '🩺',
+    save: '🔖', follow: '➕', hand: '✋', bacteria: '🦠', snow: '❄️',
   };
   const glyph = EMOJI[icon] || '👁️';
   const springy = 1 + 0.06 * Math.sin(frame / 6);
@@ -496,6 +568,61 @@ const BeatVisual: React.FC<{ beat: ConvoBeat; frame: number }> = ({ beat, frame 
       return <Shot1Phone />;
     case 'broll_shot2':
       return <Shot2ManWindow />;
+    case 'broll_clip': {
+      // B-ROLL INSIDE TEMPLATE (AK file_170): renders in the SVG board
+      // zone — clip phase via <foreignObject> video panel, card phase
+      // via BeatVisual. Characters + bubbles stay visible behind.
+      const bf = (beat as any).frames || 150;
+      const m = (beat as any).visual.motion ||
+        { zoom_from: 100, zoom_to: 112, shake: 0, accent: '#FFD24A' };
+      const hasClip = !!(beat as any).visual.clip;
+      const cut = hasClip ? Math.floor(bf * 0.6) : 0;
+      const mf = frame - cut;
+      const zoom = interpolate(mf, [0, bf - cut],
+        [m.zoom_from / 100, m.zoom_to / 100],
+        { extrapolateRight: 'clamp', easing: Easing.out(Easing.ease) });
+      const shk = (m.shake || 0) * Math.sin(mf / 4) *
+        interpolate(mf, [0, bf - cut], [1, 0.2], { extrapolateRight: 'clamp' });
+      if (hasClip && frame < cut) {
+        // B-ROLL PiP (v17, AK file_171 'egg saying finger full screen roll
+        // and back to eggs'): small right-side cutaway — template stays
+        // dominant, smooth slide+fade in, Ken Burns inside the panel.
+        const inP = interpolate(frame, [0, 12], [0, 1],
+          { extrapolateRight: 'clamp', easing: Easing.out(Easing.ease) });
+        const slide = interpolate(frame, [0, 12], [90, 0],
+          { extrapolateRight: 'clamp', easing: Easing.out(Easing.ease) });
+        const pz = interpolate(frame, [0, cut], [1.0, 1.045],
+          { extrapolateRight: 'clamp', easing: Easing.out(Easing.ease) });
+        const outP = interpolate(frame, [cut - 10, cut], [1, 0],
+          { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+        const pop = inP * outP;
+        return (
+          <g opacity={pop} transform={`translate(${slide} 0)`}>
+            {/* backdrop card behind panel */}
+            <rect x={398} y={470} width={298} height={278} rx={20} fill="#FFFFFF" opacity={0.14} />
+            <foreignObject x={412} y={484} width={270} height={250}>
+              <div style={{ width: '100%', height: '100%', borderRadius: 16, overflow: 'hidden',
+                boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}>
+                <div style={{ width: '100%', height: '100%', transform: `scale(${pz})` }}>
+                  <OffthreadVideo src={staticFile((beat as any).visual.clip)}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </div>
+              </div>
+            </foreignObject>
+          </g>
+        );
+      }
+      const av = (beat as any).after_visual || { kind: 'stat_pair' };
+      const tb: any = { ...(beat as any), visual: av };
+      if (mf < 0) return null; // clip→card handoff: never render card early
+      return (
+        <g transform={`translate(${352 + shk} 665) scale(${zoom}) translate(-352 -665)`}>
+          <BeatVisual beat={tb} frame={mf} />
+        </g>
+      );
+    }
+    case 'broll_rub_hook':
+      return <BrollEyeRub beat={beat} />;
     case 'broll_lens_night':
       return <BrollLensNight />;
     case 'broll_case_morning':
@@ -538,7 +665,7 @@ const BeatVisual: React.FC<{ beat: ConvoBeat; frame: number }> = ({ beat, frame 
       // Viral icon row is topic-driven (beat.visual.icons) and ANIMATED.
       return (
         <g>
-          <Card frame={frame} x={42} y={430} w={620} h={395}>
+          <Card frame={frame} x={42} y={380} w={620} h={395}>
             <text x={352} y={80} textAnchor="middle" fontSize={40} fontWeight={900} fill={INK} fontFamily="Arial">{(v as any).headline || 'SAVE THIS'}</text>
             <text x={352} y={136} textAnchor="middle" fontSize={20} fontWeight={700} fill={GREEN} fontFamily="Arial">{(v as any).sub || 'Follow for the science'}</text>
             <g transform="translate(352 200)">
@@ -687,9 +814,9 @@ export const DisclaimerTag: React.FC = () => {
   const fade = interpolate(frame, [0, 12], [0, 0.9], { extrapolateRight: 'clamp' });
   return (
     <div style={{
-      position: 'absolute', left: '50%', top: '7.5%', transform: 'translateX(-50%)',
+      position: 'absolute', left: '50%', top: '2.2%', transform: 'translateX(-50%)',
       background: 'rgba(0,0,0,0.62)', color: '#EAEAEA', borderRadius: 999,
-      padding: '6px 20px', fontSize: 24, fontWeight: 600, opacity: fade,
+      padding: '5px 16px', fontSize: 20, fontWeight: 600, opacity: fade,
       whiteSpace: 'nowrap', fontFamily: 'Arial, sans-serif', zIndex: 50,
     }}>
       Education only — not medical advice
@@ -748,7 +875,9 @@ export const XiaoheiConvo: React.FC = () => {
       {data.beats.map((b) => (
         <Sequence key={b.id} from={b.start} durationInFrames={b.frames}
                   layout="absolute-fill">
-          <SceneScene beat={b} data={data} />
+          <ZoomMotion beat={b}>
+            <SceneScene beat={b} data={data} />
+          </ZoomMotion>
         </Sequence>
       ))}
       {/* A3: persistent disclaimer from frame 0 — NOT part of any scene */}
@@ -759,6 +888,18 @@ export const XiaoheiConvo: React.FC = () => {
   );
 };
 
+
+// MOTION LAW (AK critique 2026-09-16): continuous slow zoom 100->105%
+// every beat + punch-in on hook beats — movement every frame.
+const ZoomMotion: React.FC<{ beat: any; children: React.ReactNode }> = ({ beat, children }) => {
+  const frame = useCurrentFrame();
+  const kind = beat.kind || '';
+  const isHook = kind === 'hook' || (beat.visual?.kind || '').startsWith('broll_') && beat.id === 1;
+  const base = interpolate(frame, [0, beat.frames], [1.0, 1.05], { extrapolateRight: 'clamp' });
+  const punch = isHook ? interpolate(frame, [0, 4, 10], [1.10, 1.03, base], { extrapolateRight: 'clamp' }) : base;
+  return <AbsoluteFill style={{ transform: `scale(${punch})` }}>{children}</AbsoluteFill>;
+};
+
 const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) => {
   const frame = useCurrentFrame(); // scene-local frame inside the Sequence
   const lf = frame;
@@ -767,10 +908,13 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
   if (typeof window !== 'undefined') {
     (window as any).__scene_label = beat.scene_label || 'DAILY HABIT CHECK';
   }
-  // B-ROLL LAW (AK 2026-09-15): broll_* kinds are FULL-FRAME cinematic
-  // scenes — they REPLACE the character scene entirely (skip scene svg,
-  // characters, bubbles). Captions + disclaimer still overlay on top.
-  if ((beat.visual?.kind || '').startsWith('broll_')) {
+  // B-ROLL LAW v2 (AK file_170 2026-09-17: 'I need egg template IN THAT
+  // these broll should come'): b-roll plays INSIDE the egg template —
+  // characters + bubbles + background STAY. The clip (first 60% of the
+  // beat) or the data card (last 40%) renders in the visual board zone
+  // above the characters, like any other BeatVisual.
+  // Exception: broll_rub_hook stays full-frame (beat-1 approved hook).
+  if (beat.visual?.kind === 'broll_rub_hook') {
     return (
       <AbsoluteFill>
         <BeatVisual beat={beat} frame={lf} />
@@ -783,6 +927,7 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
   }
   const meta = SPEAKER_META[beat.speaker];
   const listener = beat.speaker === 'RAVI' ? 'VIKRAM' : 'RAVI';
+  const Char = (data as any).characters === 'human' ? Human : Xiaohei;
   const lmeta = SPEAKER_META[listener];
   const isLeft = meta.side === 'left';
 
@@ -814,18 +959,18 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
           {React.createElement(bg, { frame })}
           {/* listener: opposite side, smaller, slightly dimmed */}
           <g transform={`translate(${isLeft ? 556 : 148} 1030)`} opacity={0.95}>
-            <Xiaohei frame={frame + beat.id * 13} scale={0.82} flip={!isLeft} talking={false}
+            <Char frame={frame + beat.id * 13} scale={0.82} flip={!isLeft} talking={false}
               accent={lmeta.accent} accentColor={lmeta.color} opacity={0.92} />
           </g>
           {/* speaker: active side, talking */}
           <g transform={`translate(${isLeft ? 200 : 504} 1040)`}>
-            <Xiaohei frame={frame} scale={1.0} flip={isLeft} talking
+            <Char frame={frame} scale={1.0} flip={isLeft} talking
               accent={meta.accent} accentColor={meta.color} />
           </g>
         {hook && (
           <g opacity={hookP}>
-            <rect x={112} y={170} width={480} height={58} rx={12} fill="#1A202C" opacity={0.92} />
-            <text x={352} y={208} textAnchor="middle" fontSize={27} fontWeight={900}
+            <rect x={112} y={214} width={480} height={58} rx={12} fill="#1A202C" opacity={0.92} />
+            <text x={352} y={252} textAnchor="middle" fontSize={27} fontWeight={900}
               fill="#F6E05E" fontFamily="Arial">{hook}</text>
           </g>
         )}
@@ -845,6 +990,55 @@ const SceneScene: React.FC<{ beat: any; data: ConvoData }> = ({ beat, data }) =>
       {!((globalThis as any).__CONVO__?.captions?.length) && (
         <WordCaptions text={beat.voText ?? beat.bubble.join(' ')} frames={beat.frames} frame={lf} />
       )}
+    </AbsoluteFill>
+  );
+};
+
+// T313 DYNAMIC HOOK B-ROLL: topic-driven full-frame (DYNAMIC-SIGNBOARD
+// law — no hardcoded topic text; icons + labels come from beat data).
+export const BrollEyeRub: React.FC<{ beat?: any }> = ({ beat }) => {
+  const frame = useCurrentFrame();
+  const icons = (beat?.visual?.icons || [{ icon: 'eye', label: 'EYES' }, { icon: 'hand', label: 'RUB' }]);
+  const label = (beat?.visual?.title || '').toUpperCase();
+  const p = interpolate(frame, [4, 16], [0, 1], { extrapolateRight: 'clamp' });
+  return (
+    <AbsoluteFill style={{ background: 'linear-gradient(160deg,#2B1B3D 0%,#1A1030 100%)' }}>
+      {/* soft spotlight */}
+      <div style={{ position: 'absolute', left: '50%', top: '38%', width: 620, height: 620,
+        transform: 'translate(-50%,-50%)', borderRadius: '50%',
+        background: 'radial-gradient(circle,rgba(255,214,143,0.18) 0%,rgba(0,0,0,0) 70%)' }} />
+      {icons.map((it: any, i: number) => {
+        const pp = interpolate(frame, [10 + i * 10, 22 + i * 10], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+        const s = 1 + 0.05 * Math.sin(frame / 6 + i);
+        return (
+          <div key={i} style={{ position: 'absolute', left: `${28 + i * 22}%`, top: '40%',
+            transform: `translate(-50%,-50%) scale(${pp * s})`, textAlign: 'center' }}>
+            <div style={{ fontSize: 120 }}>{EMOJI_ICON(it.icon)}</div>
+            <div style={{ color: '#F6E05E', fontWeight: 900, fontSize: 34, fontFamily: 'Arial', marginTop: 8 }}>{it.label || ''}</div>
+          </div>
+        );
+      })}
+      {label && (
+        <div style={{ position: 'absolute', bottom: '12%', width: '100%', textAlign: 'center',
+          transform: `scale(${p})`, color: '#FF5A5A', fontWeight: 900, fontSize: 54, fontFamily: 'Arial' }}>{label}</div>
+      )}
+    </AbsoluteFill>
+  );
+};
+
+const EMOJI_ICON = (name: string): string => {
+  const M: Record<string, string> = { eye: '👁️', hand: '✋', bacteria: '🦠', drop: '💧', snow: '❄️',
+    sleep: '😴', warning: '⚠️', check: '✅', cross: '❌', heart: '❤️', doctor: '🩺', save: '🔖', follow: '➕' };
+  return M[name] || '👁️';
+};
+
+// AI B-ROLL CLIP: plays a real generated clip full-frame (B-ROLL LAW
+// v9). Clip path comes from beat data — dynamic, no hardcode.
+export const BrollClip: React.FC<{ clip?: string }> = ({ clip }) => {
+  if (!clip) return null;
+  return (
+    <AbsoluteFill>
+      <OffthreadVideo src={staticFile(clip)} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
     </AbsoluteFill>
   );
 };
