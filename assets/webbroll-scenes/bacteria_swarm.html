@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;
+background:radial-gradient(ellipse at 50% 45%, #1c1405 0%, #0f0a03 55%, #060401 100%)}
+#root{width:100%;height:100%;position:relative}
+/* fingertip with bacteria swarm */
+#finger{position:absolute;left:540px;top:900px;width:340px;height:520px;
+margin:-260px 0 0 -170px;border-radius:170px;
+background:linear-gradient(135deg, #e8b896 0%, #d19a76 45%, #a8714f 100%);
+box-shadow:0 0 90px 20px rgba(220,150,100,.2), inset -20px -30px 60px rgba(120,60,30,.5);
+opacity:0}
+.bug{position:absolute;width:16px;height:16px;border-radius:50% 50% 50% 0;
+background:radial-gradient(circle at 35% 35%, #d4e157, #7cb342 70%);
+box-shadow:0 0 10px 2px rgba(150,200,60,.5);opacity:0}
+#tag{position:absolute;bottom:40px;right:60px;font:600 28px monospace;
+color:#d4e157;opacity:.55}
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="5"
+     data-width="1080" data-height="1920">
+<div id="finger" class="clip" data-start="0" data-duration="5" data-track-index="0"></div>
+<div id="nail" style="position:absolute;left:540px;top:735px;width:210px;height:150px;margin:-75px 0 0 -105px;border-radius:105px 105px 30px 30px;background:linear-gradient(135deg,#f6d4bc 0%,#eab896 75%);box-shadow:inset 0 -12px 22px rgba(160,100,60,.5);opacity:0"></div>
+<div class="bug" data-b="0"></div><div class="bug" data-b="1"></div>
+<div class="bug" data-b="2"></div><div class="bug" data-b="3"></div>
+<div class="bug" data-b="4"></div><div class="bug" data-b="5"></div>
+<div class="bug" data-b="6"></div><div class="bug" data-b="7"></div>
+<div class="bug" data-b="8"></div><div class="bug" data-b="9"></div>
+<div class="bug" data-b="10"></div><div class="bug" data-b="11"></div>
+<div id="tag">B-ROLL</div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+function prand(i){ const x = Math.sin(i * 311.7) * 24634.6345; return x - Math.floor(x); }
+tl.fromTo("#nail", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: .7, ease: "power2.out" }, .1);
+// finger slides in
+tl.fromTo("#finger", { y: 300, opacity: 0 },
+  { y: 0, opacity: 1, duration: .7, ease: "power2.out" }, .1);
+// bacteria crawl out of the fingertip and swarm outward
+for (let i = 0; i < 12; i++) {
+  const a = prand(i) * Math.PI * 2;
+  const r1 = 60 + prand(i + 20) * 120, r2 = 200 + prand(i + 40) * 260;
+  const d = .4 + prand(i + 60) * .8;
+  tl.fromTo(`[data-b="${i}"]`,
+    { x: 540 + r1 * Math.cos(a), y: 900 + r1 * Math.sin(a), opacity: 0,
+      rotation: prand(i) * 360 },
+    { x: 540 + r2 * Math.cos(a), y: 900 + r2 * Math.sin(a), opacity: .95,
+      rotation: prand(i + 80) * 360, duration: 2.2, ease: "power1.out" },
+    .8 + d * .6);
+  // wiggle
+  tl.to(`[data-b="${i}"]`, { x: "+=14", y: "-=10", duration: .3,
+    yoyo: true, repeat: 3, ease: "sine.inOut" }, 1.4 + d);
+}
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script></body></html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;
+background:radial-gradient(ellipse at 50% 42%, #1a0d18 0%, #0d060c 55%, #050205 100%)}
+#root{width:100%;height:100%;position:relative}
+#eye{position:absolute;left:540px;top:840px;width:620px;height:620px;
+margin:-310px 0 0 -310px;border-radius:50%;
+background:radial-gradient(circle at 50% 45%, #fff 0%, #f3e7e2 55%, #d9c3bc 80%);
+box-shadow:0 0 110px 25px rgba(200,80,255,.18), inset 0 -30px 80px rgba(90,40,110,.3)}
+/* cornea front surface that BULGES into a cone */
+#cornea{position:absolute;left:540px;top:840px;width:340px;height:300px;
+margin:-150px 0 0 -170px;border-radius:48%;
+background:radial-gradient(circle at 50% 70%, rgba(180,120,255,.85) 0%, rgba(110,60,180,.9) 55%, rgba(60,25,100,.95) 100%);
+box-shadow:0 0 50px 10px rgba(180,120,255,.4);transform-origin:50% 100%}
+#iris{position:absolute;left:540px;top:900px;width:230px;height:230px;
+margin:-115px 0 0 -115px;border-radius:50%;
+background:radial-gradient(circle at 45% 40%, #b98cd9 0%, #6b3fa0 45%, #2a1245 80%)}
+#pupil{position:absolute;left:540px;top:900px;width:90px;height:90px;
+margin:-45px 0 0 -45px;border-radius:50%;background:#050505}
+/* blurred vision overlay = what patient sees */
+#blurveil{position:absolute;inset:0;backdrop-filter:blur(0px);opacity:0;
+background:rgba(20,5,30,.25)}
+#tag{position:absolute;bottom:40px;right:60px;font:600 28px monospace;
+color:#c88cff;opacity:.55}
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="5"
+     data-width="1080" data-height="1920">
+<div id="eye" class="clip" data-start="0" data-duration="5" data-track-index="0"></div>
+<div id="iris" class="clip" data-start="0" data-duration="5" data-track-index="0"></div>
+<div id="pupil" class="clip" data-start="0" data-duration="5" data-track-index="0"></div>
+<div id="cornea" class="clip" data-start="0" data-duration="5" data-track-index="0"></div>
+<div id="blurveil"></div>
+<div id="tag">B-ROLL</div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+// cornea progressively BULGES into cone (keratoconus progression)
+tl.fromTo("#cornea", { scaleY: .72, scaleX: 1 },
+  { scaleY: 1.35, scaleX: .82, duration: 3.2, ease: "power2.in" }, .3);
+tl.to("#cornea", { y: 60, duration: 3.2, ease: "power2.in" }, .3);
+// pupil stretches with the cone
+tl.fromTo("#pupil", { scaleY: 1 }, { scaleY: 1.5, scaleX: .8,
+  duration: 3.2, ease: "power2.in" }, .3);
+// vision blurs progressively (the disease experience)
+tl.fromTo("#blurveil", { opacity: 0 }, { opacity: 1,
+  duration: 3.4, ease: "power1.in" }, .5);
+// subtle eye shift (uncomfortable)
+tl.to("#eye", { x: 8, duration: .5, yoyo: true, repeat: 4,
+  ease: "sine.inOut" }, 1.2);
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script></body></html>

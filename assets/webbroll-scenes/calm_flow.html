@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;
+background:radial-gradient(ellipse at 50% 40%, #0a2438 0%, #04121c 55%, #02090f 100%)}
+#root{width:100%;height:100%;position:relative}
+/* droplet */
+#drop{position:absolute;left:540px;top:780px;width:90px;height:130px;
+margin:-65px 0 0 -45px;
+background:radial-gradient(circle at 38% 32%, #cfeffb 0%, #7fd4e8 35%, #2a9fc9 75%);
+border-radius:50% 50% 50% 50% / 62% 62% 40% 40%;
+box-shadow:0 0 50px 12px rgba(79,195,247,.35), inset -8px -12px 24px rgba(10,60,90,.5);
+opacity:0}
+/* ripples */
+.rip{position:absolute;left:540px;top:900px;border-radius:50%;
+border:4px solid rgba(79,195,247,.65);transform:translate(-50%,-50%);
+width:60px;height:22px;opacity:0}
+/* healing glow ring */
+#glow{position:absolute;left:540px;top:900px;width:700px;height:700px;
+margin:-350px 0 0 -350px;border-radius:50%;
+background:radial-gradient(circle, rgba(79,195,247,.14) 0%, transparent 65%);opacity:0}
+#tag{position:absolute;bottom:40px;right:60px;font:600 28px monospace;
+color:#4fc3f7;opacity:.55}
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="5"
+     data-width="1080" data-height="1920">
+<div id="glow" class="clip" data-start="0" data-duration="5" data-track-index="0"></div>
+<div id="drop" class="clip" data-start="0" data-duration="5" data-track-index="0"></div>
+<div class="rip" data-r="0"></div><div class="rip" data-r="1"></div>
+<div class="rip" data-r="2"></div><div class="rip" data-r="3"></div>
+<div id="tag">B-ROLL</div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+// droplet falls in
+tl.fromTo("#drop", { y: -500, opacity: 0 },
+  { y: 60, opacity: 1, duration: .8, ease: "power2.in" }, .2);
+// impact ripple rings
+for (let i = 0; i < 4; i++) {
+  tl.fromTo(`[data-r="${i}"]`,
+    { width: 60, height: 22, opacity: .9 },
+    { width: 420 + i * 90, height: 150 + i * 34, opacity: 0,
+      duration: 1.5, ease: "power1.out" }, 1.0 + i * .35);
+}
+// soothing glow breathes
+tl.fromTo("#glow", { opacity: 0, scale: .85 },
+  { opacity: 1, scale: 1.04, duration: 1.6, yoyo: true, repeat: 2,
+    ease: "sine.inOut" }, 1.0);
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script></body></html>
